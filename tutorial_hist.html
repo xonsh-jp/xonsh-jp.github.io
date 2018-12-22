@@ -1,0 +1,484 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" class="medium-up-screen translated-ltr"><head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>チュートリアル：履歴 -  xonsh 0.8.5 documentation</title>
+    <link rel="stylesheet" href="_static/numpy_friendly.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="_static/cloud.base.js"></script>
+    <script type="text/javascript" src="_static/cloud.js"></script>
+    <link rel="shortcut icon" href="_static/magic_conch.ico" />
+    <link rel="index" title="インデックス" href="genindex.html" />
+    <link rel="search" title="サーチ" href="search.html" />
+    <link rel="next" title="チュートリアル：マクロ" href="tutorial_macros.html" />
+    <link rel="prev" title="チュートリアル" href="tutorial.html" />
+     
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="canonical" href="http://xon.sh/tutorial_hist.html" />
+
+  <link type="text/css" rel="stylesheet" charset="UTF-8" href="https://translate.googleapis.com/translate_static/css/translateelement.css" /></head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ナビゲーション</font></font></h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="一般索引" accesskey="I"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">索引</font></font></a></li>
+        <li class="right">
+          <a href="py-modindex.html" title="Pythonモジュールのインデックス"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">モジュール</font></font></a>    </li>
+        <li class="right">
+          <a href="tutorial_macros.html" title="チュートリアル：マクロ" accesskey="N"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次</font></font></a>    </li>
+        <li class="right">
+          <a href="tutorial.html" title="チュートリアル" accesskey="P"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前</font></font></a>    </li>
+    <li><a href="sidebar.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonsh 0.8.5 documentation</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshシェル</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="tutorial-history">
+<span id="tutorial-hist"></span><h1><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">チュートリアル：履歴</font></font><a class="headerlink" href="#tutorial-history" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h1>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Leonard Nimoyのドキュメンタリー音声をインポートして、xonshチュートリアルの準備をしてください</font></font><code class="docutils literal notranslate"><span class="pre">history</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+<div class="section" id="how-is-xonsh-history-different">
+<h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshの歴史はどう違うのですか？</font></font><a class="headerlink" href="#how-is-xonsh-history-different" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h2>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ほとんどのシェルは、歴史の中で</font><font style="vertical-align: inherit;">端末に</font><font style="vertical-align: inherit;">入力され</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">た</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">過去のコマンドの線形シーケンスと考えています</font><font style="vertical-align: inherit;">。</font><font style="vertical-align: inherit;">これは</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 
+シェルが終了する</font><font style="vertical-align: inherit;">ときに保存</font><font style="vertical-align: inherit;">され</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">新しいシェルが起動する</font><font style="vertical-align: inherit;">とき</font><em><font style="vertical-align: inherit;">に</font></em><font style="vertical-align: inherit;">読み込まれ</font><font style="vertical-align: inherit;">ます。</font><font style="vertical-align: inherit;">しかし、これはもはや世界の仕組みではありません。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">世界は乱雑で非同期的な場所です。</font><font style="vertical-align: inherit;">私たちは通常、一度に少なくとも多くの端末（およびシェル）をオープンしています。</font><font style="vertical-align: inherit;">xonshでは、歴史はこれが事実であることを認めます。</font><font style="vertical-align: inherit;">単一の履歴ファイルの入力ではなく、xonshはJSON形式の履歴ファイルのコレクションを実装しています。このファイルは、次の構造を持つと考えることができます。</font></font></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">'env'</span><span class="p">:</span> <span class="p">{</span><span class="o">...</span><span class="p">},</span>  <span class="c1"># Environment that xonsh was started with</span>
+ <span class="s1">'sessionid'</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="c1"># UUID4 for the session</span>
+ <span class="s1">'ts'</span><span class="p">:</span> <span class="p">[</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">],</span>  <span class="c1"># start and stop timestamps for session [s since epoch]</span>
+ <span class="s1">'locked'</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>  <span class="c1"># boolean for whether the file is in use or not</span>
+ <span class="s1">'cmds'</span><span class="p">:</span> <span class="p">[</span>  <span class="c1"># array of commands</span>
+    <span class="p">{</span><span class="s1">'inp'</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>  <span class="c1"># input command</span>
+     <span class="s1">'ts'</span><span class="p">:</span> <span class="p">[</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">],</span>  <span class="c1"># timestamps for the command</span>
+     <span class="s1">'rtn'</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="c1"># command return code</span>
+     <span class="s1">'out'</span> <span class="nb">str</span><span class="p">,</span>  <span class="c1"># stdout and stderr of command, for subproc commands</span>
+                 <span class="c1"># this is only available on Linux. Off by default.</span>
+     <span class="p">},</span>
+    <span class="o">...</span>
+    <span class="p">],</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">この豊富なデータセットにより、Xonshはより高度な検査と操作を行うことができます。</font><font style="vertical-align: inherit;">セッションID、ロック、およびシェルごとの1ファイルのアイデアにより、複数のxonshインスタンスが同時に競合することなく、同時に上書きされることなく、同時に実行できます。</font><font style="vertical-align: inherit;">もちろん、履歴ファイルを削除する外部プロセスは依然として問題を引き起こす可能性があります。</font><font style="vertical-align: inherit;">しかし、ちょっと、世界とファイルシステムは厄介な場所です！</font></font></p>
+</div>
+<div class="section" id="why-have-rich-history">
+<h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">なぜ豊かな歴史がありますか？</font></font><a class="headerlink" href="#why-have-rich-history" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h2>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">歴史的なアーティファクトが必要であることが分かっている時には、それはすでに遅すぎます。</font><font style="vertical-align: inherit;">あなたは覚えていない：</font></font></p>
+<ul class="simple">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">入力は正確に、</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">あなたはあなたが出力を覚えていると思いますが、コマンドを再実行するときに今何が得られるかは何とか違って見えますが、</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">戻りコードが何であるかを知っている人は、</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">あなたが直前に実行したコマンドは、時間の霧の中で今失われています！</font></font></li>
+</ul>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">豊かな歴史を持つ理由は、デバッグと再現性です。</font><font style="vertical-align: inherit;">Xonshは推測作業を過去から取り除いています。</font><font style="vertical-align: inherit;">stdoutをすべて格納する機能さえありますが、これはデフォルトではオフになっています。</font><font style="vertical-align: inherit;">履歴が単なる静的ファイルの場合は、伝統的な履歴ファイルよりもサーバーログに似ています。</font><font style="vertical-align: inherit;">ただし、xonshに</font></font><code class="docutils literal notranslate"><span class="pre">replay</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">は履歴ファイルの</font><font style="vertical-align: inherit;">機能もあり</font><font style="vertical-align: inherit;">ます。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">履歴を再生すると、以前のセッションが新しい環境または同じ環境のスクリプトとして機能します。</font><font style="vertical-align: inherit;">再生すると、別個の新しい履歴セッションとファイルが作成されます。</font><font style="vertical-align: inherit;">2つの履歴は、たとえそれらが同じ入力を含んでいても異なっている可能性があります。</font><font style="vertical-align: inherit;">diffは、xonshカスタム履歴差分ツールを使用して実行することができます。このツールを使用すると、環境や入出力から生じる差異を特定するのに役立ちます。</font><font style="vertical-align: inherit;">do-replay-diffのこのサイクルは、伝統的な「宇宙はどうしたのですか？」アプローチよりも意味があります。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">もちろん、何も今までのようなUnixツールを引っ張ってから誰にも止めなかった</font></font><code class="docutils literal notranslate"><span class="pre">env</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><code class="docutils literal notranslate"><span class="pre">script</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、
+ </font></font><code class="docutils literal notranslate"><span class="pre">diff</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">機能の同じ種類を提供するために、そして他の人一緒に。</font><font style="vertical-align: inherit;">しかし、実際には、誰もこれを行いません。</font><font style="vertical-align: inherit;">xonshで、豊かで有用な歴史は電池を含んで来る。</font></font></p>
+</div>
+<div class="section" id="history-command">
+<h2><code class="docutils literal notranslate"><span class="pre">history</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">コマンド</font></font><a class="headerlink" href="#history-command" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h2>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">すべてのxonsh履歴の検査と操作は、トップレベルの</font></font><code class="docutils literal notranslate"><span class="pre">history</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+エイリアスまたはコマンドを実行します。</font></font><code class="docutils literal notranslate"><span class="pre">action</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">引数</font><font style="vertical-align: inherit;">なしでこれを実行</font><font style="vertical-align: inherit;">すると、デフォルトで</font></font><code class="docutils literal notranslate"><span class="pre">show</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">アクションが実行されます（以下を参照）。</font></font></p>
+<div class="highlight-xonshcon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">history</span><span class="go"></span>
+</pre></div>
+</div>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">また、xonsh組み込み変数を使用して、履歴オブジェクト自体にアクセスできることにも注意してください
+ </font></font><code class="docutils literal notranslate"><span class="pre">__xonsh__.history</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+</div>
+<div class="section" id="show-action">
+<h2><code class="docutils literal notranslate"><span class="pre">show</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">アクション</font></font><a class="headerlink" href="#show-action" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h2>
+<p><font style="vertical-align: inherit;"></font><code class="docutils literal notranslate"><span class="pre">show</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">historyコマンド</font><font style="vertical-align: inherit;">の</font><font style="vertical-align: inherit;">アクション</font></font><code class="docutils literal notranslate"><span class="pre">history</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">は、他のシェルでコマンドが</font><font style="vertical-align: inherit;">実行する動作を模倣して</font><font style="vertical-align: inherit;">います。</font><font style="vertical-align: inherit;">つまり、これらの入力のインデックスとともに過去の入力を表示します。</font><font style="vertical-align: inherit;">これはデフォルトで現在のセッションで動作し、</font></font><code class="docutils literal notranslate"><span class="pre">history</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">コマンドの</font><font style="vertical-align: inherit;">デフォルトの動作です</font><font style="vertical-align: inherit;">。</font><font style="vertical-align: inherit;">例えば、</font></font></p>
+<div class="highlight-xonshcon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span><span class="go"></span>
+<span class="go">2</span><span class="gp"></span>
+<span class="gp">&gt;&gt;&gt;</span> <span class="n">history</span> <span class="n">show</span><span class="go"></span>
+<span class="go"> 0  1 + 1</span><span class="gp"></span>
+<span class="gp">&gt;&gt;&gt;</span> <span class="n">history</span><span class="go"></span>
+<span class="go"> 0  1 + 1</span>
+<span class="go"> 1  history show</span>
+</pre></div>
+</div>
+<div class="admonition note inline-title">
+<p class="first admonition-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">注意</font></font></p>
+<p class="last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">履歴はゼロインデックスされています。</font><font style="vertical-align: inherit;">これはまだPythonです。</font></font></p>
+</div>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">また、任意の整数（履歴インデックスを表示するだけの場合）またはスライス（履歴インデックスの範囲を表示する場合）を引数として取ることもできます。</font><font style="vertical-align: inherit;">上から偶数のインデックスだけを表示するには、次のように書くことができます。</font></font></p>
+<div class="highlight-xonshcon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">history</span> <span class="n">show</span> <span class="p">::</span><span class="mi">2</span><span class="go"></span>
+<span class="go"> 0  1 + 1</span>
+<span class="go"> 2  history</span>
+</pre></div>
+</div>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">多くのスライス/整数引数を使用して、履歴の異なる部分を取得することもできます</font></font></p>
+<p><font style="vertical-align: inherit;"></font><code class="docutils literal notranslate"><span class="pre">show</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">返される履歴を示すオプションの</font><font style="vertical-align: inherit;">後</font><font style="vertical-align: inherit;">に使用することができます：</font></font></p>
+<p><code class="docutils literal notranslate"><span class="pre">xonsh</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">で見つかったすべての有効なjsonファイルからの過去の入力を表示します</font></font><code class="docutils literal notranslate"><span class="pre">XONSH_DATA_DIR</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font><font style="vertical-align: inherit;">したがって、これはすべての過去および現在のxonshセッションで動作します。</font></font></p>
+<p><code class="docutils literal notranslate"><span class="pre">all</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">の別名です</font></font><code class="docutils literal notranslate"><span class="pre">xonsh</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+<p><code class="docutils literal notranslate"><span class="pre">zsh</span></code><font style="vertical-align: inherit;"></font><code class="docutils literal notranslate"><span class="pre">HISTFILE</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">zshの環境変数で</font><font style="vertical-align: inherit;">指定された履歴ファイルのすべての履歴を表示します</font><font style="vertical-align: inherit;">。</font><font style="vertical-align: inherit;">デフォルトではこれは</font></font><code class="docutils literal notranslate"><span class="pre">~/.zsh_history</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">です。</font><font style="vertical-align: inherit;">しかし、彼らはまた、それぞれの両方で指定することができる</font></font><code class="docutils literal notranslate"><span class="pre">~/.zshrc</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">と</font></font><code class="docutils literal notranslate"><span class="pre">~/.zprofile</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font><font style="vertical-align: inherit;">Xonshはこれらのファイル（最初にrcファイル）を解析し</font></font><code class="docutils literal notranslate"><span class="pre">HISTFILE</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">て、設定されている</font><font style="vertical-align: inherit;">かどうかをチェックします</font><font style="vertical-align: inherit;">。</font></font></p>
+<p><font style="vertical-align: inherit;"></font><code class="docutils literal notranslate"><span class="pre">bash</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">アクションはで指定された履歴ファイルからすべての履歴を表示します</font></font><code class="docutils literal notranslate"><span class="pre">HISTFILE</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">bashで環境変数。</font><font style="vertical-align: inherit;">デフォルトではこれは</font></font><code class="docutils literal notranslate"><span class="pre">~/.bash_history</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">です。</font><font style="vertical-align: inherit;">しかし、彼らはまた、それぞれの両方で指定することができる</font></font><code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">と</font></font><code class="docutils literal notranslate"><span class="pre">~/.bash_profile</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font><font style="vertical-align: inherit;">Xonshはこれらのファイル（最初にrcファイル）を解析し</font></font><code class="docutils literal notranslate"><span class="pre">HISTFILE</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">て、設定されている</font><font style="vertical-align: inherit;">かどうかをチェックします</font><font style="vertical-align: inherit;">。</font></font></p>
+<p><code class="docutils literal notranslate"><span class="pre">show</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">履歴出力をより詳細に制御するための他のオプションも</font></font><code class="docutils literal notranslate"><span class="pre">-n</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">使用できます。オプションはコマンドを列挙するために使用され、</font></font><code class="docutils literal notranslate"><span class="pre">-t</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">オプションはタイムスタンプを表示するために使用され、さらに</font><font style="vertical-align: inherit;">オプションのリストを</font><font style="vertical-align: inherit;">試し</font><font style="vertical-align: inherit;">ます。</font></font><code class="docutils literal notranslate"><span class="pre">history</span> <span class="pre">show</span> <span class="pre">--help</span></code><font style="vertical-align: inherit;"></font></p>
+</div>
+<div class="section" id="id-action">
+<h2><code class="docutils literal notranslate"><span class="pre">id</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">アクション</font></font><a class="headerlink" href="#id-action" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h2>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">各xonshの歴史には独自のユニークさがあり</font></font><code class="docutils literal notranslate"><span class="pre">sessionid</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ます。</font></font><code class="docutils literal notranslate"><span class="pre">id</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">アクションは、これが識別表示方法です。</font><font style="vertical-align: inherit;">例えば、</font></font></p>
+<div class="highlight-xonshcon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">history</span> <span class="nb">id</span><span class="go"></span>
+<span class="go">ace97177-f8dd-4a8d-8a91-a98ffd0b3d17</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="file-action">
+<h2><code class="docutils literal notranslate"><span class="pre">file</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">アクション</font></font><a class="headerlink" href="#file-action" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h2>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">同様に、各xonshヒストリには、関連する独自のファイルがあります。</font></font><code class="docutils literal notranslate"><span class="pre">file</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">アクションは、このファイルへのパスを表示する方法です。</font><font style="vertical-align: inherit;">例えば、</font></font></p>
+<div class="highlight-xonshcon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">history</span> <span class="nb">file</span><span class="go"></span>
+<span class="go">/home/me/.local/share/xonsh/xonsh-ace97177-f8dd-4a8d-8a91-a98ffd0b3d17.json</span>
+</pre></div>
+</div>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">これらのファイルは</font></font><code class="docutils literal notranslate"><span class="pre">$XONSH_DATA_DIR</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">環境変数に</font><font style="vertical-align: inherit;">格納されることに注意してください</font><font style="vertical-align: inherit;">。</font><font style="vertical-align: inherit;">これは、デフォルトで</font></font><code class="docutils literal notranslate"><span class="pre">xonsh</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">は、無料のデスクトップ標準</font></font><code class="docutils literal notranslate"><span class="pre">$XDG_DATA_HOME</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">環境変数の</font><font style="vertical-align: inherit;">内部に
+ </font><font style="vertical-align: inherit;">設定されてい</font><font style="vertical-align: inherit;">ます。</font><font style="vertical-align: inherit;">詳細は
+ </font></font><a class="reference external" href="http://standards.freedesktop.org/basedir-spec/latest/ar01s03.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">このページ</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">を</font><a class="reference external" href="http://standards.freedesktop.org/basedir-spec/latest/ar01s03.html"><font style="vertical-align: inherit;">参照</font></a><font style="vertical-align: inherit;">してください。</font></font></p>
+</div>
+<div class="section" id="info-action">
+<h2><code class="docutils literal notranslate"><span class="pre">info</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">アクション</font></font><a class="headerlink" href="#info-action" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h2>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">infoアクションは、</font></font><code class="docutils literal notranslate"><span class="pre">id</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">と</font><font style="vertical-align: inherit;">アクションを組み合わせ</font></font><code class="docutils literal notranslate"><span class="pre">file</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、履歴の現在の状態に関する追加情報を追加します。</font><font style="vertical-align: inherit;">デフォルトでは、キーと値の一連の行が出力されます。</font><font style="vertical-align: inherit;">ただし、JSON形式の文字列も返すことができます。</font></font></p>
+<div class="highlight-xonshcon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">history</span> <span class="n">info</span><span class="go"></span>
+<span class="go">sessionid: ace97177-f8dd-4a8d-8a91-a98ffd0b3d17</span>
+<span class="go">filename: /home/scopatz/.local/share/xonsh/xonsh-ace97177-f8dd-4a8d-8a91-a98ffd0b3d17.json</span>
+<span class="go">length: 6</span>
+<span class="go">buffersize: 100</span>
+<span class="go">bufferlength: 6</span>
+</pre></div>
+</div>
+<div class="highlight-xonshcon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">history</span> <span class="n">info</span> <span class="o">--</span><span class="n">json</span><span class="go"></span>
+<span class="go">{"sessionid": "ace97177-f8dd-4a8d-8a91-a98ffd0b3d17",</span>
+<span class="go"> "filename": "/home/scopatz/.local/share/xonsh/xonsh-ace97177-f8dd-4a8d-8a91-a98ffd0b3d17.json",</span>
+<span class="go"> "length": 7, "buffersize": 100, "bufferlength": 7}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="replay-action">
+<h2><code class="docutils literal notranslate"><span class="pre">replay</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">アクション</font></font><a class="headerlink" href="#replay-action" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h2>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">この</font></font><code class="docutils literal notranslate"><span class="pre">replay</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">アクションによって、履歴ファイルをスクリプトとして、または既存のxonshセッションで再実行することができます。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">最初に、元の</font></font><code class="docutils literal notranslate"><span class="pre">'replay'</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">環境がロードされ、現在の</font></font><code class="docutils literal notranslate"><span class="pre">'native'</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+環境</font><font style="vertical-align: inherit;">とマージされ</font><font style="vertical-align: inherit;">ます。</font><font style="vertical-align: inherit;">再生時に、環境のマージ方法やマージされない方法を設定できます。</font><font style="vertical-align: inherit;">デフォルトでは、現在のネイティブ環境が優先されます。</font><font style="vertical-align: inherit;">次に、環境内の各入力が順番に実行されます。</font><font style="vertical-align: inherit;">最後に、再生された履歴ファイルの情報が印刷される。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">例を見てみましょう。</font><font style="vertical-align: inherit;">まず、xonshを開き、次のような簡単なコマンドを実行します。</font><font style="vertical-align: inherit;">これを</font></font><code class="docutils literal notranslate"><span class="pre">orig</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">セッションと</font><font style="vertical-align: inherit;">呼んでください</font><font style="vertical-align: inherit;">。</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">起源の歴史</font></font></strong></p>
+<div class="highlight-xonshcon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="n">temp</span><span class="o">/</span><span class="gp"></span>
+<span class="gp">&gt;&gt;&gt;</span> <span class="n">cd</span> <span class="n">temp</span><span class="gp"></span>
+<span class="gp">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">random</span><span class="gp"></span>
+<span class="gp">&gt;&gt;&gt;</span> <span class="n">touch</span> <span class="k">@</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">18</span><span class="p">))</span><span class="gp"></span>
+<span class="gp">&gt;&gt;&gt;</span> <span class="n">ls</span><span class="go"></span>
+<span class="go">2</span><span class="gp"></span>
+<span class="gp">&gt;&gt;&gt;</span> <span class="n">history</span> <span class="nb">file</span><span class="go"></span>
+<span class="go">/home/scopatz/.local/share/xonsh/xonsh-4bc4ecd6-3eba-4f3a-b396-a229ba2b4810.json</span><span class="gp"></span>
+<span class="gp">&gt;&gt;&gt;</span> <span class="nb">exit</span><span class="go"></span>
+</pre></div>
+</div>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ファイル名をreplayコマンドまたはhistoryコマンドの再生アクションに渡すことでこれを再生できるようになりました。</font><font style="vertical-align: inherit;">このアクションにはいくつかのオプションがありますが、その1つは</font></font><code class="docutils literal notranslate"><span class="pre">-o</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">or </font></font><code class="docutils literal notranslate"><span class="pre">--target</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">オプション</font><font style="vertical-align: inherit;">を使用して別のターゲット出力ファイルを選択できること</font><font style="vertical-align: inherit;">です。</font><font style="vertical-align: inherit;">たとえば、新しいセッションでは次のように実行できます。</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">新しい歴史</font></font></strong></p>
+<div class="highlight-xonshcon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">history</span> <span class="n">replay</span> <span class="o">-</span><span class="n">o</span> <span class="o">~/</span><span class="n">new</span><span class="o">.</span><span class="n">json</span> <span class="o">~/.</span><span class="n">local</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">xonsh</span><span class="o">/</span><span class="n">xonsh</span><span class="o">-</span><span class="mi">4</span><span class="n">bc4ecd6</span><span class="o">-</span><span class="mi">3</span><span class="n">eba</span><span class="o">-</span><span class="mi">4</span><span class="n">f3a</span><span class="o">-</span><span class="n">b396</span><span class="o">-</span><span class="n">a229ba2b4810</span><span class="o">.</span><span class="n">json</span><span class="go"></span>
+<span class="go">2  10</span>
+<span class="go">/home/scopatz/new.json</span>
+
+<span class="go">----------------------------------------------------------------</span>
+<span class="go">Just replayed history, new history the has following information</span>
+<span class="go">----------------------------------------------------------------</span>
+<span class="go">sessionid: 35712b6f-4b15-4ef9-8ce3-b4c781601bc2</span>
+<span class="go">filename: /home/scopatz/new.json</span>
+<span class="go">length: 7</span>
+<span class="go">buffersize: 100</span>
+<span class="go">bufferlength: 0</span>
+</pre></div>
+</div>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ご覧のように、新しい履歴が作成され、別のランダムなファイルがファイルシステムに追加されました。</font><font style="vertical-align: inherit;">独自のセッションで履歴を再生する</font></font><code class="docutils literal notranslate"><span class="pre">-c</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">場合は、xonsh自体でオプションを</font><font style="vertical-align: inherit;">使用して</font><font style="vertical-align: inherit;">、replayコマンドを実行する</font><font style="vertical-align: inherit;">ことができ</font><font style="vertical-align: inherit;">ます。</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次の歴史</font></font></strong></p>
+<div class="highlight-xonshcon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">xonsh</span> <span class="o">-</span><span class="n">c</span> <span class="s2">"replay -o ~/next.json ~/new.json"</span><span class="go"></span>
+<span class="go">2  7  10</span>
+<span class="go">/home/scopatz/next.json</span>
+
+<span class="go">----------------------------------------------------------------</span>
+<span class="go">Just replayed history, new history has the following information</span>
+<span class="go">----------------------------------------------------------------</span>
+<span class="go">sessionid: 70d7186e-3eb9-4b1c-8f82-45bb8a1b7967</span>
+<span class="go">filename: /home/scopatz/next.json</span>
+<span class="go">length: 7</span>
+<span class="go">buffersize: 100</span>
+<span class="go">bufferlength: 0</span>
+</pre></div>
+</div>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">現在のところ、履歴はエイリアスの保存と再読み込みは処理されませんが、このような機能は今後登場する可能性があります。</font></font></p>
+</div>
+<div class="section" id="diff-action">
+<h2><code class="docutils literal notranslate"><span class="pre">diff</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">アクション</font></font><a class="headerlink" href="#diff-action" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h2>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">任意の2つの履歴ファイルの間で、</font></font><code class="docutils literal notranslate"><span class="pre">diff</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">アクション</font><font style="vertical-align: inherit;">を実行できます</font><font style="vertical-align: inherit;">。</font><font style="vertical-align: inherit;">これは、unix </font></font><code class="docutils literal notranslate"><span class="pre">diff</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">コマンドを</font><font style="vertical-align: inherit;">使って生成する単純な行diffよりも多くのことを行います</font><font style="vertical-align: inherit;">。</font><font style="vertical-align: inherit;">（もしあなたがline diffを使いたいのであれば、unixコマンドを使ってください！）代わりに、環境、入力、出力（利用可能な場合）、そして戻り値に関してもっと洗練された差分を行うxonsh履歴ファイルがあることを知っているという事実を利用します値。</font><font style="vertical-align: inherit;">もちろん、diffが有意義であれば、履歴入力は「十分に似ている」必要があります。</font><font style="vertical-align: inherit;">しかし、それらはまったく同じである必要はありません。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">diff操作は、一つの大きな選択肢を持っている、</font></font><code class="docutils literal notranslate"><span class="pre">-v</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">または</font></font><code class="docutils literal notranslate"><span class="pre">--verbose</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font><font style="vertical-align: inherit;">これは、基本的に、diffができるだけ詳細になるか、関連する部分だけを選ぶかを指定します。</font><font style="vertical-align: inherit;">リプレイアクションから新しいサンプルと次のサンプルを区別すると、diffは次のようになります。</font></font></p>
+<div class="highlight-xonshcon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">history</span> <span class="n">diff</span> <span class="o">~/</span><span class="n">new</span><span class="o">.</span><span class="n">json</span> <span class="o">~/</span><span class="nb">next</span><span class="o">.</span><span class="n">json</span><span class="go"></span>
+<span class="go">--- /home/scopatz/new.json (35712b6f-4b15-4ef9-8ce3-b4c781601bc2) [unlocked]</span>
+<span class="go">started: 2015-08-27 15:13:44.873869 stopped: 2015-08-27 15:13:44.918903 runtime: 0:00:00.045034</span>
+<span class="go">+++ /home/scopatz/next.json (70d7186e-3eb9-4b1c-8f82-45bb8a1b7967) [unlocked]</span>
+<span class="go">started: 2015-08-27 15:15:09.423932 stopped: 2015-08-27 15:15:09.619098 runtime: 0:00:00.195166</span>
+
+<span class="go">Environment</span>
+<span class="go">-----------</span>
+<span class="go">'PATH' is in both, but differs</span>
+<span class="go">- /home/scopatz/.local/bin:/home/scopatz/sandbox/bin:/home/scopatz/miniconda3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/scopatz/origen22/code/</span>
+<span class="go">+ /home/scopatz/.local/bin:/home/scopatz/sandbox/bin:/home/scopatz/miniconda3/bin:/home/scopatz/.local/bin:/home/scopatz/sandbox/bin:/home/scopatz/miniconda3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/scopatz/origen22/code/:/home/scopatz/origen22/code/</span>
+
+<span class="go">'SHLVL' is in both, but differs</span>
+<span class="go">- 2</span>
+<span class="go">+ 3</span>
+
+<span class="go">'XONSH_INTERACTIVE' is in both, but differs</span>
+<span class="go">- True</span>
+<span class="go">+ False</span>
+
+<span class="go">These vars are only in 70d7186e-3eb9-4b1c-8f82-45bb8a1b7967: {'OLDPWD'}</span>
+
+<span class="go">Commands</span>
+<span class="go">--------</span>
+<span class="go">cmd #4 in 35712b6f-4b15-4ef9-8ce3-b4c781601bc2 input is the same as</span>
+<span class="go">cmd #4 in 70d7186e-3eb9-4b1c-8f82-45bb8a1b7967, but output differs:</span>
+<span class="go">Outputs differ</span>
+<span class="go">- 2  10</span>
+<span class="go">+ 2  7  10</span>
+
+<span class="go">cmd #5 in 35712b6f-4b15-4ef9-8ce3-b4c781601bc2 input is the same as</span>
+<span class="go">cmd #5 in 70d7186e-3eb9-4b1c-8f82-45bb8a1b7967, but output differs:</span>
+<span class="go">Outputs differ</span>
+<span class="go">- /home/scopatz/new.json</span>
+<span class="go">+ /home/scopatz/next.json</span>
+</pre></div>
+</div>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ご覧のように、diffには3つのセクションがあります。</font></font></p>
+<ol class="arabic simple">
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ヘッダーに</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">は、ファイル名、セッションID、タイムスタンプなど、履歴に関するメタ情報が記述されています。</font></font></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">環境</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">セクションでは、履歴が開始または再生されたときの環境の違いについて説明します。</font></font></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">これらのコマンド</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">は、コマンド自体にこの違いをリストします。</font></font></li>
+</ol>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">コマンドの場合、出力シーケンスが比較される前に入力シーケンスが先にdiffされます。</font><font style="vertical-align: inherit;">端末では、これは色で表示され、最初の履歴は赤色で、2番目の履歴は緑色で表示されます。</font></font></p>
+</div>
+<div class="section" id="gc-action">
+<h2><code class="docutils literal notranslate"><span class="pre">gc</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">アクション</font></font><a class="headerlink" href="#gc-action" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h2>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">最後の、しかし確かではないが、</font></font><code class="docutils literal notranslate"><span class="pre">gc</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">アクションは履歴のガベージ・コントロールを実行するための手動フックです。</font><font style="vertical-align: inherit;">歴史は多くの情報を格納する可能性があるため、しばらく毎回キャッシュを掃除できるようにする必要があります。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ガーベージ・コントロールは、xonshスレッドごとに自動的に起動されますが、バックグラウンド・スレッドで実行されます。</font><font style="vertical-align: inherit;">ガベージコレクタは、ロックされていない履歴ファイルに対してのみ動作します。</font><font style="vertical-align: inherit;">ここでのアクションは、おそらく異なる基準で、新しいガベージコレクタを手動で開始することを可能にします。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">通常、ガベージコレクタは環境変数</font></font><code class="docutils literal notranslate"><span class="pre">$XONSH_HISTORY_SIZE</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+を</font><font style="vertical-align: inherit;">使用</font><font style="vertical-align: inherit;">して、ディスク上に残すべきもののサイズと単位を決定します。</font><font style="vertical-align: inherit;">デフォルトでは、これは</font><font style="vertical-align: inherit;">です。</font><font style="vertical-align: inherit;">この変数は通常、ここに示すようにタプルまたは数字と文字列のリストです。</font><font style="vertical-align: inherit;">ただし、同じ情報を持つ文字列を使用することもできます</font><font style="vertical-align: inherit;">。</font><font style="vertical-align: inherit;">しかし、コマンドラインでは、</font><font style="vertical-align: inherit;">オプション</font><font style="vertical-align: inherit;">に2つの引数を渡すだけ</font><font style="vertical-align: inherit;">です。</font></font><code class="docutils literal notranslate"><span class="pre">(8128,</span> <span class="pre">'commands')</span></code><font style="vertical-align: inherit;"></font><code class="docutils literal notranslate"><span class="pre">'8128</span> <span class="pre">commands'</span></code><font style="vertical-align: inherit;"></font><code class="docutils literal notranslate"><span class="pre">--size</span></code><font style="vertical-align: inherit;"></font><code class="docutils literal notranslate"><span class="pre">--size</span> <span class="pre">8128</span> <span class="pre">commands</span></code><font style="vertical-align: inherit;"></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ガベージコレクタは、4つの正準ユニットを受け入れます。</font></font></p>
+<ol class="arabic simple">
+<li><dl class="first docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">'commands'</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> は、過去に実行されたコマンドの数を制限するためのものです。</font></font></dt>
+<dd><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">履歴ファイル、</font></font></dd>
+</dl>
+</li>
+<li><code class="docutils literal notranslate"><span class="pre">'files'</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 保持する履歴ファイルの総数を指定するためのもので、</font></font></li>
+<li><code class="docutils literal notranslate"><span class="pre">'s'</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 過去に許容されている秒数です。これは事実上履歴ファイルのタイムアウトになります。</font></font></li>
+<li><code class="docutils literal notranslate"><span class="pre">'b'</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> すべてのヒストリー・ファイルがまとめて消費するためにファイル・システム上で許可されるバイト数です。</font></font></li>
+</ol>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">しかし、他のユニット、別名、適切な変換関数が実装されています。</font><font style="vertical-align: inherit;">これにより、人にやさしい値に基づいてガーベッジ・コレクションを簡単に行うことができます。</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">GCエイリアス：</font></font></strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">'commands'</span><span class="p">:</span> <span class="p">[</span><span class="s1">''</span><span class="p">,</span> <span class="s1">'c'</span><span class="p">,</span> <span class="s1">'cmd'</span><span class="p">,</span> <span class="s1">'cmds'</span><span class="p">,</span> <span class="s1">'command'</span><span class="p">],</span>
+ <span class="s1">'files'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'f'</span><span class="p">],</span>
+ <span class="s1">'s'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'sec'</span><span class="p">,</span> <span class="s1">'second'</span><span class="p">,</span> <span class="s1">'seconds'</span><span class="p">,</span> <span class="s1">'m'</span><span class="p">,</span> <span class="s1">'min'</span><span class="p">,</span> <span class="s1">'mins'</span><span class="p">,</span> <span class="s1">'h'</span><span class="p">,</span> <span class="s1">'hr'</span><span class="p">,</span> <span class="s1">'hour'</span><span class="p">,</span> <span class="s1">'hours'</span><span class="p">,</span>
+       <span class="s1">'d'</span><span class="p">,</span> <span class="s1">'day'</span><span class="p">,</span> <span class="s1">'days'</span><span class="p">,</span> <span class="s1">'mon'</span><span class="p">,</span> <span class="s1">'month'</span><span class="p">,</span> <span class="s1">'months'</span><span class="p">,</span> <span class="s1">'y'</span><span class="p">,</span> <span class="s1">'yr'</span><span class="p">,</span> <span class="s1">'yrs'</span><span class="p">,</span> <span class="s1">'year'</span><span class="p">,</span> <span class="s1">'years'</span><span class="p">],</span>
+ <span class="s1">'b'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'byte'</span><span class="p">,</span> <span class="s1">'bytes'</span><span class="p">,</span> <span class="s1">'kb'</span><span class="p">,</span> <span class="s1">'kilobyte'</span><span class="p">,</span> <span class="s1">'kilobytes'</span><span class="p">,</span> <span class="s1">'mb'</span><span class="p">,</span> <span class="s1">'meg'</span><span class="p">,</span> <span class="s1">'megs'</span><span class="p">,</span> <span class="s1">'megabyte'</span><span class="p">,</span>
+       <span class="s1">'megabytes'</span><span class="p">,</span> <span class="s1">'gb'</span><span class="p">,</span> <span class="s1">'gig'</span><span class="p">,</span> <span class="s1">'gigs'</span><span class="p">,</span> <span class="s1">'gigabyte'</span><span class="p">,</span> <span class="s1">'gigabytes'</span><span class="p">,</span> <span class="s1">'tb'</span><span class="p">,</span> <span class="s1">'terabyte'</span><span class="p">,</span>
+       <span class="s1">'terabytes'</span><span class="p">]</span>
+ <span class="p">}</span>
+</pre></div>
+</div>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">すべてのことを言って、1か月以上経過したすべての履歴ファイルを削除する場合は、次のコマンドを実行します。</font></font></p>
+<div class="highlight-xonshcon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">history</span> <span class="n">gc</span> <span class="o">--</span><span class="n">size</span> <span class="mi">1</span> <span class="n">month</span><span class="go"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="history-indexing">
+<h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">履歴インデックス作成</font></font><a class="headerlink" href="#history-indexing" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h2>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ヒストリオブジェクト（</font></font><code class="docutils literal notranslate"><span class="pre">__xonsh__.history</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）は、特殊な機能を追加する特殊な方法でインデックスを付けることができるシーケンスのように機能します。</font><font style="vertical-align: inherit;">現時点では、現在のセッションの履歴のみを取得できます。</font><font style="vertical-align: inherit;">最新のコマンドは履歴の最後の項目であることに注意してください。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">インデックスは、コマンドと引数の2つの部分がカンマで区切られたフィルタとして機能します。</font><font style="vertical-align: inherit;">異なるフィルタリングの各部分のタイプに基づいて達成することができ、</font></font></p>
+<dl class="docutils">
+<dt><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">コマンド部の場合：</font></font></dt>
+<dd><ul class="first last simple">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">intはその位置でコマンドを返します。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">スライスはコマンドのリストを返します。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">文字列は、その文字列を含む最新のコマンドを返します。</font></font></li>
+</ul>
+</dd>
+<dt><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">引数部分について：</font></font></dt>
+<dd><ul class="first last simple">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">intはその位置のコマンドの引数を返します。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">スライスは引数の位置に基づいてコマンドの一部を返します。</font></font></li>
+</ul>
+</dd>
+</dl>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">フィルタの引数部分は省略できますが、コマンド部分は必須です。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">コマンド引数は空白で区切られています。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">フィルタリングで生成される結果が1つだけの場合は、文字列として返されます。そうでない場合は、文字列のリストが返されます。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">例：</font></font></p>
+<div class="highlight-xonshcon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">echo</span> <span class="n">mkdir</span> <span class="k">with</span><span class="o">/</span><span class="n">a</span><span class="o">/</span><span class="n">huge</span><span class="o">/</span><span class="n">name</span><span class="o">/</span><span class="go"></span>
+<span class="go">mkdir with/a/huge/name</span><span class="gp"></span>
+<span class="gp">&gt;&gt;&gt;</span> <span class="n">__xonsh__</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="go"></span>
+<span class="go">'with/a/huge/name/'</span><span class="gp"></span>
+<span class="gp">&gt;&gt;&gt;</span> <span class="n">__xonsh__</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">'mkdir'</span><span class="p">]</span><span class="go"></span>
+<span class="go">'echo mkdir with/a/huge/name'</span><span class="gp"></span>
+<span class="gp">&gt;&gt;&gt;</span> <span class="n">__xonsh__</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">:]</span><span class="go"></span>
+<span class="go">'mkdir with/a/huge/name'</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="exciting-technical-detail-lazy-json">
+<h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">興味深い技術的詳細：Lazy </font></font><a class="headerlink" href="#exciting-technical-detail-lazy-json" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">JSON¶</font></font></a></h2>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">だから、あなたは履歴を調べ、実行し、そして削除する方法を知っている。</font><font style="vertical-align: inherit;">しかし、何</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">で</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">履歴ファイルは正確に？</font><font style="vertical-align: inherit;">xonshの履歴ファイルはJSON形式であり、ページの上部に示された構造を持っていますが、これはトップレベルの構造ではありません。</font><font style="vertical-align: inherit;">あなたが1つを開くと、あなたは何かに現実に出くわす前に、たくさんのホックを見ます。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xonshは、索引付けするファイルの内部に存在するJSONファイルの汎用索引システム（サイズ、オフセットなど）を実装しています。</font><font style="vertical-align: inherit;">これは</font></font><code class="docutils literal notranslate"><span class="pre">LazyJSON</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、私たちが必要とするファイルの部分だけを読み込むことができるためです。</font><font style="vertical-align: inherit;">たとえば、再生のために入力フィールドを取得するだけでI / Oに役立ちます。</font><font style="vertical-align: inherit;">コマンドの数に基づくガベージコレクションの場合、この情報をインデックスから取得することができ、元のデータを読み込む必要はありません。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">これに関する最良の部分は、それが完全に一般的であるということです。</font></font><code class="docutils literal notranslate"><span class="pre">xonsh.lazyjson</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+xonshの歴史以外のものにあなた自身</font><font style="vertical-align: inherit;">を使用することを自由に感じて</font><font style="vertical-align: inherit;">ください！</font><font style="vertical-align: inherit;">もちろん、xonshの履歴を読みたい場合は、おそらくモジュールを使うべきです。</font></font></p>
+</div>
+<div class="section" id="exciting-technical-detail-teeing-and-pseudo-terminals">
+<h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">エキサイティングな技術的な詳細：ティーと疑似ターミナル</font></font><a class="headerlink" href="#exciting-technical-detail-teeing-and-pseudo-terminals" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h2>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xonshは、すべてのstdoutとstderrを透過的かつ応答的にキャプチャすることができます。</font><font style="vertical-align: inherit;">エイリアス、Pythonコード、またはxonshコードの場合、これは大きな問題ではありません。</font><font style="vertical-align: inherit;">情報が流れるリダイレクトすることは容易である</font></font><code class="docutils literal notranslate"><span class="pre">sys.stdout</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">と</font></font><code class="docutils literal notranslate"><span class="pre">sys.stderr</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font><font style="vertical-align: inherit;">サブプロセスコマンドの場合、これはかなり困難です。</font><font style="vertical-align: inherit;">stdoutの保存はデフォルトでは無効になっていますが</font></font><code class="docutils literal notranslate"><span class="pre">$XONSH_STORE_STDOUT=True</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><code class="docutils literal notranslate"><span class="pre">~/.xonshrc</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ファイル内で</font><font style="vertical-align: inherit;">：</font><font style="vertical-align: inherit;">を</font><font style="vertical-align: inherit;">設定することで有効にすることができ
+ </font><font style="vertical-align: inherit;">ます。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">stdoutとstderrをteeできるようにするために、xonshはPython標準ライブラリ</font></font><code class="docutils literal notranslate"><span class="pre">pty</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">モジュールの</font><font style="vertical-align: inherit;">上に独自のteeing疑似端末を実装してい</font><font style="vertical-align: inherit;">ます。</font><font style="vertical-align: inherit;">このクラスは</font></font><code class="docutils literal notranslate"><span class="pre">xonsh.teepty</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">モジュール</font><font style="vertical-align: inherit;">で見つけることができ</font><font style="vertical-align: inherit;">ます。</font><font style="vertical-align: inherit;">遅いJSONと同様に、これはxonshの他の部分とは独立しており、単独で使うことができます。</font><font style="vertical-align: inherit;">これが他の分野で役立つと思われる場合は、お知らせください。</font></font></p>
+</div>
+<div class="section" id="sqlite-history-backend">
+<h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sqlite履歴のバックエンド</font></font><a class="headerlink" href="#sqlite-history-backend" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h2>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xonshには、sqliteによって強化された2番目の組み込み履歴バックエンドがあります（このチュートリアルの上で説明したJSONバージョン以外）。</font><font style="vertical-align: inherit;">それが現在サポートされていない以外は、ほとんどの方法でJSONのバージョンと同じ機能を共有</font><font style="vertical-align: inherit;">し、</font><font style="vertical-align: inherit;">行動。</font></font><code class="docutils literal notranslate"><span class="pre">history</span> <span class="pre">diff</span></code><font style="vertical-align: inherit;"></font><code class="docutils literal notranslate"><span class="pre">history</span> <span class="pre">replay</span></code><font style="vertical-align: inherit;"></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sqlite履歴バックエンドは、ちょうど開始されたxonshセッションに履歴を読み込む際のスピード上の利点を提供します。</font><font style="vertical-align: inherit;">JSON履歴のバックエンドは、何千ものjsonファイルを読み込む必要があり、sqliteバックエンドは1つだけを読み込みます。</font><font style="vertical-align: inherit;">これは起動時間には影響しませんが、すべての履歴が検索可能になるまでの時間に注意してください。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">sqlite履歴バックエンドを使用するに</font><font style="vertical-align: inherit;">は、</font><font style="vertical-align: inherit;">ファイル</font><font style="vertical-align: inherit;">に設定</font><font style="vertical-align: inherit;">します</font><font style="vertical-align: inherit;">。</font><font style="vertical-align: inherit;">JSONバージョンに戻すには、この行を削除するか、またはに設定し</font><font style="vertical-align: inherit;">ます。</font></font><code class="docutils literal notranslate"><span class="pre">$XONSH_HISTORY_BACKEND</span> <span class="pre">=</span> <span class="pre">'sqlite'</span></code><font style="vertical-align: inherit;"></font><code class="docutils literal notranslate"><span class="pre">~/.xonshrc</span></code><font style="vertical-align: inherit;"></font><code class="docutils literal notranslate"><span class="pre">'json'</span></code><font style="vertical-align: inherit;"></font></p>
+<div class="admonition note inline-title">
+<p class="first admonition-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">注意</font></font></p>
+<p class="last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">SQLite履歴のバックエンドは現在</font><font style="vertical-align: inherit;">、ガベージコレクションの</font></font><code class="docutils literal notranslate"><span class="pre">commands</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ユニットとして</font><font style="vertical-align: inherit;">のみサポートさ</font><font style="vertical-align: inherit;">れてい</font></font><code class="docutils literal notranslate"><span class="pre">$XONSH_HISTORY_SIZE</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ます。</font></font></p>
+</div>
+<div class="admonition tip inline-title">
+<p class="first admonition-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">先端</font></font></p>
+<p class="last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">あなたが持っている場合は</font></font><a class="reference external" href="https://pypi.python.org/pypi/sqlite-web"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">sqliteのウェブが</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 
+インストールされ、次のコマンドで簡単に歴史を読むことができます：
+ </font><font style="vertical-align: inherit;">。</font></font><code class="docutils literal notranslate"><span class="pre">sqlite_web</span> <span class="pre">@$(history</span> <span class="pre">file)</span></code><font style="vertical-align: inherit;"></font></p>
+</div>
+</div>
+<div class="section" id="fun-ideas-for-history-data">
+<h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">履歴データのための楽しいアイデア</font></font><a class="headerlink" href="#fun-ideas-for-history-data" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h2>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">今、私たちはこの歴史のデータをすべて持っているので、私たちがここに持っているものはちょうど氷山の先端です！</font><font style="vertical-align: inherit;">私が思うにうまくいけば楽しいアイデアがあります。</font></font></p>
+<ul class="simple">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">コマンドの使用法、タイミングなどに関する基本的な統計レポート、</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">多くの人々から匿名化された履歴を収集し、</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">入力用のMCMCベースのタブコンプリータ、</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">などなど！</font></font></li>
+</ul>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshの内部または外部のいずれかで作業することに興味があるかどうかをお知らせください。</font></font></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="sidebar.html" title="サイドバー">
+          <img class="logo" src="_static/ascii_conch_part_transparent_tight.png" alt="ロゴ" />
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="sidebar.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ページの内容</font></font></a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">チュートリアル：履歴</font></font></a><ul>
+<li><a class="reference internal" href="#how-is-xonsh-history-different"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshの歴史はどう違うのですか？</font></font></a></li>
+<li><a class="reference internal" href="#why-have-rich-history"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">なぜ豊かな歴史がありますか？</font></font></a></li>
+<li><a class="reference internal" href="#history-command"><code class="docutils literal notranslate"><span class="pre">history</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> コマンド</font></font></a></li>
+<li><a class="reference internal" href="#show-action"><code class="docutils literal notranslate"><span class="pre">show</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> アクション</font></font></a></li>
+<li><a class="reference internal" href="#id-action"><code class="docutils literal notranslate"><span class="pre">id</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> アクション</font></font></a></li>
+<li><a class="reference internal" href="#file-action"><code class="docutils literal notranslate"><span class="pre">file</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> アクション</font></font></a></li>
+<li><a class="reference internal" href="#info-action"><code class="docutils literal notranslate"><span class="pre">info</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> アクション</font></font></a></li>
+<li><a class="reference internal" href="#replay-action"><code class="docutils literal notranslate"><span class="pre">replay</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> アクション</font></font></a></li>
+<li><a class="reference internal" href="#diff-action"><code class="docutils literal notranslate"><span class="pre">diff</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> アクション</font></font></a></li>
+<li><a class="reference internal" href="#gc-action"><code class="docutils literal notranslate"><span class="pre">gc</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> アクション</font></font></a></li>
+<li><a class="reference internal" href="#history-indexing"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">履歴インデックス作成</font></font></a></li>
+<li><a class="reference internal" href="#exciting-technical-detail-lazy-json"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">興味深い技術的詳細：Lazy JSON</font></font></a></li>
+<li><a class="reference internal" href="#exciting-technical-detail-teeing-and-pseudo-terminals"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">エキサイティングなテクニカルディテール：TeeingとPseudo Terminals</font></font></a></li>
+<li><a class="reference internal" href="#sqlite-history-backend"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sqlite履歴バックエンド</font></font></a></li>
+<li><a class="reference internal" href="#fun-ideas-for-history-data"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">履歴データの楽しいアイデア</font></font></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前のページ</font></font></h4>
+    <p class="topless"><a href="tutorial.html" title="前のページ"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">←チュートリアル</font></font></a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次のページ</font></font></h4>
+    <p class="topless"><a href="tutorial_macros.html" title="次のページ"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">→チュートリアル：マクロ</font></font></a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">このページ</font></font></h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/tutorial_hist.rst.txt" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ソースを表示</font></font></a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="" role="search">
+  <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">クイック検索</font></font></h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><input type="submit" value="行こう" /></font></font>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="サイドバーメニューを非表示にする"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                 «
+                </font></font><span class="show-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">メニューを隠す</font></font></span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="サイドバーメニューを表示する" style="display: none;">
+                
+                <span class="show-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">メニューの</font></font></span>
+                <span class="hide-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">サイドバー</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 
+                 »
+            </font></font></button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ナビゲーション</font></font></h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="一般索引"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">索引</font></font></a></li>
+        <li class="right">
+          <a href="py-modindex.html" title="Pythonモジュールのインデックス"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">モジュール</font></font></a>    </li>
+        <li class="right">
+          <a href="tutorial_macros.html" title="チュートリアル：マクロ"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次</font></font></a>    </li>
+        <li class="right">
+          <a href="tutorial.html" title="チュートリアル"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前</font></font></a>    </li>
+    <li><a href="sidebar.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonsh 0.8.5 documentation</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+
+          <li class="nav-item nav-item-1"><a href="index.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshシェル</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+        ©Copyright 2015、Anthony Scopatz。</font></font><a href="http://sphinx-doc.org/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sphinx</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 1.8.2 </font><font style="vertical-align: inherit;">を使用して作成されました</font><font style="vertical-align: inherit;">。
+    </font></font></div>
+    <!-- cloud_sptheme 1.4 -->
+  
+<div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="https://www.gstatic.com/images/branding/product/1x/translate_24dp.png" width="20" height="20" alt="Google 翻訳" /></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">原文</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">翻訳を改善する</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;" /><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div><div class="hide-for-small"></div><div class="goog-te-spinner-pos"><div class="goog-te-spinner-animation"><svg xmlns="http://www.w3.org/2000/svg" class="goog-te-spinner" width="96px" height="96px" viewBox="0 0 66 66"><circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"/></svg></div></div></body></html>

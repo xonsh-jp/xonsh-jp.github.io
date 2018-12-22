@@ -1,0 +1,369 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" class="translated-ltr medium-up-screen"><head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>ダムシェル（xonsh.dumb_shell） -  xonsh 0.8.5 documentation</title>
+    <link rel="stylesheet" href="../_static/numpy_friendly.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/magic_conch.ico" />
+    <link rel="index" title="インデックス" href="../genindex.html" />
+    <link rel="search" title="サーチ" href="../search.html" />
+    <link rel="next" title="ウィザード作成ツール（xonsh.wizard）" href="wizard.html" />
+    <link rel="prev" title="ジュピターシェル（xonsh.jupyter_shell）" href="jupyter_shell.html" />
+     
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="canonical" href="http://xon.sh/api/dumb_shell.html" />
+
+  <link type="text/css" rel="stylesheet" charset="UTF-8" href="https://translate.googleapis.com/translate_static/css/translateelement.css" /></head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ナビゲーション</font></font></h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="一般索引" accesskey="I"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">索引</font></font></a></li>
+        <li class="right">
+          <a href="../py-modindex.html" title="Pythonモジュールのインデックス"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">モジュール</font></font></a>    </li>
+        <li class="right">
+          <a href="wizard.html" title="ウィザード作成ツール（xonsh.wizard）" accesskey="N"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次</font></font></a>    </li>
+        <li class="right">
+          <a href="jupyter_shell.html" title="ジュピターシェル（xonsh.jupyter_shell）" accesskey="P"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前</font></font></a>    </li>
+    <li><a href="../sidebar.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonsh 0.8.5 documentation</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshシェル</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xonsh API</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document sidebar-hidden">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-xonsh.dumb_shell">
+<span id="dumb-shell-xonsh-dumb-shell"></span><span id="xonsh-dumb-shell"></span><h1><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ダムシェル（</font></font><code class="docutils literal notranslate"><span class="pre">xonsh.dumb_shell</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font><a class="headerlink" href="#module-xonsh.dumb_shell" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h1>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ TERM == 'ダム'のときのダムシェル。通常はemacsで発生します。</font></font></p>
+<dl class="class">
+<dt id="xonsh.dumb_shell.DumbShell">
+<em class="property"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">クラス</font></font></em><code class="descclassname">xonsh.dumb_shell.</code><code class="descname">DumbShell</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">* args</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">** kwargs </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/dumb_shell.html#DumbShell"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.dumb_shell.DumbShell" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ TERM == 'ダム'のときのダムシェル。通常はemacsで発生します。</font></font></p>
+<dl class="method">
+<dt id="xonsh.dumb_shell.DumbShell.cmdloop">
+<code class="descname">cmdloop</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">intro = None </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="headerlink" href="#xonsh.dumb_shell.DumbShell.cmdloop" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">プロンプトを繰り返し発行し、入力を受け入れ、受け取った入力から最初の接頭辞を解析し、行の残りの部分を引数として渡してアクションメソッドに送ります。</font></font></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.dumb_shell.DumbShell.color_style">
+<code class="descname">color_style</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="headerlink" href="#xonsh.dumb_shell.DumbShell.color_style" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">現在のカラーマップを返します。</font></font></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.dumb_shell.DumbShell.color_style_names">
+<code class="descname">color_style_names</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="headerlink" href="#xonsh.dumb_shell.DumbShell.color_style_names" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">使用可能なすべてのスタイル名の繰り返し可能性を返します。</font></font></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.dumb_shell.DumbShell.columnize">
+<code class="descname">columnize</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">list</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">displaywidth = 80 </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="headerlink" href="#xonsh.dumb_shell.DumbShell.columnize" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">文字列のリストをコンパクトな列のセットとして表示します。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">各列は必要なだけ幅が広い。</font><font style="vertical-align: inherit;">列は2つのスペースで区切られています（1つは判読不能です）。</font></font></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.dumb_shell.DumbShell.compile">
+<code class="descname">compile</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">src </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="headerlink" href="#xonsh.dumb_shell.DumbShell.compile" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ソースコードをコンパイルし、（おそらく変更された）ソースと有効なコードオブジェクトを返します。</font></font></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.dumb_shell.DumbShell.complete">
+<code class="descname">complete</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">テキスト</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">状態</font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="headerlink" href="#xonsh.dumb_shell.DumbShell.complete" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次の 'text'の補完を返します。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">コマンドが入力されていない場合は、コマンドリストに対して完了します。</font><font style="vertical-align: inherit;">それ以外の場合はcomplete_ &lt;command&gt;を呼び出して補完のリストを取得してください。</font></font></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.dumb_shell.DumbShell.complete_help">
+<code class="descname">complete_help</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">* args </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="headerlink" href="#xonsh.dumb_shell.DumbShell.complete_help" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="xonsh.dumb_shell.DumbShell.completedefault">
+<code class="descname">completedefault</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">接頭辞</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">行</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">begidx</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">endidx </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="headerlink" href="#xonsh.dumb_shell.DumbShell.completedefault" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">テキストのタブ補完を実装します。</font></font></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.dumb_shell.DumbShell.completenames">
+<code class="descname">completenames</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">接頭辞</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">行</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">begidx</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">endidx </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="headerlink" href="#xonsh.dumb_shell.DumbShell.completenames" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">テキストのタブ補完を実装します。</font></font></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.dumb_shell.DumbShell.default">
+<code class="descname">default</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">行</font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="headerlink" href="#xonsh.dumb_shell.DumbShell.default" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">コードの実行を実装します。</font></font></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.dumb_shell.DumbShell.do_help">
+<code class="descname">do_help</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">arg </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="headerlink" href="#xonsh.dumb_shell.DumbShell.do_help" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">「ヘルプ」を使用して使用可能なコマンドを一覧表示するか、「ヘルプcmd」を使用して詳細なヘルプを表示します。</font></font></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.dumb_shell.DumbShell.emptyline">
+<code class="descname">emptyline</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="headerlink" href="#xonsh.dumb_shell.DumbShell.emptyline" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">空行が入力されたときに呼び出されます。</font></font></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.dumb_shell.DumbShell.format_color">
+<code class="descname">format_color</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">string</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">hide = False</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">force_string = False</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">** kwargs </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="headerlink" href="#xonsh.dumb_shell.DumbShell.format_color" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">カラーフォーマットのreadline実装。</font><font style="vertical-align: inherit;">これはANSIカラーコードを使用します。</font></font></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.dumb_shell.DumbShell.get_names">
+<code class="descname">get_names</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="headerlink" href="#xonsh.dumb_shell.DumbShell.get_names" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="xonsh.dumb_shell.DumbShell.onecmd">
+<code class="descname">onecmd</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">行</font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="headerlink" href="#xonsh.dumb_shell.DumbShell.onecmd" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">プロンプトに応じて入力されたかのように引数を解釈します。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">これはオーバーライドされる可能性がありますが、通常はそうする必要はありません。</font><font style="vertical-align: inherit;">便利な実行フックについては、precmd（）およびpostcmd（）メソッドを参照してください。</font><font style="vertical-align: inherit;">戻り値は、インタプリタによるコマンドの解釈を停止するかどうかを示すフラグである。</font></font></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.dumb_shell.DumbShell.parseline">
+<code class="descname">parseline</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">行</font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="headerlink" href="#xonsh.dumb_shell.DumbShell.parseline" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">no-opにオーバーライドされます。</font></font></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.dumb_shell.DumbShell.postcmd">
+<code class="descname">postcmd</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">停止</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">行</font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="headerlink" href="#xonsh.dumb_shell.DumbShell.postcmd" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">行の実行の直前に呼び出されます。</font><font style="vertical-align: inherit;">readlineの場合、これはコードブロックの自動字下げを処理します。</font></font></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.dumb_shell.DumbShell.postloop">
+<code class="descname">postloop</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="headerlink" href="#xonsh.dumb_shell.DumbShell.postloop" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">cmdloop（）メソッドが復帰しようとしているときに一度実行されたフックメソッド。</font></font></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.dumb_shell.DumbShell.precmd">
+<code class="descname">precmd</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">行</font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="headerlink" href="#xonsh.dumb_shell.DumbShell.precmd" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">行の実行の直前に呼び出されます。</font></font></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.dumb_shell.DumbShell.preloop">
+<code class="descname">preloop</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="headerlink" href="#xonsh.dumb_shell.DumbShell.preloop" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">cmdloop（）メソッドが呼び出されたときに一度実行されたフックメソッド。</font></font></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.dumb_shell.DumbShell.print_color">
+<code class="descname">print_color</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">string</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">hide = False</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">** kwargs </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="headerlink" href="#xonsh.dumb_shell.DumbShell.print_color" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">文字列をカラーで印刷します。</font><font style="vertical-align: inherit;">文字列が入力として与えられた場合、この基本実装の色はANSIカラーコードに基づいています。</font><font style="vertical-align: inherit;">トークンペアのリストが与えられていれば、利用可能であれば、それに基づいて色分けされる。</font><font style="vertical-align: inherit;">pygmentsが利用できない場合は、無色の文字列が出力されます。</font></font></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.dumb_shell.DumbShell.print_topics">
+<code class="descname">print_topics</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ヘッダー</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">cmds</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">cmdlen</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">maxcol </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="headerlink" href="#xonsh.dumb_shell.DumbShell.print_topics" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="xonsh.dumb_shell.DumbShell.push">
+<code class="descname">push</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">行</font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="headerlink" href="#xonsh.dumb_shell.DumbShell.push" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">バッファに行をプッシュし、複数行の入力を可能にする方法でコードをコンパイルします。</font></font></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.dumb_shell.DumbShell.reset_buffer">
+<code class="descname">reset_buffer</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="headerlink" href="#xonsh.dumb_shell.DumbShell.reset_buffer" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ラインバッファをリセットします。</font></font></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.dumb_shell.DumbShell.restore_tty_sanity">
+<code class="descname">restore_tty_sanity</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="headerlink" href="#xonsh.dumb_shell.DumbShell.restore_tty_sanity" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">TTYスタンダードモードをリセットするためのインターフェイス。</font><font style="vertical-align: inherit;">これは、シェルのバックエンドに大きく依存します。</font><font style="vertical-align: inherit;">バックグラウンドの振る舞いにのみ影響するため、ほとんどの場合オプションです。</font></font></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.dumb_shell.DumbShell.settitle">
+<code class="descname">settitle</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="headerlink" href="#xonsh.dumb_shell.DumbShell.settitle" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">端末のタイトルを設定します。</font></font></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.dumb_shell.DumbShell.singleline">
+<code class="descname">singleline</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">store_in_history = True</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">** kwargs </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="headerlink" href="#xonsh.dumb_shell.DumbShell.singleline" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1行の入力を読み込みます。</font><font style="vertical-align: inherit;">store_in_history kwargは、入力がreadlineのメモリ内履歴に格納されるべきかどうかを示すフラグです。</font></font></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.dumb_shell.DumbShell.doc_header">
+<code class="descname">doc_header</code><em class="property"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">= '文書化されたコマンド（タイプhelp &lt;topic&gt;）：' </font></font></em><a class="headerlink" href="#xonsh.dumb_shell.DumbShell.doc_header" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.dumb_shell.DumbShell.doc_leader">
+<code class="descname">doc_leader</code><em class="property"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">= '' </font></font></em><a class="headerlink" href="#xonsh.dumb_shell.DumbShell.doc_leader" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.dumb_shell.DumbShell.identchars">
+<code class="descname">identchars</code><em class="property"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">= 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_' </font></font></em><a class="headerlink" href="#xonsh.dumb_shell.DumbShell.identchars" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.dumb_shell.DumbShell.intro">
+<code class="descname">intro</code><em class="property"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">=なし</font></font></em><a class="headerlink" href="#xonsh.dumb_shell.DumbShell.intro" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.dumb_shell.DumbShell.lastcmd">
+<code class="descname">lastcmd</code><em class="property"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">= '' </font></font></em><a class="headerlink" href="#xonsh.dumb_shell.DumbShell.lastcmd" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.dumb_shell.DumbShell.misc_header">
+<code class="descname">misc_header</code><em class="property"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">= 'その他のヘルプトピック：' </font></font></em><a class="headerlink" href="#xonsh.dumb_shell.DumbShell.misc_header" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.dumb_shell.DumbShell.nohelp">
+<code class="descname">nohelp</code><em class="property"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">= '***％sのヘルプはありません' </font></font></em><a class="headerlink" href="#xonsh.dumb_shell.DumbShell.nohelp" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.dumb_shell.DumbShell.prompt">
+<code class="descname">prompt</code><a class="headerlink" href="#xonsh.dumb_shell.DumbShell.prompt" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">現在のプロンプト文字列を取得します。</font></font></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.dumb_shell.DumbShell.ruler">
+<code class="descname">ruler</code><em class="property"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">= '=' </font></font></em><a class="headerlink" href="#xonsh.dumb_shell.DumbShell.ruler" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.dumb_shell.DumbShell.styler">
+<code class="descname">styler</code><a class="headerlink" href="#xonsh.dumb_shell.DumbShell.styler" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.dumb_shell.DumbShell.undoc_header">
+<code class="descname">undoc_header</code><em class="property"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">= '記載されていないコマンド：' </font></font></em><a class="headerlink" href="#xonsh.dumb_shell.DumbShell.undoc_header" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.dumb_shell.DumbShell.use_rawinput">
+<code class="descname">use_rawinput</code><em class="property"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">= </font></font></em><a class="headerlink" href="#xonsh.dumb_shell.DumbShell.use_rawinput" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1¶</font></font></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../sidebar.html" title="サイドバー">
+          <img class="logo" src="../_static/ascii_conch_part_transparent_tight.png" alt="ロゴ" />
+        </a></p>
+  <div class="sphinxprev">
+    <h4><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前のページ</font></font></h4>
+    <p class="topless"><a href="jupyter_shell.html" title="前のページ"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">←ジュピターシェル（</font></font><code class="docutils literal notranslate"><span class="pre">xonsh.jupyter_shell</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次のページ</font></font></h4>
+    <p class="topless"><a href="wizard.html" title="次のページ"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">→ウィザード作成ツール（</font></font><code class="docutils literal notranslate"><span class="pre">xonsh.wizard</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">このページ</font></font></h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/dumb_shell.rst.txt" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ソースを表示</font></font></a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="" role="search">
+  <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">クイック検索</font></font></h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><input type="submit" value="行こう" /></font></font>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="サイドバーメニューを非表示にする" style="display: none;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                 «
+                 </font></font><span class="show-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">メニューを隠す</font></font></span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="サイドバーメニューを表示する">
+                
+                <span class="show-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">メニュー</font></font></span>
+                <span class="hide-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">サイドバー</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 
+                 »
+            </font></font></button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ナビゲーション</font></font></h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="一般索引"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">索引</font></font></a></li>
+        <li class="right">
+          <a href="../py-modindex.html" title="Pythonモジュールのインデックス"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">モジュール</font></font></a>    </li>
+        <li class="right">
+          <a href="wizard.html" title="ウィザード作成ツール（xonsh.wizard）"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次</font></font></a>    </li>
+        <li class="right">
+          <a href="jupyter_shell.html" title="ジュピターシェル（xonsh.jupyter_shell）"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前</font></font></a>    </li>
+    <li><a href="../sidebar.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonsh 0.8.5 documentation</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshシェル</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+          <li class="nav-item nav-item-2"><a href="index.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xonsh API</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+        ©Copyright 2015、Anthony Scopatz。</font></font><a href="http://sphinx-doc.org/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sphinx</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 1.8.2 </font><font style="vertical-align: inherit;">を使用して作成されました</font><font style="vertical-align: inherit;">。
+    </font></font></div>
+    <!-- cloud_sptheme 1.4 -->
+  
+<div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="https://www.gstatic.com/images/branding/product/1x/translate_24dp.png" width="20" height="20" alt="Google 翻訳" /></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">原文</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">翻訳を改善する</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;" /><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div><div class="hide-for-small"></div><div class="goog-te-spinner-pos"><div class="goog-te-spinner-animation"><svg xmlns="http://www.w3.org/2000/svg" class="goog-te-spinner" width="96px" height="96px" viewBox="0 0 66 66"><circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"/></svg></div></div></body></html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" class="medium-up-screen translated-ltr"><head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Xonshコードのコンパイルとキャッシュ（xonsh.codecache） -  xonsh 0.8.5 documentation</title>
+    <link rel="stylesheet" href="../_static/numpy_friendly.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/magic_conch.ico" />
+    <link rel="index" title="インデックス" href="../genindex.html" />
+    <link rel="search" title="サーチ" href="../search.html" />
+    <link rel="next" title="Xonshのコンテキストマネージャ（xonsh.contexts）" href="contexts.html" />
+    <link rel="prev" title="Xonsh設定ユーティリティ（xonsh.xonfig）" href="xonfig.html" />
+     
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="canonical" href="http://xon.sh/api/codecache.html" />
+
+  <link type="text/css" rel="stylesheet" charset="UTF-8" href="https://translate.googleapis.com/translate_static/css/translateelement.css" /></head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ナビゲーション</font></font></h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="一般索引" accesskey="I"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">索引</font></font></a></li>
+        <li class="right">
+          <a href="../py-modindex.html" title="Pythonモジュールのインデックス"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">モジュール</font></font></a>    </li>
+        <li class="right">
+          <a href="contexts.html" title="Xonshのコンテキストマネージャ（xonsh.contexts）" accesskey="N"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次</font></font></a>    </li>
+        <li class="right">
+          <a href="xonfig.html" title="Xonsh設定ユーティリティ（xonsh.xonfig）" accesskey="P"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前</font></font></a>    </li>
+    <li><a href="../sidebar.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonsh 0.8.5 documentation</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshシェル</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xonsh API</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-xonsh.codecache">
+<span id="compiling-and-caching-of-xonsh-code-xonsh-codecache"></span><span id="xonsh-codecache"></span><h1><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xonshコードのコンパイルとキャッシュ（</font></font><code class="docutils literal notranslate"><span class="pre">xonsh.codecache</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font><a class="headerlink" href="#module-xonsh.codecache" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h1>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshコードをキャッシングするためのツール。</font></font></p>
+<dl class="function">
+<dt id="xonsh.codecache.code_cache_check">
+<code class="descclassname">xonsh.codecache.</code><code class="descname">code_cache_check</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">cachefname </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/codecache.html#code_cache_check"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.codecache.code_cache_check" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">特定のコードのコードキャッシュが有効かどうかを確認します。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">キャッシュされたコードを使用するかどうかを表すブール値とキャッシュされたコード（または</font></font><code class="docutils literal notranslate"><span class="pre">None</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">キャッシュを使用しない場合）</font><font style="vertical-align: inherit;">を含むタプルを返します</font><font style="vertical-align: inherit;">。</font></font></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.codecache.code_cache_name">
+<code class="descclassname">xonsh.codecache.</code><code class="descname">code_cache_name</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">コード</font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/codecache.html#code_cache_name"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.codecache.code_cache_name" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">指定されたコードに適切な偽装ファイル名を返します。</font></font></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.codecache.compile_code">
+<code class="descclassname">xonsh.codecache.</code><code class="descname">compile_code</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ファイル名</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">コード</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">実行者</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">glb</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">loc</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">モード</font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/codecache.html#compile_code"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.codecache.compile_code" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"></font><code class="docutils literal notranslate"><span class="pre">execer.compile</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">与えられたコードをコンパイルする</font><font style="vertical-align: inherit;">ためのラッパー</font></font></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.codecache.get_cache_filename">
+<code class="descclassname">xonsh.codecache.</code><code class="descname">get_cache_filename</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">fname</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">code = True </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/codecache.html#get_cache_filename"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.codecache.get_cache_filename" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">指定されたファイル名のキャッシュのファイル名を返します。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">キャッシュファイル名は、内部ストア用にMercurial DVCSで使用されているファイル名に似ています。</font></font></p>
+<p><font style="vertical-align: inherit;"></font><code class="docutils literal notranslate"><span class="pre">code</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">スクリプトストアではなくコードストアを使用する必要がある場合は</font><font style="vertical-align: inherit;">、</font><font style="vertical-align: inherit;">スイッチをtrueにする必要があります。</font></font></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.codecache.run_code_with_cache">
+<code class="descclassname">xonsh.codecache.</code><code class="descname">run_code_with_cache</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">コード</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">実行者</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">glb =なし</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">loc =なし</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">モード= 'exec' </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/codecache.html#run_code_with_cache"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.codecache.run_code_with_cache" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">キャッシュされたバージョンを使用してコードを実行し、必要に応じてキャッシュを更新します。</font></font></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.codecache.run_compiled_code">
+<code class="descclassname">xonsh.codecache.</code><code class="descname">run_compiled_code</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">code</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">glb</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">loc</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">mode </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/codecache.html#run_compiled_code"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.codecache.run_compiled_code" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">指定されたモードとコンテキストでコードを実行するヘルパー</font></font></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.codecache.run_script_with_cache">
+<code class="descclassname">xonsh.codecache.</code><code class="descname">run_script_with_cache</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">filename</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">execer</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">glb = None</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">loc =なし</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">mode = 'exec' </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/codecache.html#run_script_with_cache"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.codecache.run_script_with_cache" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">存在する場合はキャッシュされたバージョンを使用し、ソースは変更されていないスクリプトを実行し、必要に応じてキャッシュを更新します。</font></font></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.codecache.script_cache_check">
+<code class="descclassname">xonsh.codecache.</code><code class="descname">script_cache_check</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">filename</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">cachefname </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/codecache.html#script_cache_check"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.codecache.script_cache_check" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">特定のファイルのスクリプトキャッシュが有効かどうかを確認します。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">キャッシュされたコードを使用するかどうかを表すブール値とキャッシュされたコード（または</font></font><code class="docutils literal notranslate"><span class="pre">None</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">キャッシュを使用しない場合）</font><font style="vertical-align: inherit;">を含むタプルを返します</font><font style="vertical-align: inherit;">。</font></font></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.codecache.should_use_cache">
+<code class="descclassname">xonsh.codecache.</code><code class="descname">should_use_cache</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">実行者</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">モード</font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/codecache.html#should_use_cache"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.codecache.should_use_cache" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"></font><code class="docutils literal notranslate"><span class="pre">True</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">このモードでキャッシュが有効になっている場合は、コマンドラインフラグまたは環境変数を使用して</font><font style="vertical-align: inherit;">戻り</font><font style="vertical-align: inherit;">ます。</font></font></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.codecache.update_cache">
+<code class="descclassname">xonsh.codecache.</code><code class="descname">update_cache</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ccode</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">cache_file_name </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/codecache.html#update_cache"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.codecache.update_cache" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">でキャッシュを更新し、で</font></font><code class="docutils literal notranslate"><span class="pre">cache_file_name</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表されるコンパイル済みコードを格納し</font></font><code class="docutils literal notranslate"><span class="pre">ccode</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ます。</font></font></p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../sidebar.html" title="サイドバー">
+          <img class="logo" src="../_static/ascii_conch_part_transparent_tight.png" alt="ロゴ" />
+        </a></p>
+  <div class="sphinxprev">
+    <h4><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前のページ</font></font></h4>
+    <p class="topless"><a href="xonfig.html" title="前のページ"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">←Xonsh設定ユーティリティ（</font></font><code class="docutils literal notranslate"><span class="pre">xonsh.xonfig</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次のページ</font></font></h4>
+    <p class="topless"><a href="contexts.html" title="次のページ"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">→Xonsh（</font></font><code class="docutils literal notranslate"><span class="pre">xonsh.contexts</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）の</font><font style="vertical-align: inherit;">コンテキストマネージャ</font></font></a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">このページ</font></font></h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/codecache.rst.txt" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ソースを表示</font></font></a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="" role="search">
+  <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">クイック検索</font></font></h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><input type="submit" value="行こう" /></font></font>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="サイドバーメニューを非表示にする"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                 «
+                </font></font><span class="show-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">メニューを隠す</font></font></span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="サイドバーメニューを表示する" style="display: none;">
+                
+                <span class="show-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">メニューの</font></font></span>
+                <span class="hide-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">サイドバー</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 
+                 »
+            </font></font></button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ナビゲーション</font></font></h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="一般索引"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">索引</font></font></a></li>
+        <li class="right">
+          <a href="../py-modindex.html" title="Pythonモジュールのインデックス"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">モジュール</font></font></a>    </li>
+        <li class="right">
+          <a href="contexts.html" title="Xonshのコンテキストマネージャ（xonsh.contexts）"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次</font></font></a>    </li>
+        <li class="right">
+          <a href="xonfig.html" title="Xonsh設定ユーティリティ（xonsh.xonfig）"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前</font></font></a>    </li>
+    <li><a href="../sidebar.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonsh 0.8.5 documentation</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshシェル</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+          <li class="nav-item nav-item-2"><a href="index.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xonsh API</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+        ©Copyright 2015、Anthony Scopatz。</font></font><a href="http://sphinx-doc.org/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sphinx</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 1.8.2 </font><font style="vertical-align: inherit;">を使用して作成されました</font><font style="vertical-align: inherit;">。
+    </font></font></div>
+    <!-- cloud_sptheme 1.4 -->
+  
+<div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="https://www.gstatic.com/images/branding/product/1x/translate_24dp.png" width="20" height="20" alt="Google 翻訳" /></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">原文</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">翻訳を改善する</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;" /><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div><div class="hide-for-small"></div><div class="goog-te-spinner-pos"><div class="goog-te-spinner-animation"><svg xmlns="http://www.w3.org/2000/svg" class="goog-te-spinner" width="96px" height="96px" viewBox="0 0 66 66"><circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"/></svg></div></div></body></html>

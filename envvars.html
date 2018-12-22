@@ -1,0 +1,1171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" class="medium-up-screen translated-ltr"><head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>環境変数 -  xonsh 0.8.5 documentation</title>
+    <link rel="stylesheet" href="_static/numpy_friendly.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="_static/cloud.base.js"></script>
+    <script type="text/javascript" src="_static/cloud.js"></script>
+    <link rel="shortcut icon" href="_static/magic_conch.ico" />
+    <link rel="index" title="インデックス" href="genindex.html" />
+    <link rel="search" title="サーチ" href="search.html" />
+    <link rel="next" title="ビルトインエイリアス" href="aliases.html" />
+    <link rel="prev" title="実行制御ファイル" href="xonshrc.html" />
+     
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="canonical" href="http://xon.sh/envvars.html" />
+
+  <link type="text/css" rel="stylesheet" charset="UTF-8" href="https://translate.googleapis.com/translate_static/css/translateelement.css" /></head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ナビゲーション</font></font></h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="一般索引" accesskey="I"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">索引</font></font></a></li>
+        <li class="right">
+          <a href="py-modindex.html" title="Pythonモジュールのインデックス"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">モジュール</font></font></a>    </li>
+        <li class="right">
+          <a href="aliases.html" title="ビルトインエイリアス" accesskey="N"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次</font></font></a>    </li>
+        <li class="right">
+          <a href="xonshrc.html" title="実行制御ファイル" accesskey="P"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前</font></font></a>    </li>
+    <li><a href="sidebar.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonsh 0.8.5 documentation</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshシェル</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="environment-variables">
+<h1><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">環境変数</font></font><a class="headerlink" href="#environment-variables" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h1>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">以下は、xonshのパフォーマンスに何らかの影響を与える環境変数に関する情報を表示します。</font><font style="vertical-align: inherit;">また、該当する場合はデフォルト値のリストも表示されます。</font></font></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#ansicon"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ ANSICON</font></font></span></a></td>
+<td><a class="reference internal" href="#auto-cd"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ AUTO_CD</font></font></span></a></td>
+<td><a class="reference internal" href="#auto-pushd"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ AUTO_PUSHD</font></font></span></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#auto-suggest"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ AUTO_SUGGEST</font></font></span></a></td>
+<td><a class="reference internal" href="#auto-suggest-in-completions"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ AUTO_SUGGEST_IN_COMPLETIONS</font></font></span></a></td>
+<td><a class="reference internal" href="#bash-completions"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ BASH_COMPLETIONS</font></font></span></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#bottom-toolbar"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ BOTTOM_TOOLBAR</font></font></span></a></td>
+<td><a class="reference internal" href="#case-sensitive-completions"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ CASE_SENSITIVE_COMPLETIONS</font></font></span></a></td>
+<td><a class="reference internal" href="#cdpath"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ CDPATH</font></font></span></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#color-input"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ COLOR_INPUT</font></font></span></a></td>
+<td><a class="reference internal" href="#color-results"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ COLOR_RESULTS</font></font></span></a></td>
+<td><a class="reference internal" href="#completions-brackets"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ COMPLETIONS_BRACKETS</font></font></span></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#completions-confirm"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ COMPLETIONS_CONFIRM</font></font></span></a></td>
+<td><a class="reference internal" href="#completions-display"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ COMPLETIONS_DISPLAY</font></font></span></a></td>
+<td><a class="reference internal" href="#completions-menu-rows"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ COMPLETIONS_MENU_ROWS</font></font></span></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#completion-query-limit"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ COMPLETION_QUERY_LIMIT</font></font></span></a></td>
+<td><a class="reference internal" href="#dirstack-size"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ DIRSTACK_SIZE</font></font></span></a></td>
+<td><a class="reference internal" href="#dotglob"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ DOTGLOB</font></font></span></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#dynamic-cwd-elision-char"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ DYNAMIC_CWD_ELISION_CHAR</font></font></span></a></td>
+<td><a class="reference internal" href="#dynamic-cwd-width"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ DYNAMIC_CWD_WIDTH</font></font></span></a></td>
+<td><a class="reference internal" href="#expand-env-vars"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ EXPAND_ENV_VARS</font></font></span></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#force-posix-paths"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ FORCE_POSIX_PATHS</font></font></span></a></td>
+<td><a class="reference internal" href="#foreign-aliases-override"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ FOREIGN_ALIASES_OVERRIDE</font></font></span></a></td>
+<td><a class="reference internal" href="#foreign-aliases-suppress-skip-message"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ FOREIGN_ALIASES_SUPPRESS_SKIP_MESSAGE</font></font></span></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#fuzzy-path-completion"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ FUZZY_PATH_COMPLETION</font></font></span></a></td>
+<td><a class="reference internal" href="#glob-sorted"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ GLOB_SORTED</font></font></span></a></td>
+<td><a class="reference internal" href="#histcontrol"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ HISTCONTROL</font></font></span></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#ignoreeof"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ IGNOREEOF</font></font></span></a></td>
+<td><a class="reference internal" href="#indent"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$インデント</font></font></span></a></td>
+<td><a class="reference internal" href="#intensify-colors-on-win"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ INTENSIFY_COLORS_ON_WIN</font></font></span></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#lang"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ LANG</font></font></span></a></td>
+<td><a class="reference internal" href="#loaded-rc-files"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ LOADED_RC_FILES</font></font></span></a></td>
+<td><a class="reference internal" href="#mouse-support"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ MOUSE_SUPPORT</font></font></span></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#multiline-prompt"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ MULTILINE_PROMPT</font></font></span></a></td>
+<td><a class="reference internal" href="#oldpwd"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ OLDPWD</font></font></span></a></td>
+<td><a class="reference internal" href="#path"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ PATH</font></font></span></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#pathext"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ PATHEXT</font></font></span></a></td>
+<td><a class="reference internal" href="#pretty-print-results"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ PRETTY_PRINT_RESULTS</font></font></span></a></td>
+<td><a class="reference internal" href="#prompt"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ PROMPT</font></font></span></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#prompt-fields"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ PROMPT_FIELDS</font></font></span></a></td>
+<td><a class="reference internal" href="#prompt-toolkit-color-depth"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ PROMPT_TOOLKIT_COLOR_DEPTH</font></font></span></a></td>
+<td><a class="reference internal" href="#ptk-style-overrides"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ PTK_STYLE_OVERRIDES</font></font></span></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#pushd-minus"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ PUSHD_MINUS</font></font></span></a></td>
+<td><a class="reference internal" href="#pushd-silent"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ PUSHD_SILENT</font></font></span></a></td>
+<td><a class="reference internal" href="#raise-subproc-error"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ RAISE_SUBPROC_ERROR</font></font></span></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#right-prompt"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ RIGHT_PROMPT</font></font></span></a></td>
+<td><a class="reference internal" href="#shell-type"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ SHELL_TYPE</font></font></span></a></td>
+<td><a class="reference internal" href="#subsequence-path-completion"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ SUBSEQUENCE_PATH_COMPLETION</font></font></span></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#suggest-commands"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ SUGGEST_COMMANDS</font></font></span></a></td>
+<td><a class="reference internal" href="#suggest-max-num"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ SUGGEST_MAX_NUM</font></font></span></a></td>
+<td><a class="reference internal" href="#suggest-threshold"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ SUGGEST_THRESHOLD</font></font></span></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#suppress-branch-timeout-message"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ SUPPRESS_BRANCH_TIMEOUT_MESSAGE</font></font></span></a></td>
+<td><a class="reference internal" href="#term"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ TERM</font></font></span></a></td>
+<td><a class="reference internal" href="#title"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ TITLE</font></font></span></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#update-completions-on-keypress"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ UPDATE_COMPLETIONS_ON_KEYPRESS</font></font></span></a></td>
+<td><a class="reference internal" href="#update-os-environ"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ UPDATE_OS_ENVIRON</font></font></span></a></td>
+<td><a class="reference internal" href="#update-prompt-on-keypress"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ UPDATE_PROMPT_ON_KEYPRESS</font></font></span></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#vc-branch-timeout"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ VC_BRANCH_TIMEOUT</font></font></span></a></td>
+<td><a class="reference internal" href="#vc-hg-show-branch"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ VC_HG_SHOW_BRANCH</font></font></span></a></td>
+<td><a class="reference internal" href="#virtual-env"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ VIRTUAL_ENV</font></font></span></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#vi-mode"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ VI_MODE</font></font></span></a></td>
+<td><a class="reference internal" href="#win-unicode-console"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ WIN_UNICODE_CONSOLE</font></font></span></a></td>
+<td><a class="reference internal" href="#xdg-config-home"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XDG_CONFIG_HOME</font></font></span></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#xdg-data-home"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XDG_DATA_HOME</font></font></span></a></td>
+<td><a class="reference internal" href="#xonshrc"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSHRC</font></font></span></a></td>
+<td><a class="reference internal" href="#xonsh-append-newline"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_APPEND_NEWLINE</font></font></span></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#xonsh-autopair"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_AUTOPAIR</font></font></span></a></td>
+<td><a class="reference internal" href="#xonsh-cache-everything"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_CACHE_EVERYTHING</font></font></span></a></td>
+<td><a class="reference internal" href="#xonsh-cache-scripts"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_CACHE_SCRIPTS</font></font></span></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#xonsh-color-style"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_COLOR_STYLE</font></font></span></a></td>
+<td><a class="reference internal" href="#xonsh-config-dir"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_CONFIG_DIR</font></font></span></a></td>
+<td><a class="reference internal" href="#xonsh-data-dir"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_DATA_DIR</font></font></span></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#xonsh-datetime-format"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_DATETIME_FORMAT</font></font></span></a></td>
+<td><a class="reference internal" href="#xonsh-debug"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_DEBUG</font></font></span></a></td>
+<td><a class="reference internal" href="#xonsh-encoding"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_ENCODING</font></font></span></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#xonsh-encoding-errors"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_ENCODING_ERRORS</font></font></span></a></td>
+<td><a class="reference internal" href="#xonsh-gitstatus"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_GITSTATUS_ *</font></font></span></a></td>
+<td><a class="reference internal" href="#xonsh-history-backend"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_HISTORY_BACKEND</font></font></span></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#xonsh-history-file"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_HISTORY_FILE</font></font></span></a></td>
+<td><a class="reference internal" href="#xonsh-history-match-anywhere"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_HISTORY_MATCH_ANYWHERE</font></font></span></a></td>
+<td><a class="reference internal" href="#xonsh-history-size"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_HISTORY_SIZE</font></font></span></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#xonsh-interactive"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_INTERACTIVE</font></font></span></a></td>
+<td><a class="reference internal" href="#xonsh-login"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_LOGIN</font></font></span></a></td>
+<td><a class="reference internal" href="#xonsh-proc-frequency"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_PROC_FREQUENCY</font></font></span></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#xonsh-show-traceback"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_SHOW_TRACEBACK</font></font></span></a></td>
+<td><a class="reference internal" href="#xonsh-source"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_SOURCE</font></font></span></a></td>
+<td><a class="reference internal" href="#xonsh-stderr-postfix"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_STDERR_POSTFIX</font></font></span></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#xonsh-stderr-prefix"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_STDERR_PREFIX</font></font></span></a></td>
+<td><a class="reference internal" href="#xonsh-store-stdin"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_STORE_STDIN</font></font></span></a></td>
+<td><a class="reference internal" href="#xonsh-store-stdout"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_STORE_STDOUT</font></font></span></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#xonsh-traceback-logfile"><span class="std std-ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_TRACEBACK_LOGFILE</font></font></span></a></td>
+<td> </td>
+<td> </td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="listing">
+<h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">リスト</font></font><a class="headerlink" href="#listing" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h2>
+<div class="section" id="ansicon">
+<span id="id1"></span><h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ ANSICON </font></font><a class="headerlink" href="#ansicon" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h3>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">これは、タイトルがあればそれを設定するためにWindows上で使用されます。</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">設定可能：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">偽</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">デフォルト：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> '&lt;デフォルト設定なし&gt;'</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">store_as_str：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> False</font></font></p>
+<hr class="docutils" />
+</div>
+<div class="section" id="auto-cd">
+<span id="id2"></span><h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ AUTO_CD </font></font><a class="headerlink" href="#auto-cd" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h3>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">dirnameまたはフルパスのみを入力して（cdコマンドなしで）ディレクトリに変更できるようにするフラグ。</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">設定可能：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> True</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">デフォルト：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> False</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">store_as_str：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> False</font></font></p>
+<hr class="docutils" />
+</div>
+<div class="section" id="auto-pushd">
+<span id="id3"></span><h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ AUTO_PUSHD </font></font><a class="headerlink" href="#auto-pushd" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h3>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">自動的にディレクトリをディレクトリスタックにプッシュするためのフラグ。</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">設定可能：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> True</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">デフォルト：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> False</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">store_as_str：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> False</font></font></p>
+<hr class="docutils" />
+</div>
+<div class="section" id="auto-suggest">
+<span id="id4"></span><h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ AUTO_SUGGEST </font></font><a class="headerlink" href="#auto-suggest" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h3>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">魚のシェルのように、履歴に基づいた自動コマンド提案を有効にします。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">右矢印キーを押すと、現在表示されている候補が挿入されます。</font><font style="vertical-align: inherit;">使用可能なのは</font></font><code class="docutils literal notranslate"><span class="pre">$SHELL_TYPE=prompt_toolkit.</span></code></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">設定可能：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> True</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">デフォルト：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> True</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">store_as_str：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> False</font></font></p>
+<hr class="docutils" />
+</div>
+<div class="section" id="auto-suggest-in-completions">
+<span id="id5"></span><h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ AUTO_SUGGEST_IN_COMPLETIONS </font></font><a class="headerlink" href="#auto-suggest-in-completions" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h3>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">補完結果の最初のオプションとして自動提案結果を配置します。</font><font style="vertical-align: inherit;">これにより、自動提案のタブをタップすることができます。</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">設定可能：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> True</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">デフォルト：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> False</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">store_as_str：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> False</font></font></p>
+<hr class="docutils" />
+</div>
+<div class="section" id="bash-completions">
+<span id="id6"></span><h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ BASH_COMPLETIONS </font></font><a class="headerlink" href="#bash-completions" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h3>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">これは、</font></font><code class="docutils literal notranslate"><span class="pre">bash_completion</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">スクリプトが見つかる</font><font style="vertical-align: inherit;">場所を指定する文字列のリスト（またはタプル）です</font><font style="vertical-align: inherit;">。</font><font style="vertical-align: inherit;">最初の有効なパスが使用されます。</font><font style="vertical-align: inherit;">bash-completion v2.xは、個々の補完スクリプトを遅延ロードするため、パフォーマンスを向上させるために推奨されています。</font><font style="vertical-align: inherit;">bash-completion v1.xとv2.xの両方で、個々の補完スクリプト（のような</font></font><code class="docutils literal notranslate"><span class="pre">.../completes/ssh</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）の</font><font style="vertical-align: inherit;">パスを</font><font style="vertical-align: inherit;">ここに含める必要はありません。</font><font style="vertical-align: inherit;">デフォルト値はプラットフォームに依存しますが、正常です。</font><font style="vertical-align: inherit;">代替リストを指定するには、実行制御ファイルで代替リストを指定します。</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">設定可能：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> True</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">デフォルト：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">通常これは：</font></font></p>
+<blockquote>
+<div><code class="docutils literal notranslate"><span class="pre">('/usr/share/bash-completion/bash_completion',</span> <span class="pre">)</span></code></div></blockquote>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">しかし、Macではそれは：</font></font></p>
+<blockquote>
+<div><code class="docutils literal notranslate"><span class="pre">('/usr/local/share/bash-completion/bash_completion',</span> <span class="pre">'/usr/local/etc/bash_completion')</span></code></div></blockquote>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">他のOS固有のデフォルトが将来追加される可能性があります。</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">store_as_str：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> False</font></font></p>
+<hr class="docutils" />
+</div>
+<div class="section" id="bottom-toolbar">
+<span id="id7"></span><h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ BOTTOM_TOOLBAR </font></font><a class="headerlink" href="#bottom-toolbar" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h3>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">下のツールバーのテンプレート文字列。</font><font style="vertical-align: inherit;">これは、</font></font><code class="docutils literal notranslate"><span class="pre">$PROMPT</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">変数</font><font style="vertical-align: inherit;">と同じ方法でパラメータ化することができ</font><font style="vertical-align: inherit;">ます。</font><font style="vertical-align: inherit;">現在のところ、これはプロンプトツールキットシェルでのみ利用可能です。</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">設定可能：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> True</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">デフォルト：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ''</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">store_as_str：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> False</font></font></p>
+<hr class="docutils" />
+</div>
+<div class="section" id="case-sensitive-completions">
+<span id="id8"></span><h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ CASE_SENSITIVE_COMPLETIONS </font></font><a class="headerlink" href="#case-sensitive-completions" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h3>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">補完で大文字と小文字を区別するか、大文字と小文字を区別するかを設定</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">設定可能：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> True</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">デフォルト：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> LinuxではTrue、それ以外の場合はFalse。</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">store_as_str：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> False</font></font></p>
+<hr class="docutils" />
+</div>
+<div class="section" id="cdpath">
+<span id="id9"></span><h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ CDPATH </font></font><a class="headerlink" href="#cdpath" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h3>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">CDのルーツとして使用されるパスのリストは、Bash、xonshとの互換性を失うため、常に既存の相対パスが優先されます。</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">設定可能：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> True</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">デフォルト：（</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">store_as_str：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> False</font></font></p>
+<hr class="docutils" />
+</div>
+<div class="section" id="color-input">
+<span id="id10"></span><h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ COLOR_INPUT </font></font><a class="headerlink" href="#color-input" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h3>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">対話型入力を強調表示するためのフラグ。</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">設定可能：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> True</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">デフォルト：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> True</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">store_as_str：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> False</font></font></p>
+<hr class="docutils" />
+</div>
+<div class="section" id="color-results">
+<span id="id11"></span><h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ COLOR_RESULTS </font></font><a class="headerlink" href="#color-results" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h3>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">戻り値を強調表示するシンタックスのフラグ。</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">設定可能：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> True</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">デフォルト：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> True</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">store_as_str：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> False</font></font></p>
+<hr class="docutils" />
+</div>
+<div class="section" id="completions-brackets">
+<span id="id12"></span><h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ COMPLETIONS_BRACKETS </font></font><a class="headerlink" href="#completions-brackets" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h3>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Pythonの属性補完で角かっこと括弧を含めるかどうかを示すフラグ。</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">設定可能：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> True</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">デフォルト：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> True</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">store_as_str：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> False</font></font></p>
+<hr class="docutils" />
+</div>
+<div class="section" id="completions-confirm">
+<span id="id13"></span><h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ COMPLETIONS_CONFIRM </font></font><a class="headerlink" href="#completions-confirm" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h3>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">タブ補完メニューが表示されている間、&lt;Enter&gt;を押してコマンドを実行するのではなく完了を確認します。</font><font style="vertical-align: inherit;">これはプロンプトツールキットシェルにのみ影響します。</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">設定可能：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> True</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">デフォルト：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> False</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">store_as_str：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> False</font></font></p>
+<hr class="docutils" />
+</div>
+<div class="section" id="completions-display">
+<span id="id14"></span><h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ COMPLETIONS_DISPLAY </font></font><a class="headerlink" href="#completions-display" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h3>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Python補完が</font></font><code class="docutils literal notranslate"><span class="pre">prompt_toolkit</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">シェル</font><font style="vertical-align: inherit;">によって表示されるかどうかを設定し</font><font style="vertical-align: inherit;">ます。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">このオプションは、Bash補完、自動提案などには影響しません。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">実行時に変更するとすぐに反映されるため、シェルセッション中に完了をすばやく無効にして有効にすることができます。</font></font></p>
+<ul class="simple">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">場合</font></font><code class="docutils literal notranslate"><span class="pre">$COMPLETIONS_DISPLAY</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">である</font></font><code class="docutils literal notranslate"><span class="pre">none</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">か</font></font><code class="docutils literal notranslate"><span class="pre">false</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、それらの補完を表示しません。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">一致する場合</font></font><code class="docutils literal notranslate"><span class="pre">$COMPLETIONS_DISPLAY</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">は</font></font><code class="docutils literal notranslate"><span class="pre">single</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、入力中に1つの列に補完を表示します。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">複数の列に入力中に</font><font style="vertical-align: inherit;">or </font><font style="vertical-align: inherit;">が表示されている</font><font style="vertical-align: inherit;">場合</font></font><code class="docutils literal notranslate"><span class="pre">$COMPLETIONS_DISPLAY</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">は</font><font style="vertical-align: inherit;">、補完を表示します。</font></font><code class="docutils literal notranslate"><span class="pre">multi</span></code><font style="vertical-align: inherit;"></font><code class="docutils literal notranslate"><span class="pre">true</span></code><font style="vertical-align: inherit;"></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">場合</font></font><code class="docutils literal notranslate"><span class="pre">$COMPLETIONS_DISPLAY</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">で</font></font><code class="docutils literal notranslate"><span class="pre">readline</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、表示の完了は、readlineのの動作をエミュレートします。</font></font></li>
+</ul>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">これらのオプションの値はそうegwriting、タイプ、大文字と小文字は区別またはされていない</font><font style="vertical-align: inherit;">と</font><font style="vertical-align: inherit;">等価です。</font><font style="vertical-align: inherit;">使用可能なのは</font></font><code class="docutils literal notranslate"><span class="pre">$COMPLETIONS_DISPLAY</span> <span class="pre">=</span> <span class="pre">None</span></code><font style="vertical-align: inherit;"></font><code class="docutils literal notranslate"><span class="pre">$COMPLETIONS_DISPLAY</span> <span class="pre">=</span> <span class="pre">'none'</span></code><font style="vertical-align: inherit;"></font><code class="docutils literal notranslate"><span class="pre">$SHELL_TYPE=prompt_toolkit</span></code></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">設定可能：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> True</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">デフォルト：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 'multi'</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">store_as_str：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> False</font></font></p>
+<hr class="docutils" />
+</div>
+<div class="section" id="completions-menu-rows">
+<span id="id15"></span><h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ COMPLETIONS_MENU_ROWS </font></font><a class="headerlink" href="#completions-menu-rows" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h3>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">場合は、タブ補完メニュー用に予約する行の数</font></font><code class="docutils literal notranslate"><span class="pre">$COMPLETIONS_DISPLAY</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">です</font></font><code class="docutils literal notranslate"><span class="pre">single</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">か</font></font><code class="docutils literal notranslate"><span class="pre">multi</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font><font style="vertical-align: inherit;">これはプロンプトツールキットシェルにのみ影響します。</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">設定可能：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> True</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">デフォルト：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 5</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">store_as_str：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> False</font></font></p>
+<hr class="docutils" />
+</div>
+<div class="section" id="completion-query-limit">
+<span id="id16"></span><h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ COMPLETION_QUERY_LIMIT </font></font><a class="headerlink" href="#completion-query-limit" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h3>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ユーザーに確認を求める前に表示する補完数。</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">設定可能：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> True</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">デフォルト：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 100</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">store_as_str：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> False</font></font></p>
+<hr class="docutils" />
+</div>
+<div class="section" id="dirstack-size">
+<span id="id17"></span><h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ DIRSTACK_SIZE </font></font><a class="headerlink" href="#dirstack-size" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h3>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ディレクトリスタックの最大サイズ。</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">設定可能：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> True</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">デフォルト：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 20</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">store_as_str：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> False</font></font></p>
+<hr class="docutils" />
+</div>
+<div class="section" id="dotglob">
+<span id="id18"></span><h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ DOTGLOB </font></font><a class="headerlink" href="#dotglob" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h3>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">"*"または "**"のファイルをグロビングすると、ドットファイル、またはリテラル '。'で始まる名前のファイルが一致します。</font><font style="vertical-align: inherit;">そのようなファイルは、デフォルトでは除外されます。</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">設定可能：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> True</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">デフォルト：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> False</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">store_as_str：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> False</font></font></p>
+<hr class="docutils" />
+</div>
+<div class="section" id="dynamic-cwd-elision-char">
+<span id="id19"></span><h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ DYNAMIC_CWD_ELISION_CHAR </font></font><a class="headerlink" href="#dynamic-cwd-elision-char" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h3>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">短縮されたcwdで短縮されたディレクトリを示すのに使用される文字列、例えば</font></font><code class="docutils literal notranslate"><span class="pre">'…'</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">設定可能：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> True</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">デフォルト：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ''</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">store_as_str：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> False</font></font></p>
+<hr class="docutils" />
+</div>
+<div class="section" id="dynamic-cwd-width">
+<span id="id20"></span><h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ DYNAMIC_CWD_WIDTH </font></font><a class="headerlink" href="#dynamic-cwd-width" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h3>
+<p><font style="vertical-align: inherit;"></font><code class="docutils literal notranslate"><span class="pre">cwd</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">プロンプト変数</font><font style="vertical-align: inherit;">の文字数またはパーセントに対する最大長</font><font style="vertical-align: inherit;">。</font><font style="vertical-align: inherit;">たとえば、「20」は20文字の幅で、「10％」は使用可能な列の数の10パーセントです。</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">設定可能：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> True</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">デフォルト：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（inf、 'c'）</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">store_as_str：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> False</font></font></p>
+<hr class="docutils" />
+</div>
+<div class="section" id="expand-env-vars">
+<span id="id21"></span><h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ EXPAND_ENV_VARS </font></font><a class="headerlink" href="#expand-env-vars" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h3>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">サブプロセスモードで環境変数が文字列の内部で展開されるかどうかを切り替えます。</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">設定可能：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> True</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">デフォルト：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> True</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">store_as_str：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> False</font></font></p>
+<hr class="docutils" />
+</div>
+<div class="section" id="force-posix-paths">
+<span id="id22"></span><h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ FORCE_POSIX_PATHS </font></font><a class="headerlink" href="#force-posix-paths" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h3>
+<p><font style="vertical-align: inherit;"></font><code class="docutils literal notranslate"><span class="pre">/</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">trueが設定されている場合、自動補完を使用すると、Windowsシステムで</font><font style="vertical-align: inherit;">スラッシュ（</font><font style="vertical-align: inherit;">）を</font><font style="vertical-align: inherit;">強制的</font><font style="vertical-align: inherit;">に実行します。</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">設定可能：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">偽</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">デフォルト：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> False</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">store_as_str：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> False</font></font></p>
+<hr class="docutils" />
+</div>
+<div class="section" id="foreign-aliases-override">
+<span id="id23"></span><h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ FOREIGN_ALIASES_OVERRIDE </font></font><a class="headerlink" href="#foreign-aliases-override" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h3>
+<p>Whether or not foreign aliases should override xonsh aliases with the same name. Note that setting of this must happen in the environment that xonsh was started from. It cannot be set in the <code class="docutils literal notranslate"><span class="pre">.xonshrc</span></code> as loading of foreign aliases happens before``.xonshrc`` is parsed</p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> False</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="foreign-aliases-suppress-skip-message">
+<span id="id24"></span><h3>$FOREIGN_ALIASES_SUPPRESS_SKIP_MESSAGE<a class="headerlink" href="#foreign-aliases-suppress-skip-message" title="この見出しにパーマリンク">¶</a></h3>
+<p>Whether or not foreign aliases should suppress the message that informs the user when a foreign alias has been skipped because it already exists in xonsh.</p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> False</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="fuzzy-path-completion">
+<span id="id25"></span><h3>$FUZZY_PATH_COMPLETION<a class="headerlink" href="#fuzzy-path-completion" title="この見出しにパーマリンク">¶</a></h3>
+<p>Toggles ‘fuzzy’ matching of paths for tab completion, which is only used as a fallback if no other completions succeed but can be used as a way to adjust for typographical errors. If <code class="docutils literal notranslate"><span class="pre">True</span></code>, then, e.g., <code class="docutils literal notranslate"><span class="pre">xonhs</span></code> will match <code class="docutils literal notranslate"><span class="pre">xonsh</span></code>.</p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> True</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="glob-sorted">
+<span id="id26"></span><h3>$GLOB_SORTED<a class="headerlink" href="#glob-sorted" title="この見出しにパーマリンク">¶</a></h3>
+<p>Toggles whether globbing results are manually sorted. If <code class="docutils literal notranslate"><span class="pre">False</span></code>, the results are returned in arbitrary order.</p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> True</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="histcontrol">
+<span id="id27"></span><h3>$HISTCONTROL<a class="headerlink" href="#histcontrol" title="この見出しにパーマリンク">¶</a></h3>
+<p>A set of strings (comma-separated list in string form) of options that determine what commands are saved to the history list. By default all commands are saved. The option <code class="docutils literal notranslate"><span class="pre">ignoredups</span></code> will not save the command if it matches the previous command. The option ‘ignoreerr’ will cause any commands that fail (i.e. return non-zero exit status) to not be added to the history list.</p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> set()</p>
+<p><strong>store_as_str:</strong> True</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="ignoreeof">
+<span id="id28"></span><h3>$IGNOREEOF<a class="headerlink" href="#ignoreeof" title="この見出しにパーマリンク">¶</a></h3>
+<p>Prevents Ctrl-D from exiting the shell.</p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> False</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="indent">
+<span id="id29"></span><h3>$INDENT<a class="headerlink" href="#indent" title="この見出しにパーマリンク">¶</a></h3>
+<p>Indentation string for multiline input</p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> ‘    ‘</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="intensify-colors-on-win">
+<span id="id30"></span><h3>$INTENSIFY_COLORS_ON_WIN<a class="headerlink" href="#intensify-colors-on-win" title="この見出しにパーマリンク">¶</a></h3>
+<p>Enhance style colors for readability when using the default terminal (<code class="docutils literal notranslate"><span class="pre">cmd.exe</span></code>) on Windows. Blue colors, which are hard to read, are replaced with cyan. Other colors are generally replaced by their bright counter parts.</p>
+<p><strong>configurable:</strong> False</p>
+<p><strong>default:</strong> True</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="lang">
+<span id="id31"></span><h3>$LANG<a class="headerlink" href="#lang" title="この見出しにパーマリンク">¶</a></h3>
+<p>Fallback locale setting for systems where it matters</p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> ‘C.UTF-8’</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="loaded-rc-files">
+<span id="id32"></span><h3>$LOADED_RC_FILES<a class="headerlink" href="#loaded-rc-files" title="この見出しにパーマリンク">¶</a></h3>
+<p>Whether or not any of the xonsh run control files were loaded at startup. This is a sequence of bools in Python that is converted to a CSV list in string form, ie <code class="docutils literal notranslate"><span class="pre">[True,</span> <span class="pre">False]</span></code> becomes <code class="docutils literal notranslate"><span class="pre">'True,False'</span></code>.</p>
+<p><strong>configurable:</strong> False</p>
+<p><strong>default:</strong> ()</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="mouse-support">
+<span id="id33"></span><h3>$MOUSE_SUPPORT<a class="headerlink" href="#mouse-support" title="この見出しにパーマリンク">¶</a></h3>
+<p>Enable mouse support in the <code class="docutils literal notranslate"><span class="pre">prompt_toolkit</span></code> shell. This allows clicking for positioning the cursor or selecting a completion. In some terminals however, this disables the ability to scroll back through the history of the terminal. Only usable with <code class="docutils literal notranslate"><span class="pre">$SHELL_TYPE=prompt_toolkit</span></code></p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> False</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="multiline-prompt">
+<span id="id34"></span><h3>$MULTILINE_PROMPT<a class="headerlink" href="#multiline-prompt" title="この見出しにパーマリンク">¶</a></h3>
+<p>Prompt text for 2nd+ lines of input, may be str or function which returns a str.</p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> ‘.’</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="oldpwd">
+<span id="id35"></span><h3>$OLDPWD<a class="headerlink" href="#oldpwd" title="この見出しにパーマリンク">¶</a></h3>
+<p>Used to represent a previous present working directory.</p>
+<p><strong>configurable:</strong> False</p>
+<p><strong>default:</strong> ‘&lt;default not set&gt;’</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="path">
+<span id="id36"></span><h3>$PATH<a class="headerlink" href="#path" title="この見出しにパーマリンク">¶</a></h3>
+<p>List of strings representing where to look for executables.</p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> (‘/home/travis/bin’, ‘/usr/local/sbin’, ‘/usr/local/bin’, ‘/usr/sbin’, ‘/usr/bin’, ‘/sbin’, ‘/bin’, ‘/usr/games’, ‘/usr/local/games’)</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="pathext">
+<span id="id37"></span><h3>$PATHEXT<a class="headerlink" href="#pathext" title="この見出しにパーマリンク">¶</a></h3>
+<p>Sequence of extension strings (eg, <code class="docutils literal notranslate"><span class="pre">.EXE</span></code>) for filtering valid executables by. Each element must be uppercase.</p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> []</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="pretty-print-results">
+<span id="id38"></span><h3>$PRETTY_PRINT_RESULTS<a class="headerlink" href="#pretty-print-results" title="この見出しにパーマリンク">¶</a></h3>
+<p>Flag for “pretty printing” return values.</p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> True</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="prompt">
+<span id="id39"></span><h3>$PROMPT<a class="headerlink" href="#prompt" title="この見出しにパーマリンク">¶</a></h3>
+<p>The prompt text. May contain keyword arguments which are auto-formatted, see ‘Customizing the Prompt’ at <a class="reference external" href="http://xon.sh/tutorial.html#customizing-the-prompt">http://xon.sh/tutorial.html#customizing-the-prompt</a>. This value is never inherited from parent processes.</p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> <code class="docutils literal notranslate"><span class="pre">xonsh.environ.DEFAULT_PROMPT</span></code></p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="prompt-fields">
+<span id="id40"></span><h3>$PROMPT_FIELDS<a class="headerlink" href="#prompt-fields" title="この見出しにパーマリンク">¶</a></h3>
+<p>Dictionary containing variables to be used when formatting $PROMPT and $TITLE. See ‘Customizing the Prompt’ <a class="reference external" href="http://xon.sh/tutorial.html#customizing-the-prompt">http://xon.sh/tutorial.html#customizing-the-prompt</a></p>
+<p><strong>configurable:</strong> False</p>
+<p><strong>default:</strong> <code class="docutils literal notranslate"><span class="pre">xonsh.prompt.PROMPT_FIELDS</span></code></p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="prompt-toolkit-color-depth">
+<span id="id41"></span><h3>$PROMPT_TOOLKIT_COLOR_DEPTH<a class="headerlink" href="#prompt-toolkit-color-depth" title="この見出しにパーマリンク">¶</a></h3>
+<p>The color depth used by prompt toolkit 2. Possible values are: <code class="docutils literal notranslate"><span class="pre">DEPTH_1_BIT</span></code>, <code class="docutils literal notranslate"><span class="pre">DEPTH_4_BIT</span></code>, <code class="docutils literal notranslate"><span class="pre">DEPTH_8_BIT</span></code>, <code class="docutils literal notranslate"><span class="pre">DEPTH_24_BIT</span></code> colors. Default is an empty string which means that prompt toolkit decide.</p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> ‘’</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="ptk-style-overrides">
+<span id="id42"></span><h3>$PTK_STYLE_OVERRIDES<a class="headerlink" href="#ptk-style-overrides" title="この見出しにパーマリンク">¶</a></h3>
+<p>A dictionary containing custom prompt_toolkit style definitions.</p>
+<p><strong>configurable:</strong> True</p>
+<dl class="docutils">
+<dt><strong>default:</strong> {‘aborting’: ‘ansibrightblack’,</dt>
+<dd>‘auto-suggestion’: ‘ansibrightblack’,
+‘completion-menu’: ‘bg:ansigray ansiblack’,
+‘completion-menu.completion’: ‘’,
+‘completion-menu.completion.current’: ‘bg:ansibrightblack ansiwhite’,
+‘scrollbar.arrow’: ‘bg:ansiblack ansiwhite bold’,
+‘scrollbar.background’: ‘bg:ansibrightblack’,
+‘scrollbar.button’: ‘bg:ansiblack’}</dd>
+</dl>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="pushd-minus">
+<span id="id43"></span><h3>$PUSHD_MINUS<a class="headerlink" href="#pushd-minus" title="この見出しにパーマリンク">¶</a></h3>
+<p>Flag for directory pushing functionality. False is the normal behavior.</p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> False</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="pushd-silent">
+<span id="id44"></span><h3>$PUSHD_SILENT<a class="headerlink" href="#pushd-silent" title="この見出しにパーマリンク">¶</a></h3>
+<p>Whether or not to suppress directory stack manipulation output.</p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> False</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="raise-subproc-error">
+<span id="id45"></span><h3>$RAISE_SUBPROC_ERROR<a class="headerlink" href="#raise-subproc-error" title="この見出しにパーマリンク">¶</a></h3>
+<p>Whether or not to raise an error if a subprocess (captured or uncaptured) returns a non-zero exit status, which indicates failure. This is most useful in xonsh scripts or modules where failures should cause an end to execution. This is less useful at a terminal. The error that is raised is a <code class="docutils literal notranslate"><span class="pre">subprocess.CalledProcessError</span></code>.</p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> False</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="right-prompt">
+<span id="id46"></span><h3>$RIGHT_PROMPT<a class="headerlink" href="#right-prompt" title="この見出しにパーマリンク">¶</a></h3>
+<p>Template string for right-aligned text at the prompt. This may be parametrized in the same way as the <code class="docutils literal notranslate"><span class="pre">$PROMPT</span></code> variable. Currently, this is only available in the prompt-toolkit shell.</p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> ‘’</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="shell-type">
+<span id="id47"></span><h3>$SHELL_TYPE<a class="headerlink" href="#shell-type" title="この見出しにパーマリンク">¶</a></h3>
+<p>Which shell is used. Currently two base shell types are supported:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">readline</span></code> that is backed by Python’s readline module</li>
+<li><code class="docutils literal notranslate"><span class="pre">prompt_toolkit</span></code> that uses external library of the same name</li>
+<li><code class="docutils literal notranslate"><span class="pre">random</span></code> selects a random shell from the above on startup</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">best</span></code> selects the most feature-rich shell available on the</dt>
+<dd>user’s system</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<p>To use the <code class="docutils literal notranslate"><span class="pre">prompt_toolkit</span></code> shell you need to have the <a class="reference external" href="https://github.com/jonathanslenders/python-prompt-toolkit">prompt_toolkit</a> library installed. To specify which shell should be used, do so in the run control file.</p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> <code class="docutils literal notranslate"><span class="pre">best</span></code></p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="subsequence-path-completion">
+<span id="id48"></span><h3>$SUBSEQUENCE_PATH_COMPLETION<a class="headerlink" href="#subsequence-path-completion" title="この見出しにパーマリンク">¶</a></h3>
+<p>Toggles subsequence matching of paths for tab completion. If <code class="docutils literal notranslate"><span class="pre">True</span></code>, then, e.g., <code class="docutils literal notranslate"><span class="pre">~/u/ro</span></code> can match <code class="docutils literal notranslate"><span class="pre">~/lou/carcolh</span></code>.</p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> True</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="suggest-commands">
+<span id="id49"></span><h3>$SUGGEST_COMMANDS<a class="headerlink" href="#suggest-commands" title="この見出しにパーマリンク">¶</a></h3>
+<p>When a user types an invalid command, xonsh will try to offer suggestions of similar valid commands if this is True.</p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> True</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="suggest-max-num">
+<span id="id50"></span><h3>$SUGGEST_MAX_NUM<a class="headerlink" href="#suggest-max-num" title="この見出しにパーマリンク">¶</a></h3>
+<p>xonsh will show at most this many suggestions in response to an invalid command. If negative, there is no limit to how many suggestions are shown.</p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> 5</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="suggest-threshold">
+<span id="id51"></span><h3>$SUGGEST_THRESHOLD<a class="headerlink" href="#suggest-threshold" title="この見出しにパーマリンク">¶</a></h3>
+<p>An error threshold. If the Levenshtein distance between the entered command and a valid command is less than this value, the valid command will be offered as a suggestion.  Also used for “fuzzy” tab completion of paths.</p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> 3</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="suppress-branch-timeout-message">
+<span id="id52"></span><h3>$SUPPRESS_BRANCH_TIMEOUT_MESSAGE<a class="headerlink" href="#suppress-branch-timeout-message" title="この見出しにパーマリンク">¶</a></h3>
+<p>Whether or not to suppress branch timeout warning messages.</p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> False</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="term">
+<span id="id53"></span><h3>$TERM<a class="headerlink" href="#term" title="この見出しにパーマリンク">¶</a></h3>
+<p>TERM is sometimes set by the terminal emulator. This is used (when valid) to determine whether or not to set the title. Users shouldn’t need to set this themselves. Note that this variable should be set as early as possible in order to ensure it is effective. Here are a few options:</p>
+<ul class="simple">
+<li>Set this from the program that launches xonsh. On POSIX systems,
+this can be performed by using env, e.g.
+<code class="docutils literal notranslate"><span class="pre">/usr/bin/env</span> <span class="pre">TERM=xterm-color</span> <span class="pre">xonsh</span></code> or similar.</li>
+<li>From the xonsh command line, namely <code class="docutils literal notranslate"><span class="pre">xonsh</span> <span class="pre">-DTERM=xterm-color</span></code>.</li>
+<li>In the config file with <code class="docutils literal notranslate"><span class="pre">{"env":</span> <span class="pre">{"TERM":</span> <span class="pre">"xterm-color"}}</span></code>.</li>
+<li>Lastly, in xonshrc with <code class="docutils literal notranslate"><span class="pre">$TERM</span></code></li>
+</ul>
+<p>Ideally, your terminal emulator will set this correctly but that does not always happen.</p>
+<p><strong>configurable:</strong> False</p>
+<p><strong>default:</strong> ‘&lt;default not set&gt;’</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="title">
+<span id="id54"></span><h3>$TITLE<a class="headerlink" href="#title" title="この見出しにパーマリンク">¶</a></h3>
+<p>The title text for the window in which xonsh is running. Formatted in the same manner as <code class="docutils literal notranslate"><span class="pre">$PROMPT</span></code>, see ‘Customizing the Prompt’ <a class="reference external" href="http://xon.sh/tutorial.html#customizing-the-prompt">http://xon.sh/tutorial.html#customizing-the-prompt</a>.</p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> <code class="docutils literal notranslate"><span class="pre">xonsh.environ.DEFAULT_TITLE</span></code></p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="update-completions-on-keypress">
+<span id="id55"></span><h3>$UPDATE_COMPLETIONS_ON_KEYPRESS<a class="headerlink" href="#update-completions-on-keypress" title="この見出しにパーマリンク">¶</a></h3>
+<p>Completions display is evaluated and presented whenever a key is pressed. This avoids the need to press TAB, except to cycle through the possibilities. This currently only affects the prompt-toolkit shell.</p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> False</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="update-os-environ">
+<span id="id56"></span><h3>$UPDATE_OS_ENVIRON<a class="headerlink" href="#update-os-environ" title="この見出しにパーマリンク">¶</a></h3>
+<p>If True <code class="docutils literal notranslate"><span class="pre">os_environ</span></code> will always be updated when the xonsh environment changes. The environment can be reset to the default value by calling <code class="docutils literal notranslate"><span class="pre">__xonsh__.env.undo_replace_env()</span></code></p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> False</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="update-prompt-on-keypress">
+<span id="id57"></span><h3>$UPDATE_PROMPT_ON_KEYPRESS<a class="headerlink" href="#update-prompt-on-keypress" title="この見出しにパーマリンク">¶</a></h3>
+<p>Disables caching the prompt between commands, so that it would be reevaluated on each keypress. Disabled by default because of the incurred performance penalty.</p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> False</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="vc-branch-timeout">
+<span id="id58"></span><h3>$VC_BRANCH_TIMEOUT<a class="headerlink" href="#vc-branch-timeout" title="この見出しにパーマリンク">¶</a></h3>
+<p>The timeout (in seconds) for version control branch computations. This is a timeout per subprocess call, so the total time to compute will be larger than this in many cases.</p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> 0.1</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="vc-hg-show-branch">
+<span id="id59"></span><h3>$VC_HG_SHOW_BRANCH<a class="headerlink" href="#vc-hg-show-branch" title="この見出しにパーマリンク">¶</a></h3>
+<p>Whether or not to show the Mercurial branch in the prompt.</p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> True</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="virtual-env">
+<span id="id60"></span><h3>$VIRTUAL_ENV<a class="headerlink" href="#virtual-env" title="この見出しにパーマリンク">¶</a></h3>
+<p>Path to the currently active Python environment.</p>
+<p><strong>configurable:</strong> False</p>
+<p><strong>default:</strong> ‘&lt;default not set&gt;’</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="vi-mode">
+<span id="id61"></span><h3>$VI_MODE<a class="headerlink" href="#vi-mode" title="この見出しにパーマリンク">¶</a></h3>
+<p>Flag to enable <code class="docutils literal notranslate"><span class="pre">vi_mode</span></code> in the <code class="docutils literal notranslate"><span class="pre">prompt_toolkit</span></code> shell.</p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> False</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="win-unicode-console">
+<span id="id62"></span><h3>$WIN_UNICODE_CONSOLE<a class="headerlink" href="#win-unicode-console" title="この見出しにパーマリンク">¶</a></h3>
+<p>Enables unicode support in windows terminals. Requires the external library <code class="docutils literal notranslate"><span class="pre">win_unicode_console</span></code>.</p>
+<p><strong>configurable:</strong> False</p>
+<p><strong>default:</strong> True</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="xdg-config-home">
+<span id="id63"></span><h3>$XDG_CONFIG_HOME<a class="headerlink" href="#xdg-config-home" title="この見出しにパーマリンク">¶</a></h3>
+<p>Open desktop standard configuration home dir. This is the same default as used in the standard.</p>
+<p><strong>configurable:</strong> False</p>
+<p><strong>default:</strong> <code class="docutils literal notranslate"><span class="pre">~/.config</span></code></p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="xdg-data-home">
+<span id="id64"></span><h3>$XDG_DATA_HOME<a class="headerlink" href="#xdg-data-home" title="この見出しにパーマリンク">¶</a></h3>
+<p>Open desktop standard data home dir. This is the same default as used in the standard.</p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> <code class="docutils literal notranslate"><span class="pre">~/.local/share</span></code></p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="xonshrc">
+<span id="id65"></span><h3>$XONSHRC<a class="headerlink" href="#xonshrc" title="この見出しにパーマリンク">¶</a></h3>
+<p>A list of the locations of run control files, if they exist.  User defined run control file will supersede values set in system-wide control file if there is a naming collision.</p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> On Linux &amp; Mac OSX: <code class="docutils literal notranslate"><span class="pre">['/etc/xonshrc',</span> <span class="pre">'~/.config/xonsh/rc.xsh',</span> <span class="pre">'~/.xonshrc']</span></code></p>
+<p>On Windows: <code class="docutils literal notranslate"><span class="pre">['%ALLUSERSPROFILE%\\xonsh\\xonshrc',</span> <span class="pre">'~/.config/xonsh/rc.xsh',</span> <span class="pre">'~/.xonshrc']</span></code></p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="xonsh-append-newline">
+<span id="id66"></span><h3>$XONSH_APPEND_NEWLINE<a class="headerlink" href="#xonsh-append-newline" title="この見出しにパーマリンク">¶</a></h3>
+<p>Append new line when a partial line is preserved in output.</p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> &lt;function xonsh_append_newline at 0x2b2d9aa04488&gt;</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="xonsh-autopair">
+<span id="id67"></span><h3>$XONSH_AUTOPAIR<a class="headerlink" href="#xonsh-autopair" title="この見出しにパーマリンク">¶</a></h3>
+<p>Whether Xonsh will auto-insert matching parentheses, brackets, and quotes. Only available under the prompt-toolkit shell.</p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> False</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="xonsh-cache-everything">
+<span id="id68"></span><h3>$XONSH_CACHE_EVERYTHING<a class="headerlink" href="#xonsh-cache-everything" title="この見出しにパーマリンク">¶</a></h3>
+<p>Controls whether all code (including code entered at the interactive prompt) will be cached.</p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> False</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="xonsh-cache-scripts">
+<span id="id69"></span><h3>$XONSH_CACHE_SCRIPTS<a class="headerlink" href="#xonsh-cache-scripts" title="この見出しにパーマリンク">¶</a></h3>
+<p>Controls whether the code for scripts run from xonsh will be cached (<code class="docutils literal notranslate"><span class="pre">True</span></code>) or re-compiled each time (<code class="docutils literal notranslate"><span class="pre">False</span></code>).</p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> True</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="xonsh-color-style">
+<span id="id70"></span><h3>$XONSH_COLOR_STYLE<a class="headerlink" href="#xonsh-color-style" title="この見出しにパーマリンク">¶</a></h3>
+<p>Sets the color style for xonsh colors. This is a style name, not a color map. Run <code class="docutils literal notranslate"><span class="pre">xonfig</span> <span class="pre">styles</span></code> to see the available styles.</p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> ‘default’</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="xonsh-config-dir">
+<span id="id71"></span><h3>$XONSH_CONFIG_DIR<a class="headerlink" href="#xonsh-config-dir" title="この見出しにパーマリンク">¶</a></h3>
+<p>This is the location where xonsh configuration information is stored.</p>
+<p><strong>configurable:</strong> False</p>
+<p><strong>default:</strong> <code class="docutils literal notranslate"><span class="pre">$XDG_CONFIG_HOME/xonsh</span></code></p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="xonsh-data-dir">
+<span id="id72"></span><h3>$XONSH_DATA_DIR<a class="headerlink" href="#xonsh-data-dir" title="この見出しにパーマリンク">¶</a></h3>
+<p>This is the location where xonsh data files are stored, such as history.</p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> <code class="docutils literal notranslate"><span class="pre">$XDG_DATA_HOME/xonsh</span></code></p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="xonsh-datetime-format">
+<span id="id73"></span><h3>$XONSH_DATETIME_FORMAT<a class="headerlink" href="#xonsh-datetime-format" title="この見出しにパーマリンク">¶</a></h3>
+<p>The format that is used for <code class="docutils literal notranslate"><span class="pre">datetime.strptime()</span></code> in various placesi.e the history timestamp option</p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> ‘%Y-%m-%d %H:%M’</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="xonsh-debug">
+<span id="id74"></span><h3>$XONSH_DEBUG<a class="headerlink" href="#xonsh-debug" title="この見出しにパーマリンク">¶</a></h3>
+<p>Sets the xonsh debugging level. This may be an integer or a boolean. Setting this variable prior to stating xonsh to <code class="docutils literal notranslate"><span class="pre">1</span></code> or <code class="docutils literal notranslate"><span class="pre">True</span></code> will suppress amalgamated imports. Setting it to <code class="docutils literal notranslate"><span class="pre">2</span></code> will get some basic information like input transformation, command replacement. With <code class="docutils literal notranslate"><span class="pre">3</span></code> or a higher number will make more debugging information presented, like PLY parsing messages.</p>
+<p><strong>configurable:</strong> False</p>
+<p><strong>default:</strong> 0</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="xonsh-encoding">
+<span id="id75"></span><h3>$XONSH_ENCODING<a class="headerlink" href="#xonsh-encoding" title="この見出しにパーマリンク">¶</a></h3>
+<p>This is the encoding that xonsh should use for subprocess operations.</p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> <code class="docutils literal notranslate"><span class="pre">sys.getdefaultencoding()</span></code></p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="xonsh-encoding-errors">
+<span id="id76"></span><h3>$XONSH_ENCODING_ERRORS<a class="headerlink" href="#xonsh-encoding-errors" title="この見出しにパーマリンク">¶</a></h3>
+<p>The flag for how to handle encoding errors should they happen. Any string flag that has been previously registered with Python is allowed. See the ‘Python codecs documentation’ (<a class="reference external" href="https://docs.python.org/3/library/codecs.html#error-handlers">https://docs.python.org/3/library/codecs.html#error-handlers</a>) for more information and available options.</p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> <code class="docutils literal notranslate"><span class="pre">surrogateescape</span></code></p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="xonsh-gitstatus">
+<span id="id77"></span><h3>$XONSH_GITSTATUS_*<a class="headerlink" href="#xonsh-gitstatus" title="この見出しにパーマリンク">¶</a></h3>
+<p>Symbols for gitstatus prompt. Default values are:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">XONSH_GITSTATUS_HASH</span></code>: <code class="docutils literal notranslate"><span class="pre">:</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">XONSH_GITSTATUS_BRANCH</span></code>: <code class="docutils literal notranslate"><span class="pre">{CYAN}</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">XONSH_GITSTATUS_OPERATION</span></code>: <code class="docutils literal notranslate"><span class="pre">{CYAN}</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">XONSH_GITSTATUS_STAGED</span></code>: <code class="docutils literal notranslate"><span class="pre">{RED}●</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">XONSH_GITSTATUS_CONFLICTS</span></code>: <code class="docutils literal notranslate"><span class="pre">{RED}×</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">XONSH_GITSTATUS_CHANGED</span></code>: <code class="docutils literal notranslate"><span class="pre">{BLUE}+</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">XONSH_GITSTATUS_UNTRACKED</span></code>: <code class="docutils literal notranslate"><span class="pre">…</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">XONSH_GITSTATUS_STASHED</span></code>: <code class="docutils literal notranslate"><span class="pre">⚑</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">XONSH_GITSTATUS_CLEAN</span></code>: <code class="docutils literal notranslate"><span class="pre">{BOLD_GREEN}✓</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">XONSH_GITSTATUS_AHEAD</span></code>: <code class="docutils literal notranslate"><span class="pre">↑·</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">XONSH_GITSTATUS_BEHIND</span></code>: <code class="docutils literal notranslate"><span class="pre">↓·</span></code></li>
+</ul>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> ‘&lt;default not set&gt;’</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="xonsh-history-backend">
+<span id="id78"></span><h3>$XONSH_HISTORY_BACKEND<a class="headerlink" href="#xonsh-history-backend" title="この見出しにパーマリンク">¶</a></h3>
+<p>Set which history backend to use. Options are: ‘json’, ‘sqlite’, and ‘dummy’. The default is ‘json’. <code class="docutils literal notranslate"><span class="pre">XONSH_HISTORY_BACKEND</span></code> also accepts a class type that inherits from <code class="docutils literal notranslate"><span class="pre">xonsh.history.base.History</span></code>, or its instance.</p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> ‘json’</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="xonsh-history-file">
+<span id="id79"></span><h3>$XONSH_HISTORY_FILE<a class="headerlink" href="#xonsh-history-file" title="この見出しにパーマリンク">¶</a></h3>
+<p>Location of history file (deprecated).</p>
+<p><strong>configurable:</strong> False</p>
+<p><strong>default:</strong> <code class="docutils literal notranslate"><span class="pre">~/.xonsh_history</span></code></p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="xonsh-history-match-anywhere">
+<span id="id80"></span><h3>$XONSH_HISTORY_MATCH_ANYWHERE<a class="headerlink" href="#xonsh-history-match-anywhere" title="この見出しにパーマリンク">¶</a></h3>
+<p>When searching history from a partial string (by pressing up arrow), match command history anywhere in a given line (not just the start)</p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> False</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="xonsh-history-size">
+<span id="id81"></span><h3>$XONSH_HISTORY_SIZE<a class="headerlink" href="#xonsh-history-size" title="この見出しにパーマリンク">¶</a></h3>
+<p>Value and units tuple that sets the size of history after garbage collection. Canonical units are:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">commands</span></code> for the number of past commands executed,</li>
+<li><code class="docutils literal notranslate"><span class="pre">files</span></code> for the number of history files to keep,</li>
+<li><code class="docutils literal notranslate"><span class="pre">s</span></code> for the number of seconds in the past that are allowed, and</li>
+<li><code class="docutils literal notranslate"><span class="pre">b</span></code> for the number of bytes that history may consume.</li>
+</ul>
+<p>Common abbreviations, such as ‘6 months’ or ‘1 GB’ are also allowed.</p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> <code class="docutils literal notranslate"><span class="pre">(8128,</span> <span class="pre">'commands')</span></code> or <code class="docutils literal notranslate"><span class="pre">'8128</span> <span class="pre">commands'</span></code></p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="xonsh-interactive">
+<span id="id82"></span><h3>$XONSH_INTERACTIVE<a class="headerlink" href="#xonsh-interactive" title="この見出しにパーマリンク">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">True</span></code> if xonsh is running interactively, and <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
+<p><strong>configurable:</strong> False</p>
+<p><strong>default:</strong> ‘&lt;default not set&gt;’</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="xonsh-login">
+<span id="id83"></span><h3>$XONSH_LOGIN<a class="headerlink" href="#xonsh-login" title="この見出しにパーマリンク">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">True</span></code> if xonsh is running as a login shell, and <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
+<p><strong>configurable:</strong> False</p>
+<p><strong>default:</strong> False</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="xonsh-proc-frequency">
+<span id="id84"></span><h3>$XONSH_PROC_FREQUENCY<a class="headerlink" href="#xonsh-proc-frequency" title="この見出しにパーマリンク">¶</a></h3>
+<p>The process frequency is the time that xonsh process threads sleep for while running command pipelines. The value has units of seconds [s].</p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> 0.0001</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="xonsh-show-traceback">
+<span id="id85"></span><h3>$XONSH_SHOW_TRACEBACK<a class="headerlink" href="#xonsh-show-traceback" title="この見出しにパーマリンク">¶</a></h3>
+<p>Controls if a traceback is shown if exceptions occur in the shell. Set to <code class="docutils literal notranslate"><span class="pre">True</span></code> to always show traceback or <code class="docutils literal notranslate"><span class="pre">False</span></code> to always hide. If undefined then the traceback is hidden but a notice is shown on how to enable the full traceback.</p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> False</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="xonsh-source">
+<span id="id86"></span><h3>$XONSH_SOURCE<a class="headerlink" href="#xonsh-source" title="この見出しにパーマリンク">¶</a></h3>
+<p>When running a xonsh script, this variable contains the absolute path to the currently executing script’s file.</p>
+<p><strong>configurable:</strong> False</p>
+<p><strong>default:</strong> ‘&lt;default not set&gt;’</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="xonsh-stderr-postfix">
+<span id="id87"></span><h3>$XONSH_STDERR_POSTFIX<a class="headerlink" href="#xonsh-stderr-postfix" title="この見出しにパーマリンク">¶</a></h3>
+<p>A format string, using the same keys and colors as <code class="docutils literal notranslate"><span class="pre">$PROMPT</span></code>, that is appended whenever stderr is displayed. This may be used in conjunction with <code class="docutils literal notranslate"><span class="pre">$XONSH_STDERR_PREFIX</span></code> to start the block.For example, to have stderr appear on a red background, the prefix &amp; postfix pair would be “{BACKGROUND_RED}” &amp; “{NO_COLOR}”.</p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> ‘’</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="xonsh-stderr-prefix">
+<span id="id88"></span><h3>$XONSH_STDERR_PREFIX<a class="headerlink" href="#xonsh-stderr-prefix" title="この見出しにパーマリンク">¶</a></h3>
+<p>A format string, using the same keys and colors as <code class="docutils literal notranslate"><span class="pre">$PROMPT</span></code>, that is prepended whenever stderr is displayed. This may be used in conjunction with <code class="docutils literal notranslate"><span class="pre">$XONSH_STDERR_POSTFIX</span></code> to close out the block.For example, to have stderr appear on a red background, the prefix &amp; postfix pair would be “{BACKGROUND_RED}” &amp; “{NO_COLOR}”.</p>
+<p><strong>configurable:</strong> True</p>
+<p><strong>default:</strong> ‘’</p>
+<p><strong>store_as_str:</strong> False</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="xonsh-store-stdin">
+<span id="id89"></span><h3>$XONSH_STORE_STDIN<a class="headerlink" href="#xonsh-store-stdin" title="この見出しにパーマリンク">¶</a></h3>
+<p><font style="vertical-align: inherit;"></font><code class="docutils literal notranslate"><span class="pre">!()</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">と</font></font><code class="docutils literal notranslate"><span class="pre">![]</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">演算子に</font><font style="vertical-align: inherit;">供給される標準入力を格納するかどうか</font><font style="vertical-align: inherit;">。</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">設定可能：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> True</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">デフォルト：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> False</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">store_as_str：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> False</font></font></p>
+<hr class="docutils" />
+</div>
+<div class="section" id="xonsh-store-stdout">
+<span id="id90"></span><h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_STORE_STDOUT </font></font><a class="headerlink" href="#xonsh-store-stdout" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h3>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">履歴ファイルにストリーム</font></font><code class="docutils literal notranslate"><span class="pre">stdout</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">と</font></font><code class="docutils literal notranslate"><span class="pre">stderr</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ストリーム</font><font style="vertical-align: inherit;">を保存するかどうか</font><font style="vertical-align: inherit;">。</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">設定可能：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> True</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">デフォルト：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> False</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">store_as_str：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> False</font></font></p>
+<hr class="docutils" />
+</div>
+<div class="section" id="xonsh-traceback-logfile">
+<span id="id91"></span><h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_TRACEBACK_LOGFILE </font></font><a class="headerlink" href="#xonsh-traceback-logfile" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h3>
+<p><font style="vertical-align: inherit;"></font><code class="docutils literal notranslate"><span class="pre">XONSH_SHOW_TRACEBACK</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">設定されている</font><font style="vertical-align: inherit;">かどうかにかかわらず、トレースバックログを保存するファイルを指定します</font><font style="vertical-align: inherit;">。</font><font style="vertical-align: inherit;">トレースバックのロギングが望ましくない場合、その値は書き込み可能なファイルでなければなりません。</font><font style="vertical-align: inherit;">ファイルへのロギングはデフォルトでは有効になっていません。</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">設定可能：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> True</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">デフォルト：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">なし</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">store_as_str：</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> False</font></font></p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="sidebar.html" title="サイドバー">
+          <img class="logo" src="_static/ascii_conch_part_transparent_tight.png" alt="ロゴ" />
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="sidebar.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ページの内容</font></font></a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">環境変数</font></font></a><ul>
+<li><a class="reference internal" href="#listing"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">リスト</font></font></a><ul>
+<li><a class="reference internal" href="#ansicon"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ ANSICON</font></font></a></li>
+<li><a class="reference internal" href="#auto-cd"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ AUTO_CD</font></font></a></li>
+<li><a class="reference internal" href="#auto-pushd"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ AUTO_PUSHD</font></font></a></li>
+<li><a class="reference internal" href="#auto-suggest"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ AUTO_SUGGEST</font></font></a></li>
+<li><a class="reference internal" href="#auto-suggest-in-completions"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ AUTO_SUGGEST_IN_COMPLETIONS</font></font></a></li>
+<li><a class="reference internal" href="#bash-completions"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ BASH_COMPLETIONS</font></font></a></li>
+<li><a class="reference internal" href="#bottom-toolbar"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ BOTTOM_TOOLBAR</font></font></a></li>
+<li><a class="reference internal" href="#case-sensitive-completions"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ CASE_SENSITIVE_COMPLETIONS</font></font></a></li>
+<li><a class="reference internal" href="#cdpath"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ CDPATH</font></font></a></li>
+<li><a class="reference internal" href="#color-input"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ COLOR_INPUT</font></font></a></li>
+<li><a class="reference internal" href="#color-results"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ COLOR_RESULTS</font></font></a></li>
+<li><a class="reference internal" href="#completions-brackets"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ COMPLETIONS_BRACKETS</font></font></a></li>
+<li><a class="reference internal" href="#completions-confirm"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ COMPLETIONS_CONFIRM</font></font></a></li>
+<li><a class="reference internal" href="#completions-display"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ COMPLETIONS_DISPLAY</font></font></a></li>
+<li><a class="reference internal" href="#completions-menu-rows"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ COMPLETIONS_MENU_ROWS</font></font></a></li>
+<li><a class="reference internal" href="#completion-query-limit"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ COMPLETION_QUERY_LIMIT</font></font></a></li>
+<li><a class="reference internal" href="#dirstack-size"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ DIRSTACK_SIZE</font></font></a></li>
+<li><a class="reference internal" href="#dotglob"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ DOTGLOB</font></font></a></li>
+<li><a class="reference internal" href="#dynamic-cwd-elision-char"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ DYNAMIC_CWD_ELISION_CHAR</font></font></a></li>
+<li><a class="reference internal" href="#dynamic-cwd-width"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ DYNAMIC_CWD_WIDTH</font></font></a></li>
+<li><a class="reference internal" href="#expand-env-vars"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ EXPAND_ENV_VARS</font></font></a></li>
+<li><a class="reference internal" href="#force-posix-paths"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ FORCE_POSIX_PATHS</font></font></a></li>
+<li><a class="reference internal" href="#foreign-aliases-override"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ FOREIGN_ALIASES_OVERRIDE</font></font></a></li>
+<li><a class="reference internal" href="#foreign-aliases-suppress-skip-message"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ FOREIGN_ALIASES_SUPPRESS_SKIP_MESSAGE</font></font></a></li>
+<li><a class="reference internal" href="#fuzzy-path-completion"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ FUZZY_PATH_COMPLETION</font></font></a></li>
+<li><a class="reference internal" href="#glob-sorted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ GLOB_SORTED</font></font></a></li>
+<li><a class="reference internal" href="#histcontrol"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ HISTCONTROL</font></font></a></li>
+<li><a class="reference internal" href="#ignoreeof"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ IGNOREEOF</font></font></a></li>
+<li><a class="reference internal" href="#indent"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$インデント</font></font></a></li>
+<li><a class="reference internal" href="#intensify-colors-on-win"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ INTENSIFY_COLORS_ON_WIN</font></font></a></li>
+<li><a class="reference internal" href="#lang"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ LANG</font></font></a></li>
+<li><a class="reference internal" href="#loaded-rc-files"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ LOADED_RC_FILES</font></font></a></li>
+<li><a class="reference internal" href="#mouse-support"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ MOUSE_SUPPORT</font></font></a></li>
+<li><a class="reference internal" href="#multiline-prompt"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ MULTILINE_PROMPT</font></font></a></li>
+<li><a class="reference internal" href="#oldpwd"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ OLDPWD</font></font></a></li>
+<li><a class="reference internal" href="#path"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ PATH</font></font></a></li>
+<li><a class="reference internal" href="#pathext"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ PATHEXT</font></font></a></li>
+<li><a class="reference internal" href="#pretty-print-results"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ PRETTY_PRINT_RESULTS</font></font></a></li>
+<li><a class="reference internal" href="#prompt"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ PROMPT</font></font></a></li>
+<li><a class="reference internal" href="#prompt-fields"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ PROMPT_FIELDS</font></font></a></li>
+<li><a class="reference internal" href="#prompt-toolkit-color-depth"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ PROMPT_TOOLKIT_COLOR_DEPTH</font></font></a></li>
+<li><a class="reference internal" href="#ptk-style-overrides"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ PTK_STYLE_OVERRIDES</font></font></a></li>
+<li><a class="reference internal" href="#pushd-minus"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ PUSHD_MINUS</font></font></a></li>
+<li><a class="reference internal" href="#pushd-silent"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ PUSHD_SILENT</font></font></a></li>
+<li><a class="reference internal" href="#raise-subproc-error"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ RAISE_SUBPROC_ERROR</font></font></a></li>
+<li><a class="reference internal" href="#right-prompt"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ RIGHT_PROMPT</font></font></a></li>
+<li><a class="reference internal" href="#shell-type"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ SHELL_TYPE</font></font></a></li>
+<li><a class="reference internal" href="#subsequence-path-completion"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ SUBSEQUENCE_PATH_COMPLETION</font></font></a></li>
+<li><a class="reference internal" href="#suggest-commands"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ SUGGEST_COMMANDS</font></font></a></li>
+<li><a class="reference internal" href="#suggest-max-num"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ SUGGEST_MAX_NUM</font></font></a></li>
+<li><a class="reference internal" href="#suggest-threshold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ SUGGEST_THRESHOLD</font></font></a></li>
+<li><a class="reference internal" href="#suppress-branch-timeout-message"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ SUPPRESS_BRANCH_TIMEOUT_MESSAGE</font></font></a></li>
+<li><a class="reference internal" href="#term"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ TERM</font></font></a></li>
+<li><a class="reference internal" href="#title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ TITLE</font></font></a></li>
+<li><a class="reference internal" href="#update-completions-on-keypress"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ UPDATE_COMPLETIONS_ON_KEYPRESS</font></font></a></li>
+<li><a class="reference internal" href="#update-os-environ"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ UPDATE_OS_ENVIRON</font></font></a></li>
+<li><a class="reference internal" href="#update-prompt-on-keypress"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ UPDATE_PROMPT_ON_KEYPRESS</font></font></a></li>
+<li><a class="reference internal" href="#vc-branch-timeout"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ VC_BRANCH_TIMEOUT</font></font></a></li>
+<li><a class="reference internal" href="#vc-hg-show-branch"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ VC_HG_SHOW_BRANCH</font></font></a></li>
+<li><a class="reference internal" href="#virtual-env"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ VIRTUAL_ENV</font></font></a></li>
+<li><a class="reference internal" href="#vi-mode"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ VI_MODE</font></font></a></li>
+<li><a class="reference internal" href="#win-unicode-console"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ WIN_UNICODE_CONSOLE</font></font></a></li>
+<li><a class="reference internal" href="#xdg-config-home"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XDG_CONFIG_HOME</font></font></a></li>
+<li><a class="reference internal" href="#xdg-data-home"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XDG_DATA_HOME</font></font></a></li>
+<li><a class="reference internal" href="#xonshrc"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSHRC</font></font></a></li>
+<li><a class="reference internal" href="#xonsh-append-newline"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_APPEND_NEWLINE</font></font></a></li>
+<li><a class="reference internal" href="#xonsh-autopair"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_AUTOPAIR</font></font></a></li>
+<li><a class="reference internal" href="#xonsh-cache-everything"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_CACHE_EVERYTHING</font></font></a></li>
+<li><a class="reference internal" href="#xonsh-cache-scripts"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_CACHE_SCRIPTS</font></font></a></li>
+<li><a class="reference internal" href="#xonsh-color-style"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_COLOR_STYLE</font></font></a></li>
+<li><a class="reference internal" href="#xonsh-config-dir"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_CONFIG_DIR</font></font></a></li>
+<li><a class="reference internal" href="#xonsh-data-dir"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_DATA_DIR</font></font></a></li>
+<li><a class="reference internal" href="#xonsh-datetime-format"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_DATETIME_FORMAT</font></font></a></li>
+<li><a class="reference internal" href="#xonsh-debug"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_DEBUG</font></font></a></li>
+<li><a class="reference internal" href="#xonsh-encoding"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_ENCODING</font></font></a></li>
+<li><a class="reference internal" href="#xonsh-encoding-errors"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_ENCODING_ERRORS</font></font></a></li>
+<li><a class="reference internal" href="#xonsh-gitstatus"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_GITSTATUS_ *</font></font></a></li>
+<li><a class="reference internal" href="#xonsh-history-backend"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_HISTORY_BACKEND</font></font></a></li>
+<li><a class="reference internal" href="#xonsh-history-file"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_HISTORY_FILE</font></font></a></li>
+<li><a class="reference internal" href="#xonsh-history-match-anywhere"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_HISTORY_MATCH_ANYWHERE</font></font></a></li>
+<li><a class="reference internal" href="#xonsh-history-size"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_HISTORY_SIZE</font></font></a></li>
+<li><a class="reference internal" href="#xonsh-interactive"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_INTERACTIVE</font></font></a></li>
+<li><a class="reference internal" href="#xonsh-login"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_LOGIN</font></font></a></li>
+<li><a class="reference internal" href="#xonsh-proc-frequency"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_PROC_FREQUENCY</font></font></a></li>
+<li><a class="reference internal" href="#xonsh-show-traceback"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_SHOW_TRACEBACK</font></font></a></li>
+<li><a class="reference internal" href="#xonsh-source"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_SOURCE</font></font></a></li>
+<li><a class="reference internal" href="#xonsh-stderr-postfix"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_STDERR_POSTFIX</font></font></a></li>
+<li><a class="reference internal" href="#xonsh-stderr-prefix"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_STDERR_PREFIX</font></font></a></li>
+<li><a class="reference internal" href="#xonsh-store-stdin"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_STORE_STDIN</font></font></a></li>
+<li><a class="reference internal" href="#xonsh-store-stdout"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_STORE_STDOUT</font></font></a></li>
+<li><a class="reference internal" href="#xonsh-traceback-logfile"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_TRACEBACK_LOGFILE</font></font></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前のページ</font></font></h4>
+    <p class="topless"><a href="xonshrc.html" title="前のページ"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">←コントロールファイルを実行する</font></font></a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次のページ</font></font></h4>
+    <p class="topless"><a href="aliases.html" title="次のページ"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">→ビルトインエイリアス</font></font></a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">このページ</font></font></h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/envvars.rst.txt" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ソースを表示</font></font></a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="" role="search">
+  <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">クイック検索</font></font></h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><input type="submit" value="行こう" /></font></font>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="サイドバーメニューを非表示にする"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                 «
+                </font></font><span class="show-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">メニューを隠す</font></font></span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="サイドバーメニューを表示する" style="display: none;">
+                
+                <span class="show-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">メニューの</font></font></span>
+                <span class="hide-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">サイドバー</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 
+                 »
+            </font></font></button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ナビゲーション</font></font></h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="一般索引"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">索引</font></font></a></li>
+        <li class="right">
+          <a href="py-modindex.html" title="Pythonモジュールのインデックス"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">モジュール</font></font></a>    </li>
+        <li class="right">
+          <a href="aliases.html" title="ビルトインエイリアス"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次</font></font></a>    </li>
+        <li class="right">
+          <a href="xonshrc.html" title="実行制御ファイル"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前</font></font></a>    </li>
+    <li><a href="sidebar.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonsh 0.8.5 documentation</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+
+          <li class="nav-item nav-item-1"><a href="index.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshシェル</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+        ©Copyright 2015、Anthony Scopatz。</font></font><a href="http://sphinx-doc.org/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sphinx</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 1.8.2 </font><font style="vertical-align: inherit;">を使用して作成されました</font><font style="vertical-align: inherit;">。
+    </font></font></div>
+    <!-- cloud_sptheme 1.4 -->
+  
+<div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="https://www.gstatic.com/images/branding/product/1x/translate_24dp.png" width="20" height="20" alt="Google 翻訳" /></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">原文</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">翻訳を改善する</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;" /><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div><div class="hide-for-small"></div><div class="goog-te-spinner-pos"><div class="goog-te-spinner-animation"><svg xmlns="http://www.w3.org/2000/svg" class="goog-te-spinner" width="96px" height="96px" viewBox="0 0 66 66"><circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"/></svg></div></div></body></html>

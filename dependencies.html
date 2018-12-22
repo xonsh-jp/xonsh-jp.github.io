@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" class="medium-up-screen translated-ltr"><head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>依存関係 -  xonsh 0.8.5 documentation</title>
+    <link rel="stylesheet" href="_static/numpy_friendly.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="_static/cloud.base.js"></script>
+    <script type="text/javascript" src="_static/cloud.js"></script>
+    <link rel="shortcut icon" href="_static/magic_conch.ico" />
+    <link rel="index" title="インデックス" href="genindex.html" />
+    <link rel="search" title="サーチ" href="search.html" />
+    <link rel="next" title="Linuxガイド" href="linux.html" />
+    <link rel="prev" title="xonshシェル" href="index.html" />
+     
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="canonical" href="http://xon.sh/dependencies.html" />
+
+  <link type="text/css" rel="stylesheet" charset="UTF-8" href="https://translate.googleapis.com/translate_static/css/translateelement.css" /></head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ナビゲーション</font></font></h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="一般索引" accesskey="I"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">索引</font></font></a></li>
+        <li class="right">
+          <a href="py-modindex.html" title="Pythonモジュールのインデックス"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">モジュール</font></font></a>    </li>
+        <li class="right">
+          <a href="linux.html" title="Linuxガイド" accesskey="N"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次</font></font></a>    </li>
+        <li class="right">
+          <a href="index.html" title="xonshシェル" accesskey="P"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前</font></font></a>    </li>
+    <li><a href="sidebar.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonsh 0.8.5 documentation</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshシェル</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="dependencies">
+<h1><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">依存関係</font></font><a class="headerlink" href="#dependencies" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h1>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xonshは現在、以下の外部依存関係を持っています。</font></font></p>
+<p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">実行時間：</font></font></em></p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Python v3.4 +</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">PLY（オプション、xonshに含まれています）</font></font></li>
+</ol>
+</div></blockquote>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Pipはの形式で "余分な"依存関係をサポートしています。</font></font><code class="docutils literal notranslate"><span class="pre">xonsh[ptk,linux]</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ここで、括弧内のリストはオプションの機能</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xonshには現在以下の補足があります</font></font></p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><code class="docutils literal notranslate"><span class="pre">ptk</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：prompt-toolkit：
+ </font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">高度なreadlineライブラリ、行編集</font></font></em></li>
+<li><code class="docutils literal notranslate"><span class="pre">pygments&gt;=2.2</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">構文強調表示</font></font></em></li>
+<li><code class="docutils literal notranslate"><span class="pre">proctitle</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：setproctitle：</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">現在のサブプロセスを反映するために端末のタイトルを変更する</font></font></em></li>
+<li><code class="docutils literal notranslate"><span class="pre">linux</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：ディストリビューション：</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Linux固有のプラットフォーム情報</font></font></em></li>
+<li><code class="docutils literal notranslate"><span class="pre">mac</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：gnureadline：</font><em><font style="vertical-align: inherit;">GNUの</font></em><font style="vertical-align: inherit;">機能豊富な</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">readlineバージョン</font></font></em></li>
+<li><code class="docutils literal notranslate"><span class="pre">win</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：win_unicode_console：</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">WindowsコンソールでのUnicodeの使用を可能にする</font></font></em></li>
+</ol>
+</div></blockquote>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">さらに、xonshはブラウザー内のREPLであるJupyterと統合され、jupyterのノートブックでxonshを使用できるようにします</font></font></p>
+</div>
+<div class="section" id="development-dependencies">
+<h1><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">開発の依存関係</font></font><a class="headerlink" href="#development-dependencies" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h1>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshを開発したい場合は、</font></font><a class="reference external" href="https://github.com/xonsh/xonsh/blob/master/requirements-docs.txt"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">requires.dxt</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（ドキュメンテーションを生成するため）および</font></font><a class="reference external" href="https://github.com/xonsh/xonsh/blob/master/requirements-tests.txt"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">requirements-tests.txt</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（テストスイートを実行するため）に</font><font style="vertical-align: inherit;">リストされている依存関係をインストールすることを強くお勧めし</font><a class="reference external" href="https://github.com/xonsh/xonsh/blob/master/requirements-tests.txt"><font style="vertical-align: inherit;">ます</font></a><font style="vertical-align: inherit;">。</font></font></p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="sidebar.html" title="サイドバー">
+          <img class="logo" src="_static/ascii_conch_part_transparent_tight.png" alt="ロゴ" />
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="sidebar.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ページの内容</font></font></a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">依存関係</font></font></a></li>
+<li><a class="reference internal" href="#development-dependencies"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">開発の依存関係</font></font></a></li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前のページ</font></font></h4>
+    <p class="topless"><a href="index.html" title="前のページ"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">←Xonshシェル</font></font></a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次のページ</font></font></h4>
+    <p class="topless"><a href="linux.html" title="次のページ"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">→Linuxガイド</font></font></a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">このページ</font></font></h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/dependencies.rst.txt" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ソースを表示</font></font></a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="" role="search">
+  <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">クイック検索</font></font></h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><input type="submit" value="行こう" /></font></font>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="サイドバーメニューを非表示にする"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                 «
+                </font></font><span class="show-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">メニューを隠す</font></font></span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="サイドバーメニューを表示する" style="display: none;">
+                
+                <span class="show-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">メニューの</font></font></span>
+                <span class="hide-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">サイドバー</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 
+                 »
+            </font></font></button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ナビゲーション</font></font></h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="一般索引"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">索引</font></font></a></li>
+        <li class="right">
+          <a href="py-modindex.html" title="Pythonモジュールのインデックス"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">モジュール</font></font></a>    </li>
+        <li class="right">
+          <a href="linux.html" title="Linuxガイド"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次</font></font></a>    </li>
+        <li class="right">
+          <a href="index.html" title="xonshシェル"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前</font></font></a>    </li>
+    <li><a href="sidebar.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonsh 0.8.5 documentation</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+
+          <li class="nav-item nav-item-1"><a href="index.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshシェル</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+        ©Copyright 2015、Anthony Scopatz。</font></font><a href="http://sphinx-doc.org/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sphinx</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 1.8.2 </font><font style="vertical-align: inherit;">を使用して作成されました</font><font style="vertical-align: inherit;">。
+    </font></font></div>
+    <!-- cloud_sptheme 1.4 -->
+  
+<div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="https://www.gstatic.com/images/branding/product/1x/translate_24dp.png" width="20" height="20" alt="Google 翻訳" /></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">原文</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">翻訳を改善する</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;" /><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div><div class="hide-for-small"></div><div class="goog-te-spinner-pos"><div class="goog-te-spinner-animation"><svg xmlns="http://www.w3.org/2000/svg" class="goog-te-spinner" width="96px" height="96px" viewBox="0 0 66 66"><circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"/></svg></div></div></body></html>

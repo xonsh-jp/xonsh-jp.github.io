@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" class="medium-up-screen translated-ltr"><head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>トレーサー（xonsh.tracer） -  xonsh 0.8.5 documentation</title>
+    <link rel="stylesheet" href="../_static/numpy_friendly.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/magic_conch.ico" />
+    <link rel="index" title="インデックス" href="../genindex.html" />
+    <link rel="search" title="サーチ" href="../search.html" />
+    <link rel="next" title="コマンドラインインターフェイス（xonsh.main）" href="main.html" />
+    <link rel="prev" title="コマンドキャッシュ（xonsh.commands_cache）" href="commands_cache.html" />
+     
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="canonical" href="http://xon.sh/api/tracer.html" />
+
+  <link type="text/css" rel="stylesheet" charset="UTF-8" href="https://translate.googleapis.com/translate_static/css/translateelement.css" /></head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ナビゲーション</font></font></h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="一般索引" accesskey="I"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">索引</font></font></a></li>
+        <li class="right">
+          <a href="../py-modindex.html" title="Pythonモジュールのインデックス"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">モジュール</font></font></a>    </li>
+        <li class="right">
+          <a href="main.html" title="コマンドラインインターフェイス（xonsh.main）" accesskey="N"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次</font></font></a>    </li>
+        <li class="right">
+          <a href="commands_cache.html" title="コマンドキャッシュ（xonsh.commands_cache）" accesskey="P"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前</font></font></a>    </li>
+    <li><a href="../sidebar.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonsh 0.8.5 documentation</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshシェル</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xonsh API</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document sidebar-hidden">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-xonsh.tracer">
+<span id="tracer-xonsh-tracer"></span><span id="xonsh-tracer"></span><h1><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">トレーサ（</font></font><code class="docutils literal notranslate"><span class="pre">xonsh.tracer</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font><a class="headerlink" href="#module-xonsh.tracer" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h1>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshトレーサを実装します。</font></font></p>
+<dl class="class">
+<dt id="xonsh.tracer.TracerType">
+<em class="property"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">class </font></font></em><code class="descclassname">xonsh.tracer.</code><code class="descname">TracerType</code><a class="reference internal" href="../_modules/xonsh/tracer.html#TracerType"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[source]</font></font></span></a><a class="headerlink" href="#xonsh.tracer.TracerType" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">すべてのトレース状態を追跡するxonshトレーサオブジェクトを表します。</font><font style="vertical-align: inherit;">これはシングルトンです。</font></font></p>
+<dl class="method">
+<dt id="xonsh.tracer.TracerType.color_output">
+<code class="descname">color_output</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">usecolor </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/tracer.html#TracerType.color_output"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.tracer.TracerType.color_output" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">トレーサ出力を着色するかどうかを指定します。</font></font></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.tracer.TracerType.start">
+<code class="descname">start</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ファイル名</font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/tracer.html#TracerType.start"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.tracer.TracerType.start" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ファイルのトレースを開始します。</font></font></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.tracer.TracerType.stop">
+<code class="descname">stop</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ファイル名</font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/tracer.html#TracerType.stop"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.tracer.TracerType.stop" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ファイルのトレースを停止します。</font></font></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.tracer.TracerType.trace">
+<code class="descname">trace</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">frame</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">event</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">arg </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/tracer.html#TracerType.trace"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.tracer.TracerType.trace" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">行のトレース機能を実装します。</font></font></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.tracer.TracerType.valid_events">
+<code class="descname">valid_events</code><em class="property"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">= frozenset（{'call'、 'line'}）</font></font></em><a class="headerlink" href="#xonsh.tracer.TracerType.valid_events" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.tracer.tracer_format_line">
+<code class="descclassname">xonsh.tracer.</code><code class="descname">tracer_format_line</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">fname</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lineno</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">line</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">color = True</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lexer = None</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">formatter = None </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/tracer.html#tracer_format_line"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.tracer.tracer_format_line" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">印刷に適したトレース行をフォーマットします。</font></font></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.tracer.tracermain">
+<code class="descclassname">xonsh.tracer.</code><code class="descname">tracermain</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">args = None</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">stdin = None</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">stdout = None</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">stderr = None</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">spec = None </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/tracer.html#tracermain"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.tracer.tracermain" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">トレーサコマンドラインインターフェイスの主な機能</font></font></p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../sidebar.html" title="サイドバー">
+          <img class="logo" src="../_static/ascii_conch_part_transparent_tight.png" alt="ロゴ" />
+        </a></p>
+  <div class="sphinxprev">
+    <h4><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前のページ</font></font></h4>
+    <p class="topless"><a href="commands_cache.html" title="前のページ"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">←コマンドCache（</font></font><code class="docutils literal notranslate"><span class="pre">xonsh.commands_cache</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次のページ</font></font></h4>
+    <p class="topless"><a href="main.html" title="次のページ"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">→コマンドラインインターフェイス（</font></font><code class="docutils literal notranslate"><span class="pre">xonsh.main</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">このページ</font></font></h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/tracer.rst.txt" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ソースを表示</font></font></a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="" role="search">
+  <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">クイック検索</font></font></h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><input type="submit" value="行こう" /></font></font>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="サイドバーメニューを非表示にする" style="display: none;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                 «
+                 </font></font><span class="show-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">メニューを隠す</font></font></span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="サイドバーメニューを表示する">
+                
+                <span class="show-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">メニュー</font></font></span>
+                <span class="hide-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">サイドバー</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 
+                 »
+            </font></font></button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ナビゲーション</font></font></h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="一般索引"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">索引</font></font></a></li>
+        <li class="right">
+          <a href="../py-modindex.html" title="Pythonモジュールのインデックス"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">モジュール</font></font></a>    </li>
+        <li class="right">
+          <a href="main.html" title="コマンドラインインターフェイス（xonsh.main）"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次</font></font></a>    </li>
+        <li class="right">
+          <a href="commands_cache.html" title="コマンドキャッシュ（xonsh.commands_cache）"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前</font></font></a>    </li>
+    <li><a href="../sidebar.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonsh 0.8.5 documentation</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshシェル</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+          <li class="nav-item nav-item-2"><a href="index.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xonsh API</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+        ©Copyright 2015、Anthony Scopatz。</font></font><a href="http://sphinx-doc.org/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sphinx</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 1.8.2 </font><font style="vertical-align: inherit;">を使用して作成されました</font><font style="vertical-align: inherit;">。
+    </font></font></div>
+    <!-- cloud_sptheme 1.4 -->
+  
+<div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="https://www.gstatic.com/images/branding/product/1x/translate_24dp.png" width="20" height="20" alt="Google 翻訳" /></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">原文</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">翻訳を改善する</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;" /><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div><div class="hide-for-small"></div><div class="goog-te-spinner-pos"><div class="goog-te-spinner-animation"><svg xmlns="http://www.w3.org/2000/svg" class="goog-te-spinner" width="96px" height="96px" viewBox="0 0 66 66"><circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"/></svg></div></div></body></html>

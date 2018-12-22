@@ -1,0 +1,225 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" class="medium-up-screen translated-ltr"><head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>有益なgit statusプロンプトフォーマッタ（xonsh.prompt.gitstatus） -  xonsh 0.8.5 documentation</title>
+    <link rel="stylesheet" href="../../_static/numpy_friendly.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../../_static/magic_conch.ico" />
+    <link rel="index" title="インデックス" href="../../genindex.html" />
+    <link rel="search" title="サーチ" href="../../search.html" />
+    <link rel="next" title="ジョブプロンプトフォーマッタ（xonsh.prompt.job）" href="job.html" />
+    <link rel="prev" title="Virtualenvプロンプトフォーマッタ（xonsh.prompt.env）" href="env.html" />
+     
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="canonical" href="http://xon.sh/api/prompt/gitstatus.html" />
+
+  <link type="text/css" rel="stylesheet" charset="UTF-8" href="https://translate.googleapis.com/translate_static/css/translateelement.css" /></head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ナビゲーション</font></font></h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="一般索引" accesskey="I"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">索引</font></font></a></li>
+        <li class="right">
+          <a href="../../py-modindex.html" title="Pythonモジュールのインデックス"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">モジュール</font></font></a>    </li>
+        <li class="right">
+          <a href="job.html" title="ジョブプロンプトフォーマッタ（xonsh.prompt.job）" accesskey="N"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次</font></font></a>    </li>
+        <li class="right">
+          <a href="env.html" title="Virtualenvプロンプトフォーマッタ（xonsh.prompt.env）" accesskey="P"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前</font></font></a>    </li>
+    <li><a href="../../sidebar.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonsh 0.8.5 documentation</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+
+          <li class="nav-item nav-item-1"><a href="../../index.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshシェル</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+          <li class="nav-item nav-item-2"><a href="../index.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xonsh API</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+          <li class="nav-item nav-item-3"><a href="index.html" accesskey="U"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">プロンプトフォーマッタAPI</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document sidebar-hidden">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-xonsh.prompt.gitstatus">
+<span id="informative-git-status-prompt-formatter-xonsh-prompt-gitstatus"></span><span id="xonsh-prompt-gitstatus"></span><h1><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">有益なgit statusプロンプトformatter（</font></font><code class="docutils literal notranslate"><span class="pre">xonsh.prompt.gitstatus</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font><a class="headerlink" href="#module-xonsh.prompt.gitstatus" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h1>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">有益なgit statusプロンプトフォーマッタ</font></font></p>
+<dl class="class">
+<dt id="xonsh.prompt.gitstatus.GitStatus">
+<em class="property"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">クラス</font></font></em><code class="descclassname">xonsh.prompt.gitstatus.</code><code class="descname">GitStatus</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">支店</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">num_ahead</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">num_behind</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">人跡未踏</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">変更</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">競合</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">上演</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">隠し</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">操作</font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="headerlink" href="#xonsh.prompt.gitstatus.GitStatus" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">GitStatus（ブランチ、num_ahead、num_behind、untracked、changed、conflicts、staged、stashed、operations）の新しいインスタンスを作成する</font></font></p>
+<dl class="method">
+<dt id="xonsh.prompt.gitstatus.GitStatus.count">
+<code class="descname">count</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">値</font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> →整数 - 値の出現回数を返す</font></font><a class="headerlink" href="#xonsh.prompt.gitstatus.GitStatus.count" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="xonsh.prompt.gitstatus.GitStatus.index">
+<code class="descname">index</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">value </font></font></em><span class="optional"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">start </font></font></em><span class="optional"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">stop </font></font></em><span class="optional"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">] </font></font></span><span class="optional"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">] </font></font></span><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> →整数 - 最初の値のインデックスを返します。</font></font><a class="headerlink" href="#xonsh.prompt.gitstatus.GitStatus.index" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">値が存在しない場合、ValueErrorを発生させます。</font></font></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.prompt.gitstatus.GitStatus.branch">
+<code class="descname">branch</code><a class="headerlink" href="#xonsh.prompt.gitstatus.GitStatus.branch" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">フィールド番号0の別名</font></font></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.prompt.gitstatus.GitStatus.changed">
+<code class="descname">changed</code><a class="headerlink" href="#xonsh.prompt.gitstatus.GitStatus.changed" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">フィールド番号4の別名</font></font></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.prompt.gitstatus.GitStatus.conflicts">
+<code class="descname">conflicts</code><a class="headerlink" href="#xonsh.prompt.gitstatus.GitStatus.conflicts" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">フィールド番号5の別名</font></font></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.prompt.gitstatus.GitStatus.num_ahead">
+<code class="descname">num_ahead</code><a class="headerlink" href="#xonsh.prompt.gitstatus.GitStatus.num_ahead" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">フィールド番号1の別名</font></font></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.prompt.gitstatus.GitStatus.num_behind">
+<code class="descname">num_behind</code><a class="headerlink" href="#xonsh.prompt.gitstatus.GitStatus.num_behind" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">フィールド番号2の別名</font></font></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.prompt.gitstatus.GitStatus.operations">
+<code class="descname">operations</code><a class="headerlink" href="#xonsh.prompt.gitstatus.GitStatus.operations" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">フィールド番号8の別名</font></font></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.prompt.gitstatus.GitStatus.staged">
+<code class="descname">staged</code><a class="headerlink" href="#xonsh.prompt.gitstatus.GitStatus.staged" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">フィールド番号6の別名</font></font></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.prompt.gitstatus.GitStatus.stashed">
+<code class="descname">stashed</code><a class="headerlink" href="#xonsh.prompt.gitstatus.GitStatus.stashed" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">フィールド番号7の別名</font></font></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.prompt.gitstatus.GitStatus.untracked">
+<code class="descname">untracked</code><a class="headerlink" href="#xonsh.prompt.gitstatus.GitStatus.untracked" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">フィールド番号3の別名</font></font></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.prompt.gitstatus.gitstatus">
+<code class="descclassname">xonsh.prompt.gitstatus.</code><code class="descname">gitstatus</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../../_modules/xonsh/prompt/gitstatus.html#gitstatus"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.prompt.gitstatus.gitstatus" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ブランチ名、先行コミット数、コミット後の数、未追跡数、変更番号、競合番号、ステージ番号、隠し番号、操作フィールドを持つnamedtupleを返します。</font></font></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.prompt.gitstatus.gitstatus_prompt">
+<code class="descclassname">xonsh.prompt.gitstatus.</code><code class="descname">gitstatus_prompt</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../../_modules/xonsh/prompt/gitstatus.html#gitstatus_prompt"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.prompt.gitstatus.gitstatus_prompt" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">strを返します</font></font><cite><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。BRANCH | OPERATOR | numbers</font></font></cite></p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../../sidebar.html" title="sidebar">
+          <img class="logo" src="../../_static/ascii_conch_part_transparent_tight.png" alt="Logo" />
+        </a></p>
+  <div class="sphinxprev">
+    <h4><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前のページ</font></font></h4>
+    <p class="topless"><a href="env.html" title="Previous page"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">←Virtualenvプロンプト・フォーマッタ（</font></font><code class="docutils literal notranslate"><span class="pre">xonsh.prompt.env</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次のページ</font></font></h4>
+    <p class="topless"><a href="job.html" title="Next page"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">→ジョブプロンプトフォーマッタ（</font></font><code class="docutils literal notranslate"><span class="pre">xonsh.prompt.job</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">このページ</font></font></h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/api/prompt/gitstatus.rst.txt" rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu" style="display: none;">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="サイドバーメニューを表示する">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">サイドバー</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 
+                 »
+            </font></font></button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="一般索引"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">索引</font></font></a></li>
+        <li class="right">
+          <a href="../../py-modindex.html" title="Pythonモジュールのインデックス"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">モジュール</font></font></a>    </li>
+        <li class="right">
+          <a href="job.html" title="ジョブプロンプトフォーマッタ（xonsh.prompt.job）"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次</font></font></a>    </li>
+        <li class="right">
+          <a href="env.html" title="Virtualenvプロンプトフォーマッタ（xonsh.prompt.env）"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前</font></font></a>    </li>
+    <li><a href="../../sidebar.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonsh 0.8.5 documentation</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+
+          <li class="nav-item nav-item-1"><a href="../../index.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshシェル</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+          <li class="nav-item nav-item-2"><a href="../index.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xonsh API</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+          <li class="nav-item nav-item-3"><a href="index.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">プロンプトフォーマッタAPI</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+        ©Copyright 2015、Anthony Scopatz。</font></font><a href="http://sphinx-doc.org/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sphinx</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 1.8.2 </font><font style="vertical-align: inherit;">を使用して作成されました</font><font style="vertical-align: inherit;">。
+    </font></font></div>
+    <!-- cloud_sptheme 1.4 -->
+  
+<div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="https://www.gstatic.com/images/branding/product/1x/translate_24dp.png" width="20" height="20" alt="Google 翻訳" /></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">原文</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">翻訳を改善する</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;" /><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div><div class="hide-for-small"></div><div class="goog-te-spinner-pos"><div class="goog-te-spinner-animation"><svg xmlns="http://www.w3.org/2000/svg" class="goog-te-spinner" width="96px" height="96px" viewBox="0 0 66 66"><circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"/></svg></div></div></body></html>

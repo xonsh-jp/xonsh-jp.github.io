@@ -1,0 +1,364 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" class="medium-up-screen translated-ltr"><head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>履歴バックエンドJSON  -  xonsh.history.json  -  xonsh 0.8.5 documentation</title>
+    <link rel="stylesheet" href="../../_static/numpy_friendly.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../../_static/magic_conch.ico" />
+    <link rel="index" title="インデックス" href="../../genindex.html" />
+    <link rel="search" title="サーチ" href="../../search.html" />
+    <link rel="next" title="履歴バックエンドSqlite  -  xonsh.history.sqlite" href="sqlite.html" />
+    <link rel="prev" title="履歴メインエントリーポイント -  xonsh.history.main" href="main.html" />
+     
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="canonical" href="http://xon.sh/api/history/json.html" />
+
+  <link type="text/css" rel="stylesheet" charset="UTF-8" href="https://translate.googleapis.com/translate_static/css/translateelement.css" /></head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ナビゲーション</font></font></h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="一般索引" accesskey="I"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">索引</font></font></a></li>
+        <li class="right">
+          <a href="../../py-modindex.html" title="Pythonモジュールのインデックス"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">モジュール</font></font></a>    </li>
+        <li class="right">
+          <a href="sqlite.html" title="履歴バックエンドSqlite  -  xonsh.history.sqlite" accesskey="N"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次</font></font></a>    </li>
+        <li class="right">
+          <a href="main.html" title="履歴メインエントリーポイント -  xonsh.history.main" accesskey="P"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前</font></font></a>    </li>
+    <li><a href="../../sidebar.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonsh 0.8.5 documentation</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+
+          <li class="nav-item nav-item-1"><a href="../../index.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshシェル</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+          <li class="nav-item nav-item-2"><a href="../index.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xonsh API</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+          <li class="nav-item nav-item-3"><a href="index.html" accesskey="U"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xonshの履歴API</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document sidebar-hidden">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-xonsh.history.json">
+<span id="history-backend-json-xonsh-history-json"></span><span id="xonsh-history-json"></span><h1><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">履歴バックエンドJSON  - </font><a class="headerlink" href="#module-xonsh.history.json" title="Permalink to this headline"><font style="vertical-align: inherit;">¶</font></a></font><a class="reference internal" href="#module-xonsh.history.json" title="xonsh.history.json"><code class="xref py py-mod docutils literal notranslate"><span class="pre">xonsh.history.json</span></code></a><a class="headerlink" href="#module-xonsh.history.json" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"></font></a></h1>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonsh履歴バックエンドのJSONバージョンを実装します。</font></font></p>
+<dl class="class">
+<dt id="xonsh.history.json.JsonCommandField">
+<em class="property"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">class </font></font></em><code class="descclassname">xonsh.history.json.</code><code class="descname">JsonCommandField</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">field</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">hist</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">default = None </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../../_modules/xonsh/history/json.html#JsonCommandField"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.history.json.JsonCommandField" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">歴史の 'cmds'部分のフィールド。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">履歴の 'cmds'部分のフィールドを表します。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">可能であれば、関連するデータをバッファに問い合わせます。</font><font style="vertical-align: inherit;">さもなければ、ファイルからデータを遅延取得します。</font></font></p>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name" />
+<col class="field-body" />
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメーター：</font></font></th><td class="field-body"><dl class="first last docutils">
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">フィールド</font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">str</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">照会するフィールドの名前。</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">hist </font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ヒストリオブジェクト</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">照会する履歴オブジェクト。</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">デフォルト</font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">オプション</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">キーが存在しない場合に返されるデフォルト値です。</font></font></p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="xonsh.history.json.JsonCommandField.i_am_at_the_front">
+<code class="descname">i_am_at_the_front</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../../_modules/xonsh/history/json.html#JsonCommandField.i_am_at_the_front"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.history.json.JsonCommandField.i_am_at_the_front" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">コマンドフィールドがキューの先頭にあるかどうかをテストします。</font></font></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="xonsh.history.json.JsonHistory">
+<em class="property"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">class </font></font></em><code class="descclassname">xonsh.history.json.</code><code class="descname">JsonHistory</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">filename = None</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">sessionid = None</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">buffersize = 100</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">gc = True</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">** meta </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../../_modules/xonsh/history/json.html#JsonHistory"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.history.json.JsonHistory" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">JSONファイルで実装されたXonsh履歴バックエンド。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">JsonHistoryは2つの追加アクションを実装</font></font><code class="docutils literal notranslate"><span class="pre">diff</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">してい</font></font><code class="docutils literal notranslate"><span class="pre">replay</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ます。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">定期的にディスクにフラッシュされるメモリ内バッファとしてのxonshセッションの履歴を表します。</font></font></p>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name" />
+<col class="field-body" />
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメーター：</font></font></th><td class="field-body"><dl class="first last docutils">
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">filename </font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">str、オプション</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">履歴ファイルの場所です</font></font><code class="docutils literal notranslate"><span class="pre">$XONSH_DATA_DIR/xonsh-{sessionid}.json</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font><font style="vertical-align: inherit;">既定値は
+ </font><font style="vertical-align: inherit;">です。</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">sessionid </font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">int、uuid、str、optional</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">現在のセッション識別子は、設定されていない場合は新しいセッションIDを生成します。</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">buffersize </font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">int、optional</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">メモリ内の最大バッファサイズ。</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">メタ</font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">オプション</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">履歴とともに保存するトップレベルのメタデータ </font><font style="vertical-align: inherit;">kwargs 'cmds'と 'sessionid'は許可されず、上書きされます。</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">gc </font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">bool、オプション</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ガベージコレクタフラグを実行します。</font></font></p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="xonsh.history.json.JsonHistory.all_items">
+<code class="descname">all_items</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">newest_first = False</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">** kwargs </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../../_modules/xonsh/history/json.html#JsonHistory.all_items"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.history.json.JsonHistory.all_items" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">XONSH_DATA_DIRにあるすべての履歴を返します。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">yield形式：{'inp'：cmd、 'rtn'：0、...}</font></font></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.history.json.JsonHistory.append">
+<code class="descname">append</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">cmd </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../../_modules/xonsh/history/json.html#JsonHistory.append"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.history.json.JsonHistory.append" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">履歴にコマンドを追加します。</font><font style="vertical-align: inherit;">履歴をファイルに定期的にフラッシュします。</font></font></p>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name" />
+<col class="field-body" />
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメーター：</font></font></th><td class="field-body"><dl class="first docutils">
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">cmd </font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">dict</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">このdictには、履歴リストに追加するコマンドに関する情報が含まれています。</font><font style="vertical-align: inherit;">それは、キーと</font></font><code class="docutils literal notranslate"><span class="pre">inp</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、
+ </font></font><code class="docutils literal notranslate"><span class="pre">rtn</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">を</font><font style="vertical-align: inherit;">含んでいなければなりません</font></font><code class="docutils literal notranslate"><span class="pre">ts</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font><font style="vertical-align: inherit;">これらのキー名は、</font></font><code class="docutils literal notranslate"><span class="pre">HistoryEntry</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">クラス</font><font style="vertical-align: inherit;">内のインスタンス変数として定義された同じ名前を反映します</font><font style="vertical-align: inherit;">。</font></font></p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">戻り値：</font></font></th><td class="field-body"><dl class="first last docutils">
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">hf </font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">JsonHistoryFlusherまたはNone</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">履歴をフラッシュするために生成されたスレッド</font></font></p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.history.json.JsonHistory.flush">
+<code class="descname">flush</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">at_exit = False </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../../_modules/xonsh/history/json.html#JsonHistory.flush"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.history.json.JsonHistory.flush" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">現在のコマンドバッファをディスクにフラッシュします。</font></font></p>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name" />
+<col class="field-body" />
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメーター：</font></font></th><td class="field-body"><dl class="first docutils">
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">at_exit </font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">bool、オプション</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">JsonHistoryFlusherがバックグラウンドでスレッドとして動作するか、すぐに実行されブロックされるかどうか。</font></font></p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">戻り値：</font></font></th><td class="field-body"><dl class="first last docutils">
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">hf </font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">JsonHistoryFlusherまたはNone</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">履歴をフラッシュするために生成されたスレッド</font></font></p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.history.json.JsonHistory.info">
+<code class="descname">info</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../../_modules/xonsh/history/json.html#JsonHistory.info"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.history.json.JsonHistory.info" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">シェル履歴に関する情報の集まり。</font></font></p>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name" />
+<col class="field-body" />
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">戻り値：</font></font></th><td class="field-body"><dl class="first last docutils">
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">dictまたはcollections.OrderedDict</font></font></strong></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">履歴情報をstrキーのペアとして格納します。</font></font></p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.history.json.JsonHistory.items">
+<code class="descname">items</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">newest_first = False </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../../_modules/xonsh/history/json.html#JsonHistory.items"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.history.json.JsonHistory.items" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">現在のセッションの履歴項目を表示します。</font></font></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.history.json.JsonHistory.run_gc">
+<code class="descname">run_gc</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">サイズ= None</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">blocking = True </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../../_modules/xonsh/history/json.html#JsonHistory.run_gc"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.history.json.JsonHistory.run_gc" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ガベージコレクタを実行します。</font></font></p>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name" />
+<col class="field-body" />
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメーター：</font></font></th><td class="field-body"><dl class="first last docutils">
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">size：intと文字列のタプル</font></font></strong></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">残ることができるサイズと単位を決定します。</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ブロッキング：ブール</font></font></strong></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ブロッキングを設定した場合は、gcアクションが終了するまで待ちます。</font></font></p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="xonsh.history.json.JsonHistoryFlusher">
+<em class="property"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">クラス</font></font></em><code class="descclassname">xonsh.history.json.</code><code class="descname">JsonHistoryFlusher</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ファイル名</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">バッファ</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">キュー</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">cond</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">at_exit = False</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">* args</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">** kwargs </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../../_modules/xonsh/history/json.html#JsonHistoryFlusher"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.history.json.JsonHistoryFlusher" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">シェル履歴をディスクに定期的にフラッシュします。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">履歴をフラッシュするためのスレッド。</font></font></p>
+<dl class="method">
+<dt id="xonsh.history.json.JsonHistoryFlusher.dump">
+<code class="descname">dump</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../../_modules/xonsh/history/json.html#JsonHistoryFlusher.dump"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.history.json.JsonHistoryFlusher.dump" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">キャッシュされた履歴を外部ストレージに書き込みます。</font></font></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.history.json.JsonHistoryFlusher.i_am_at_the_front">
+<code class="descname">i_am_at_the_front</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../../_modules/xonsh/history/json.html#JsonHistoryFlusher.i_am_at_the_front"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.history.json.JsonHistoryFlusher.i_am_at_the_front" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">フラッシャーがキューの前面にあるかどうかをテストします。</font></font></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.history.json.JsonHistoryFlusher.run">
+<code class="descname">run</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../../_modules/xonsh/history/json.html#JsonHistoryFlusher.run"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.history.json.JsonHistoryFlusher.run" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">スレッドのアクティビティを表すメソッド。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">サブクラスでこのメソッドをオーバーライドできます。</font><font style="vertical-align: inherit;">標準のrun（）メソッドは、オブジェクトのコンストラクタに渡された呼び出し可能オブジェクトを、argsおよびkwargs引数からそれぞれ取得されたシーケンシャルおよびキーワード引数を持つtarget引数（存在する場合）として呼び出します。</font></font></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="xonsh.history.json.JsonHistoryGC">
+<em class="property"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">クラス</font></font></em><code class="descclassname">xonsh.history.json.</code><code class="descname">JsonHistoryGC</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">wait_for_shell = True</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">サイズ= None</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">* args</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">** kwargs </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../../_modules/xonsh/history/json.html#JsonHistoryGC"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.history.json.JsonHistoryGC" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">シェル履歴のガベージコレクション。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">古い履歴をガベージコレクションするスレッド</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">shellを（そしてxonshrcがロードされるのを待って）作業を開始するのを待つかもしれません。</font></font></p>
+<dl class="method">
+<dt id="xonsh.history.json.JsonHistoryGC.files">
+<code class="descname">files</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">only_unlocked = False </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../../_modules/xonsh/history/json.html#JsonHistoryGC.files"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.history.json.JsonHistoryGC.files" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">履歴ファイルを検索して返します。</font><font style="vertical-align: inherit;">必要に応じて、ロックされたファイルを除外することができます。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">これは最後の閉時間でソートされます。</font><font style="vertical-align: inherit;">（タイムスタンプ、cmdsの数、ファイル名）タプルのリストを返します。</font></font></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.history.json.JsonHistoryGC.run">
+<code class="descname">run</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../../_modules/xonsh/history/json.html#JsonHistoryGC.run"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.history.json.JsonHistoryGC.run" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">スレッドのアクティビティを表すメソッド。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">サブクラスでこのメソッドをオーバーライドできます。</font><font style="vertical-align: inherit;">標準のrun（）メソッドは、オブジェクトのコンストラクタに渡された呼び出し可能オブジェクトを、argsおよびkwargs引数からそれぞれ取得されたシーケンシャルおよびキーワード引数を持つtarget引数（存在する場合）として呼び出します。</font></font></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../../sidebar.html" title="サイドバー">
+          <img class="logo" src="../../_static/ascii_conch_part_transparent_tight.png" alt="ロゴ" />
+        </a></p>
+  <div class="sphinxprev">
+    <h4><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前のページ</font></font></h4>
+    <p class="topless"><a href="main.html" title="前のページ"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">←歴史メインエントリーポイント -  </font></font><code class="docutils literal notranslate"><span class="pre">xonsh.history.main</span></code></a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次のページ</font></font></h4>
+    <p class="topless"><a href="sqlite.html" title="次のページ"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">→履歴バックエンドSqlite  -  </font></font><code class="docutils literal notranslate"><span class="pre">xonsh.history.sqlite</span></code></a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">このページ</font></font></h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/api/history/json.rst.txt" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ソースを表示</font></font></a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="" role="search">
+  <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">クイック検索</font></font></h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><input type="submit" value="行こう" /></font></font>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="サイドバーメニューを非表示にする" style="display: none;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                 «
+                 </font></font><span class="show-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">メニューを隠す</font></font></span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="サイドバーメニューを表示する">
+                
+                <span class="show-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">メニュー</font></font></span>
+                <span class="hide-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">サイドバー</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 
+                 »
+            </font></font></button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ナビゲーション</font></font></h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="一般索引"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">索引</font></font></a></li>
+        <li class="right">
+          <a href="../../py-modindex.html" title="Pythonモジュールのインデックス"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">モジュール</font></font></a>    </li>
+        <li class="right">
+          <a href="sqlite.html" title="履歴バックエンドSqlite  -  xonsh.history.sqlite"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次</font></font></a>    </li>
+        <li class="right">
+          <a href="main.html" title="履歴メインエントリーポイント -  xonsh.history.main"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前</font></font></a>    </li>
+    <li><a href="../../sidebar.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonsh 0.8.5 documentation</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+
+          <li class="nav-item nav-item-1"><a href="../../index.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshシェル</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+          <li class="nav-item nav-item-2"><a href="../index.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xonsh API</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+          <li class="nav-item nav-item-3"><a href="index.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xonshの履歴API</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+        ©Copyright 2015、Anthony Scopatz。</font></font><a href="http://sphinx-doc.org/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sphinx</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 1.8.2 </font><font style="vertical-align: inherit;">を使用して作成されました</font><font style="vertical-align: inherit;">。
+    </font></font></div>
+    <!-- cloud_sptheme 1.4 -->
+  
+<div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="https://www.gstatic.com/images/branding/product/1x/translate_24dp.png" width="20" height="20" alt="Google 翻訳" /></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">原文</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">翻訳を改善する</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;" /><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div><div class="hide-for-small"></div><div class="goog-te-spinner-pos"><div class="goog-te-spinner-animation"><svg xmlns="http://www.w3.org/2000/svg" class="goog-te-spinner" width="96px" height="96px" viewBox="0 0 66 66"><circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"/></svg></div></div></body></html>

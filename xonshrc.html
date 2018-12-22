@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" class="medium-up-screen translated-ltr"><head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>実行制御ファイル -  xonsh 0.8.5 documentation</title>
+    <link rel="stylesheet" href="_static/numpy_friendly.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="_static/cloud.base.js"></script>
+    <script type="text/javascript" src="_static/cloud.js"></script>
+    <link rel="shortcut icon" href="_static/magic_conch.ico" />
+    <link rel="index" title="インデックス" href="genindex.html" />
+    <link rel="search" title="サーチ" href="search.html" />
+    <link rel="next" title="環境変数" href="envvars.html" />
+    <link rel="prev" title="Python仮想環境" href="python_virtual_environments.html" />
+     
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="canonical" href="http://xon.sh/xonshrc.html" />
+
+  <link type="text/css" rel="stylesheet" charset="UTF-8" href="https://translate.googleapis.com/translate_static/css/translateelement.css" /></head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ナビゲーション</font></font></h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="一般索引" accesskey="I"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">索引</font></font></a></li>
+        <li class="right">
+          <a href="py-modindex.html" title="Pythonモジュールのインデックス"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">モジュール</font></font></a>    </li>
+        <li class="right">
+          <a href="envvars.html" title="環境変数" accesskey="N"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次</font></font></a>    </li>
+        <li class="right">
+          <a href="python_virtual_environments.html" title="Python仮想環境" accesskey="P"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前</font></font></a>    </li>
+    <li><a href="sidebar.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonsh 0.8.5 documentation</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshシェル</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="run-control-file">
+<h1><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">実行制御ファイル</font></font><a class="headerlink" href="#run-control-file" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h1>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xonshでは、制御ファイルを実行してシェルの動作をカスタマイズすることができます。</font><font style="vertical-align: inherit;">これらは</font></font><code class="docutils literal notranslate"><span class="pre">xonshrc</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ファイル</font><font style="vertical-align: inherit;">と呼ばれ</font><font style="vertical-align: inherit;">ます。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">システム全体の</font></font><code class="docutils literal notranslate"><span class="pre">xonshrc</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ファイルは、指定されたシステム上のXonshのすべてのユーザーに適用されるオプションを制御します。</font><font style="vertical-align: inherit;">このファイルは</font></font><code class="docutils literal notranslate"><span class="pre">/etc/xonshrc</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、LinuxやOSX、</font></font><code class="docutils literal notranslate"><span class="pre">%ALLUSERSPROFILE%\xonsh\xonshrc</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Windows上</font><font style="vertical-align: inherit;">で作成できます</font><font style="vertical-align: inherit;">。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xonshでは、ホームディレクトリに実行制御ファイルを呼び出すこともできます</font></font><code class="docutils literal notranslate"><span class="pre">~/.xonshrc</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font><font style="vertical-align: inherit;">ローカルで設定されたオプション</font></font><code class="docutils literal notranslate"><span class="pre">xonshrc</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">は、現在のユーザーにのみ適用され、システム全体の制御ファイルで設定されている競合する設定を上書きします。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">これらのファイルはもちろん、xonsh言語で書かれています。</font><font style="vertical-align: inherit;">それらは起動時に一度だけ実行されます。</font><font style="vertical-align: inherit;">このようなファイルの実際の例は次のとおりです。</font></font></p>
+<p><a class="reference download internal" download="" href="_downloads/5f481b96bafb85622959af43de080db7/xonshrc.xsh"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">xonshrc</span></code></a></p>
+<div class="code xonsh highlight-default notranslate"><div class="highlight"><pre><span></span># adjust some paths
+$PATH.append('/home/scopatz/sandbox/bin')
+$LD_LIBRARY_PATH = ['/home/scopatz/.local/lib', '/home/scopatz/miniconda3/lib', '']
+
+# alias to quit AwesomeWM from the terminal
+def _quit_awesome(args, stdin=None):
+    lines = $(ps ux | grep "gnome-session --session=awesome").splitlines()
+    pids = [l.split()[1] for l in lines]
+    for pid in pids:
+        kill @(pid)
+
+aliases['qa'] = _quit_awesome
+
+# some customization options, see https://xon.sh/envvars.html for details
+$MULTILINE_PROMPT = '`·.,¸,.·*¯`·.,¸,.·*¯'
+$XONSH_SHOW_TRACEBACK = True
+$XONSH_STORE_STDOUT = True
+$XONSH_HISTORY_MATCH_ANYWHERE = True
+$COMPLETIONS_CONFIRM = True
+$XONSH_AUTOPAIR = True
+</pre></div>
+</div>
+</div>
+<div class="section" id="snippets-for-xonshrc">
+<h1><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshrcのスニペット</font></font><a class="headerlink" href="#snippets-for-xonshrc" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h1>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">以下は、様々な方法でxonshを調整し調整する便利なスニペットとコードです。</font><font style="vertical-align: inherit;">便利なやり方がある場合は、自由に共有してください。</font></font></p>
+<div class="section" id="adjust-how-git-branch-label-behaves">
+<h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">gitブランチラベルの動作を調整する</font></font><a class="headerlink" href="#adjust-how-git-branch-label-behaves" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h2>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xonshは、gitリポジトリまたはhgリポジトリで作業するときに、色付きのブランチ名をプロンプトに追加します。</font><font style="vertical-align: inherit;">この動作は</font></font><code class="docutils literal notranslate"><span class="pre">$PROMPT</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">環境変数で</font><font style="vertical-align: inherit;">制御でき</font><font style="vertical-align: inherit;">ます。</font></font><a class="reference external" href="http://xon.sh/tutorial.html#customizing-the-prompt"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">プロンプト</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">を</font><a class="reference external" href="http://xon.sh/tutorial.html#customizing-the-prompt"><font style="vertical-align: inherit;">カスタマイズする</font></a><font style="vertical-align: inherit;">方法を参照して</font><a class="reference external" href="http://xon.sh/tutorial.html#customizing-the-prompt"><font style="vertical-align: inherit;">ください</font></a><font style="vertical-align: inherit;">。</font><font style="vertical-align: inherit;">作業ディレクトリが汚れている場合、ブランチ名は色が変わります。</font><font style="vertical-align: inherit;">これは、</font></font><code class="docutils literal notranslate"><span class="pre">{branch_color}</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">フォーマッタ文字列</font><font style="vertical-align: inherit;">によって制御され</font><font style="vertical-align: inherit;">ます。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次のスニペットは、gitディレクトリがダーティであるかどうかを検討するときに、untrackedファイルをインクルードするためにフォーマッタを再実装します。</font></font></p>
+<div class="highlight-xonshcon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">xonsh.prompt.vc_branch</span> <span class="kn">import</span> <span class="n">git_dirty_working_directory</span><span class="gp"></span>
+<span class="gp">&gt;&gt;&gt;</span> <span class="nv">$PROMPT_FIELDS</span><span class="p">[</span><span class="s1">'branch_color'</span><span class="p">]</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="p">(</span><span class="s1">'{BOLD_INTENSE_RED}'</span><span class="go"></span>
+<span class="go">                                               if git_dirty_working_directory(include_untracked=True)</span>
+<span class="go">                                               else '{BOLD_INTENSE_GREEN}')</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="get-better-colors-from-the-ls-command">
+<h2><font style="vertical-align: inherit;"></font><code class="docutils literal notranslate"><span class="pre">ls</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">コマンド</font><font style="vertical-align: inherit;">からより良い色を得る</font></font><a class="headerlink" href="#get-better-colors-from-the-ls-command" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h2>
+<p><font style="vertical-align: inherit;"></font><code class="docutils literal notranslate"><span class="pre">ls</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">暗い端末</font><font style="vertical-align: inherit;">では、</font><font style="vertical-align: inherit;">コマンド</font><font style="vertical-align: inherit;">の色が</font><font style="vertical-align: inherit;">読みにくい場合があります。</font><font style="vertical-align: inherit;">もしそうなら、これはxonshrcファイルへの優れた追加です。</font></font></p>
+<div class="highlight-xonshcon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nv">$LS_COLORS</span><span class="o">=</span><span class="s1">'rs=0:di=01;36:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:'</span><span class="go"></span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="sidebar.html" title="サイドバー">
+          <img class="logo" src="_static/ascii_conch_part_transparent_tight.png" alt="ロゴ" />
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="sidebar.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ページの内容</font></font></a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">実行制御ファイル</font></font></a></li>
+<li><a class="reference internal" href="#snippets-for-xonshrc"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshrcのスニペット</font></font></a><ul>
+<li><a class="reference internal" href="#adjust-how-git-branch-label-behaves"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">gitブランチラベルの動作を調整する</font></font></a></li>
+<li><a class="reference internal" href="#get-better-colors-from-the-ls-command"><font style="vertical-align: inherit;"></font><code class="docutils literal notranslate"><span class="pre">ls</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">コマンド</font><font style="vertical-align: inherit;">からより良い色を得る</font></font></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前のページ</font></font></h4>
+    <p class="topless"><a href="python_virtual_environments.html" title="前のページ"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">←Python仮想環境</font></font></a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次のページ</font></font></h4>
+    <p class="topless"><a href="envvars.html" title="次のページ"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">→環境変数</font></font></a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">このページ</font></font></h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/xonshrc.rst.txt" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ソースを表示</font></font></a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="" role="search">
+  <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">クイック検索</font></font></h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><input type="submit" value="行こう" /></font></font>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="サイドバーメニューを非表示にする"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                 «
+                </font></font><span class="show-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">メニューを隠す</font></font></span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="サイドバーメニューを表示する" style="display: none;">
+                
+                <span class="show-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">メニューの</font></font></span>
+                <span class="hide-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">サイドバー</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 
+                 »
+            </font></font></button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ナビゲーション</font></font></h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="一般索引"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">索引</font></font></a></li>
+        <li class="right">
+          <a href="py-modindex.html" title="Pythonモジュールのインデックス"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">モジュール</font></font></a>    </li>
+        <li class="right">
+          <a href="envvars.html" title="環境変数"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次</font></font></a>    </li>
+        <li class="right">
+          <a href="python_virtual_environments.html" title="Python仮想環境"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前</font></font></a>    </li>
+    <li><a href="sidebar.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonsh 0.8.5 documentation</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+
+          <li class="nav-item nav-item-1"><a href="index.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshシェル</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+        ©Copyright 2015、Anthony Scopatz。</font></font><a href="http://sphinx-doc.org/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sphinx</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 1.8.2 </font><font style="vertical-align: inherit;">を使用して作成されました</font><font style="vertical-align: inherit;">。
+    </font></font></div>
+    <!-- cloud_sptheme 1.4 -->
+  
+<div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="https://www.gstatic.com/images/branding/product/1x/translate_24dp.png" width="20" height="20" alt="Google 翻訳" /></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">原文</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">翻訳を改善する</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;" /><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div><div class="hide-for-small"></div><div class="goog-te-spinner-pos"><div class="goog-te-spinner-animation"><svg xmlns="http://www.w3.org/2000/svg" class="goog-te-spinner" width="96px" height="96px" viewBox="0 0 66 66"><circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"/></svg></div></div></body></html>

@@ -1,0 +1,404 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" class="medium-up-screen translated-ltr"><head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>外部シェルツール（xonsh.foreign_shells） -  xonsh 0.8.5 documentation</title>
+    <link rel="stylesheet" href="../_static/numpy_friendly.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/magic_conch.ico" />
+    <link rel="index" title="インデックス" href="../genindex.html" />
+    <link rel="search" title="サーチ" href="../search.html" />
+    <link rel="next" title="コマンドキャッシュ（xonsh.commands_cache）" href="commands_cache.html" />
+    <link rel="prev" title="Pythonファイルを開く（xonsh.openpy）" href="openpy.html" />
+     
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="canonical" href="http://xon.sh/api/foreign_shells.html" />
+
+  <link type="text/css" rel="stylesheet" charset="UTF-8" href="https://translate.googleapis.com/translate_static/css/translateelement.css" /></head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ナビゲーション</font></font></h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="一般索引" accesskey="I"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">索引</font></font></a></li>
+        <li class="right">
+          <a href="../py-modindex.html" title="Pythonモジュールのインデックス"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">モジュール</font></font></a>    </li>
+        <li class="right">
+          <a href="commands_cache.html" title="コマンドキャッシュ（xonsh.commands_cache）" accesskey="N"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次</font></font></a>    </li>
+        <li class="right">
+          <a href="openpy.html" title="Pythonファイルを開く（xonsh.openpy）" accesskey="P"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前</font></font></a>    </li>
+    <li><a href="../sidebar.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonsh 0.8.5 documentation</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshシェル</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xonsh API</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document sidebar-hidden">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-xonsh.foreign_shells">
+<span id="foreign-shell-tools-xonsh-foreign-shells"></span><span id="xonsh-foreign-shells"></span><h1><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">外部シェルツール（</font></font><code class="docutils literal notranslate"><span class="pre">xonsh.foreign_shells</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font><a class="headerlink" href="#module-xonsh.foreign_shells" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h1>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Bashなどの外部シェルとのインターフェイスを支援するツール。</font></font></p>
+<dl class="class">
+<dt id="xonsh.foreign_shells.ForeignShellBaseAlias">
+<em class="property"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">クラス</font></font></em><code class="descclassname">xonsh.foreign_shells.</code><code class="descname">ForeignShellBaseAlias</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">シェル</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ファイル名</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">sourcer =なし</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">extra_args =（）</font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/foreign_shells.html#ForeignShellBaseAlias"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.foreign_shells.ForeignShellBaseAlias" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">このクラスは、外部シェル関数をエイリアスであるかのように呼び出します。</font><font style="vertical-align: inherit;">現在、標準入力のサポートはありません。</font></font></p>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name" />
+<col class="field-body" />
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメーター：</font></font></th><td class="field-body"><dl class="first last docutils">
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">シェル</font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">str</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">シェルの名前またはパス</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">filename </font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">str</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">関数が定義されている場合は、ソースへのパス。</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">sourcer </font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">strまたはNone、オプション</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">で外部ファイルを送信するコマンド。</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">extra_args </font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">strのタプル、オプション</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">シェルに渡す追加のコマンドラインオプション。</font></font></p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="xonsh.foreign_shells.ForeignShellBaseAlias.INPUT">
+<code class="descname">INPUT</code><em class="property"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">= 'エコーForeignShellBaseAlias {シェル} {ファイル名} {引数} \ n'は</font></font></em><a class="headerlink" href="#xonsh.foreign_shells.ForeignShellBaseAlias.INPUT" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="xonsh.foreign_shells.ForeignShellExecAlias">
+<em class="property"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">クラス</font></font></em><code class="descclassname">xonsh.foreign_shells.</code><code class="descname">ForeignShellExecAlias</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">SRC</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">シェル</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ファイル名= '&lt;外国シェルEXECエイリアス&gt;' </font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">sourcer =なし</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">extra_args =（） </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/foreign_shells.html#ForeignShellExecAlias"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.foreign_shells.ForeignShellExecAlias" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">外部シェル内のソースコードに呼び出し可能なエイリアスを提供します。</font></font></p>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name" />
+<col class="field-body" />
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメーター：</font></font></th><td class="field-body"><dl class="first last docutils">
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">src </font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">str</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">シェル言語のソースコード</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">シェル</font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">str</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">シェルの名前またはパス</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">filename </font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">str</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">関数が定義されている場合は、ソースへのパス。</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">sourcer </font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">strまたはNone、オプション</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">で外部ファイルを送信するコマンド。</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">extra_args </font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">strのタプル、オプション</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">シェルに渡す追加のコマンドラインオプション。</font></font></p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="xonsh.foreign_shells.ForeignShellExecAlias.INPUT">
+<code class="descname">INPUT</code><em class="property"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">= '{src} {args} \ </font></font></em><a class="headerlink" href="#xonsh.foreign_shells.ForeignShellExecAlias.INPUT" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">n'¶</font></font></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="xonsh.foreign_shells.ForeignShellFunctionAlias">
+<em class="property"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">クラス</font></font></em><code class="descclassname">xonsh.foreign_shells.</code><code class="descname">ForeignShellFunctionAlias</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">funcname</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">shell</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">filename</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">sourcer = None</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">extra_args =（）</font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/foreign_shells.html#ForeignShellFunctionAlias"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.foreign_shells.ForeignShellFunctionAlias" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">このクラスは、外部シェル関数をエイリアスであるかのように呼び出します。</font><font style="vertical-align: inherit;">現在、標準入力のサポートはありません。</font></font></p>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name" />
+<col class="field-body" />
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメーター：</font></font></th><td class="field-body"><dl class="first last docutils">
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">funcname </font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">str</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">関数名</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">シェル</font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">str</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">シェルの名前またはパス</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">filename </font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">str</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">関数が定義されている場合は、ソースへのパス。</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">sourcer </font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">strまたはNone、オプション</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">で外部ファイルを送信するコマンド。</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">extra_args </font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">strのタプル、オプション</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">シェルに渡す追加のコマンドラインオプション。</font></font></p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="xonsh.foreign_shells.ForeignShellFunctionAlias.INPUT">
+<code class="descname">INPUT</code><em class="property"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">= '{sourcer} "{ファイル名}" \ N {funcnameに} {引数} \ n'は</font></font></em><a class="headerlink" href="#xonsh.foreign_shells.ForeignShellFunctionAlias.INPUT" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.foreign_shells.ensure_shell">
+<code class="descclassname">xonsh.foreign_shells.</code><code class="descname">ensure_shell</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">シェル</font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/foreign_shells.html#ensure_shell"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.foreign_shells.ensure_shell" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">シェル仕様に従ってマッピングが行われるようにします。</font></font></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.foreign_shells.load_foreign_aliases">
+<code class="descclassname">xonsh.foreign_shells.</code><code class="descname">load_foreign_aliases</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">シェル</font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/foreign_shells.html#load_foreign_aliases"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.foreign_shells.load_foreign_aliases" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">外部シェルからエイリアスを読み込みます。</font></font></p>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name" />
+<col class="field-body" />
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメーター：</font></font></th><td class="field-body"><dl class="first docutils">
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">シェル</font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">dictsのシーケンス</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">キーワード引数としてforeign_shell_data（）に渡すことができるdictsの反復可能性。</font></font></p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">戻り値：</font></font></th><td class="field-body"><dl class="first last docutils">
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">エイリアス</font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">dict</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">マージされたエイリアスの辞書。</font></font></p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.foreign_shells.load_foreign_envs">
+<code class="descclassname">xonsh.foreign_shells.</code><code class="descname">load_foreign_envs</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">シェル</font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/foreign_shells.html#load_foreign_envs"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.foreign_shells.load_foreign_envs" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">外部シェルから環境をロードします。</font></font></p>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name" />
+<col class="field-body" />
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメーター：</font></font></th><td class="field-body"><dl class="first docutils">
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">シェル</font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">dictsのシーケンス</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">キーワード引数としてforeign_shell_data（）に渡すことができるdictsの反復可能性。</font></font></p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">戻り値：</font></font></th><td class="field-body"><dl class="first last docutils">
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">env </font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">dict</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">マージされた環境の辞書。</font></font></p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.foreign_shells.parse_aliases">
+<code class="descclassname">xonsh.foreign_shells.</code><code class="descname">parse_aliases</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">s</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">shell</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">sourcer = None</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">extra_args =（）</font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/foreign_shells.html#parse_aliases"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.foreign_shells.parse_aliases" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">文字列のエイリアス部分をdictに解析します。</font></font></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.foreign_shells.parse_env">
+<code class="descclassname">xonsh.foreign_shells.</code><code class="descname">parse_env</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">s </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/foreign_shells.html#parse_env"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.foreign_shells.parse_env" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">stringの環境部分をdictに解析します。</font></font></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.foreign_shells.parse_funcs">
+<code class="descclassname">xonsh.foreign_shells.</code><code class="descname">parse_funcs</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">s</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">shell</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">sourcer = None</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">extra_args =（）</font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/foreign_shells.html#parse_funcs"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.foreign_shells.parse_funcs" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">文字列のfuncs部分を呼び出し可能な外部関数ラッパーのdictに解析します。</font></font></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.foreign_shells.foreign_shell_data">
+<code class="descclassname">xonsh.foreign_shells.</code><code class="descname">foreign_shell_data</code><a class="reference internal" href="../_modules/xonsh/foreign_shells.html#foreign_shell_data"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.foreign_shells.foreign_shell_data" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">外部（非xonsh）のシェルからデータを抽出します。</font><font style="vertical-align: inherit;">現在、これは環境、エイリアス、および機能を取得しますが、今後拡張される可能性があります。</font></font></p>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name" />
+<col class="field-body" />
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメーター：</font></font></th><td class="field-body"><dl class="first docutils">
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">シェル</font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">str</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">シェルの名前（ 'bash'や '/ bin / sh'など）。</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">インタラクティブ</font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">bool、optional</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">シェルを対話モードで実行するかどうか。</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ログイン</font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">bool、オプション</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">シェルがログインシェルであるかどうか。</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">envcmd </font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">strまたはNone、オプション</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">を使用して環境出力を生成するコマンド。</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">aliascmd </font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">strまたはNone、オプション</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">でエイリアス出力を生成するコマンド。</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">extra_args </font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">strのタプル、オプション</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">シェルに渡す追加のコマンドラインオプション。</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">currenv </font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">アイテムのタプルまたはNone、オプション</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">現在の環境の手動による上書き。</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">安全</font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ブール、オプション</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">例外やその他のエラーを安全に処理するかどうかのフラグ。</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">prevcmd </font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">str、オプション</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">シェルの中で実行するコマンド.Sourcingや環境回復が必要なその他のコマンドに便利です。</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">postcmd </font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">str、オプション</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">prevcmdが引き起こした可能性のあるダメージを除去するのに便利なコマンド。</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">funcscmd </font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">strまたはNone、オプション</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">これは、外部シェルにネイティブな関数の名前と場所を判別するために使用できるコマンドまたはスクリプトです。</font><font style="vertical-align: inherit;">このコマンドは</font><font style="vertical-align: inherit;">、関数名が関数が定義されているファイル名にマップされるJSONオブジェクト</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">だけを出力</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">します。</font><font style="vertical-align: inherit;">これがNoneの場合、デフォルトのスクリプトはシェル名に基づいて検索されようとします。</font><font style="vertical-align: inherit;">これらの関数の呼び出し可能なラッパーはエイリアス辞書に返されます。</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">sourcer </font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">strまたはNone、オプション</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">そのシェルで関数を呼び出すために外部シェルファイルをソースする方法。</font><font style="vertical-align: inherit;">これがNoneの場合、デフォルト値はシェル名に基づいて検索されます。</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">use_tmpfile </font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">bool、オプション</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">これは、コマンドがtmpファイルに書き込まれるか、シェルに直接解析されるかどうかを指定します</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">tmpfile_ext </font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">strまたはNone、オプション</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">tmpfileがTrueの場合、このセットは使用される拡張子を指定します。</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">runcmd </font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">strまたはNone、オプション</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">スクリプトを実行するときに使用するコマンドラインスイッチ（たとえば、Bashの場合は-c、cmd.exeの場合は/ C）。</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">seterrprevcmd </font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">strまたはNone、オプション</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">スクリプトの開始時に実行されるシェルのexit-on-errorを有効にするコマンド。</font><font style="vertical-align: inherit;">たとえば、これはBashの "set -e"です。</font><font style="vertical-align: inherit;">exit-on-errorの動作を無効にするには、単に空の文字列を渡します。</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">seterrpostcmd </font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">strまたはNone、オプション</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">スクリプトの最後に実行されるシェルのexit-on-errorを有効にするコマンド。</font><font style="vertical-align: inherit;">たとえば、これは "errorlevel 1 exit 1" cmd.exeの場合です。</font><font style="vertical-align: inherit;">exit-on-errorの動作を無効にするには、単に空の文字列を渡します。</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ショー</font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ブール、オプション</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">実行されるスクリプトを表示するかどうか。</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ドライラン</font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ブール、オプション</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">実際にコマンドを実行して処理するかどうか。</font></font></p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">戻り値：</font></font></th><td class="field-body"><dl class="first last docutils">
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">env </font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">dict</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">シェルの環境の辞書。</font><font style="vertical-align: inherit;">（subprocコマンドが失敗した場合はNone）</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">エイリアス</font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">dict</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">シェルのエイリアスの辞書。これには外部関数ラッパーも含まれます（subprocコマンドが失敗した場合はNone）。</font></font></p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../sidebar.html" title="サイドバー">
+          <img class="logo" src="../_static/ascii_conch_part_transparent_tight.png" alt="ロゴ" />
+        </a></p>
+  <div class="sphinxprev">
+    <h4><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前のページ</font></font></h4>
+    <p class="topless"><a href="openpy.html" title="前のページ"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">←Pythonファイルを開く（</font></font><code class="docutils literal notranslate"><span class="pre">xonsh.openpy</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次のページ</font></font></h4>
+    <p class="topless"><a href="commands_cache.html" title="次のページ"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">→コマンドCache（</font></font><code class="docutils literal notranslate"><span class="pre">xonsh.commands_cache</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">このページ</font></font></h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/foreign_shells.rst.txt" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ソースを表示</font></font></a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="" role="search">
+  <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">クイック検索</font></font></h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><input type="submit" value="行こう" /></font></font>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu" style="display: none;">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="サイドバーメニューを表示する">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">サイドバー</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 
+                 »
+            </font></font></button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="一般索引"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">索引</font></font></a></li>
+        <li class="right">
+          <a href="../py-modindex.html" title="Pythonモジュールのインデックス"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">モジュール</font></font></a>    </li>
+        <li class="right">
+          <a href="commands_cache.html" title="コマンドキャッシュ（xonsh.commands_cache）"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次</font></font></a>    </li>
+        <li class="right">
+          <a href="openpy.html" title="Pythonファイルを開く（xonsh.openpy）"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前</font></font></a>    </li>
+    <li><a href="../sidebar.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonsh 0.8.5 documentation</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshシェル</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+          <li class="nav-item nav-item-2"><a href="index.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xonsh API</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+        ©Copyright 2015、Anthony Scopatz。</font></font><a href="http://sphinx-doc.org/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sphinx</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 1.8.2 </font><font style="vertical-align: inherit;">を使用して作成されました</font><font style="vertical-align: inherit;">。
+    </font></font></div>
+    <!-- cloud_sptheme 1.4 -->
+  
+<div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="https://www.gstatic.com/images/branding/product/1x/translate_24dp.png" width="20" height="20" alt="Google 翻訳" /></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">原文</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">翻訳を改善する</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;" /><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div><div class="hide-for-small"></div><div class="goog-te-spinner-pos"><div class="goog-te-spinner-animation"><svg xmlns="http://www.w3.org/2000/svg" class="goog-te-spinner" width="96px" height="96px" viewBox="0 0 66 66"><circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"/></svg></div></div></body></html>

@@ -1,0 +1,309 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" class="medium-up-screen translated-ltr"><head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>遅延オブジェクトと自己破壊オブジェクト（xonsh.lazyasd） -  xonsh 0.8.5 documentation</title>
+    <link rel="stylesheet" href="../_static/numpy_friendly.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/magic_conch.ico" />
+    <link rel="index" title="インデックス" href="../genindex.html" />
+    <link rel="search" title="サーチ" href="../search.html" />
+    <link rel="next" title="Pythonファイルを開く（xonsh.openpy）" href="openpy.html" />
+    <link rel="prev" title="レイジーJSONファイル（xonsh.lazyjson）" href="lazyjson.html" />
+     
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="canonical" href="http://xon.sh/api/lazyasd.html" />
+
+  <link type="text/css" rel="stylesheet" charset="UTF-8" href="https://translate.googleapis.com/translate_static/css/translateelement.css" /></head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ナビゲーション</font></font></h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="一般索引" accesskey="I"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">索引</font></font></a></li>
+        <li class="right">
+          <a href="../py-modindex.html" title="Pythonモジュールのインデックス"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">モジュール</font></font></a>    </li>
+        <li class="right">
+          <a href="openpy.html" title="Pythonファイルを開く（xonsh.openpy）" accesskey="N"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次</font></font></a>    </li>
+        <li class="right">
+          <a href="lazyjson.html" title="レイジーJSONファイル（xonsh.lazyjson）" accesskey="P"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前</font></font></a>    </li>
+    <li><a href="../sidebar.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonsh 0.8.5 documentation</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshシェル</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xonsh API</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document sidebar-hidden">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-xonsh.lazyasd">
+<span id="lazy-self-destructive-objects-xonsh-lazyasd"></span><span id="xonsh-lazyasd"></span><h1><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">怠惰な＆自己破壊的なオブジェクト（</font></font><code class="docutils literal notranslate"><span class="pre">xonsh.lazyasd</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font><a class="headerlink" href="#module-xonsh.lazyasd" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h1>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">モジュールの読み込みを高速化するための遅延型および自己破壊型のコンテナ。</font></font></p>
+<dl class="class">
+<dt id="xonsh.lazyasd.BackgroundModuleLoader">
+<em class="property"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">クラス</font></font></em><code class="descclassname">xonsh.lazyasd.</code><code class="descname">BackgroundModuleLoader</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">名前</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パッケージ</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">置換</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">* args</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">** kwargs </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/lazyasd.html#BackgroundModuleLoader"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.lazyasd.BackgroundModuleLoader" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">バックグラウンドでモジュールをロードするスレッド。</font></font></p>
+<dl class="method">
+<dt id="xonsh.lazyasd.BackgroundModuleLoader.run">
+<code class="descname">run</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/lazyasd.html#BackgroundModuleLoader.run"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.lazyasd.BackgroundModuleLoader.run" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">スレッドのアクティビティを表すメソッド。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">サブクラスでこのメソッドをオーバーライドできます。</font><font style="vertical-align: inherit;">標準のrun（）メソッドは、オブジェクトのコンストラクタに渡された呼び出し可能オブジェクトを、argsおよびkwargs引数からそれぞれ取得されたシーケンシャルおよびキーワード引数を持つtarget引数（存在する場合）として呼び出します。</font></font></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="xonsh.lazyasd.BackgroundModuleProxy">
+<em class="property"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">クラス</font></font></em><code class="descclassname">xonsh.lazyasd.</code><code class="descname">BackgroundModuleProxy</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">modname </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/lazyasd.html#BackgroundModuleProxy"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.lazyasd.BackgroundModuleProxy" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">バックグラウンドでロードされたモジュールのプロキシオブジェクト。モジュールがロードされるまで属性のアクセスをブロックします。</font></font></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="xonsh.lazyasd.LazyBool">
+<em class="property"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">class </font></font></em><code class="descclassname">xonsh.lazyasd.</code><code class="descname">LazyBool</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">load</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ctx</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">name </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/lazyasd.html#LazyBool"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.lazyasd.LazyBool" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">最初に尋ねられたときにlazilyブール値を計算するオブジェクトのようなブール値。</font><font style="vertical-align: inherit;">ロードされると、この結果は指定されたコンテキスト（通常はコールサイトのグローバル）に置き換えられます。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">たとえば、実際に使用されるまで複合ブールを防ぐことができます。</font></font></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ALIVE</span> <span class="o">=</span> <span class="n">LazyDict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="ow">not</span> <span class="n">DEAD</span><span class="p">,</span> <span class="nb">globals</span><span class="p">(),</span> <span class="s1">'ALIVE'</span><span class="p">)</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name" />
+<col class="field-body" />
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメーター：</font></font></th><td class="field-body"><dl class="first last docutils">
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">load </font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">引数のない関数</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">実際のブール値評価を実行するローダー関数。</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ctx </font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">マッピング</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LazyBoolインスタンスを完全にロードされたマッピングに置き換えるためのコンテキスト。</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">名前</font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">str</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ロードされたマッピングを与えるためにコンテキスト内の名前。</font><font style="vertical-align: inherit;">これ</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">は</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 
+、割り当てのLHS上の名前で</font><em><font style="vertical-align: inherit;">なければ</font></em><font style="vertical-align: inherit;">なり</font><em><font style="vertical-align: inherit;">ませ</font></em><font style="vertical-align: inherit;">ん。</font></font></p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="xonsh.lazyasd.LazyDict">
+<em class="property"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">クラス</font></font></em><code class="descclassname">xonsh.lazyasd.</code><code class="descname">LazyDict</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ローダー</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ctx</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">名前</font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/lazyasd.html#LazyDict"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.lazyasd.LazyDict" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">辞書のようなオブジェクトは、キーローダー関数のペアの最初のdictからその値を遅延ロードします。</font><font style="vertical-align: inherit;">各キーは、その値が最初にアクセスされるときにロードされます。</font><font style="vertical-align: inherit;">完全にロードされると、このオブジェクトは指定されたコンテキスト（通常は呼び出しサイトのグローバル）を指定された名前で置き換えます。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">たとえば、実際に使用されるまで、一連の正規表現のコンパイルを防ぐことができます。</font></font></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RES</span> <span class="o">=</span> <span class="n">LazyDict</span><span class="p">({</span>
+        <span class="s1">'dot'</span><span class="p">:</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">'.'</span><span class="p">),</span>
+        <span class="s1">'all'</span><span class="p">:</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">'.*'</span><span class="p">),</span>
+        <span class="s1">'two'</span><span class="p">:</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">'..'</span><span class="p">),</span>
+        <span class="p">},</span> <span class="nb">globals</span><span class="p">(),</span> <span class="s1">'RES'</span><span class="p">)</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name" />
+<col class="field-body" />
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメーター：</font></font></th><td class="field-body"><dl class="first last docutils">
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ローダー</font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">引数のない関数へのキーのマッピング</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">アクセス時に実際の値の構築を行うローダー関数のマッピング。</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ctx </font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">マッピング</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LazyDictインスタンスを完全にロードされたマッピングで置き換えるためのコンテキスト。</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">名前</font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">str</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ロードされたマッピングを与えるためにコンテキスト内の名前。</font><font style="vertical-align: inherit;">これ</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">は</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 
+、割り当てのLHS上の名前で</font><em><font style="vertical-align: inherit;">なければ</font></em><font style="vertical-align: inherit;">なり</font><em><font style="vertical-align: inherit;">ませ</font></em><font style="vertical-align: inherit;">ん。</font></font></p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="xonsh.lazyasd.LazyObject">
+<em class="property"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">class </font></font></em><code class="descclassname">xonsh.lazyasd.</code><code class="descname">LazyObject</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">load</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ctx</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">name </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/lazyasd.html#LazyObject"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.lazyasd.LazyObject" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">最初に属性にアクセスするときに、load関数を介してオブジェクトを遅延ロードします。</font><font style="vertical-align: inherit;">ロードされると、指定されたコンテキスト（通常はコールサイトのグローバル）が指定された名前で置き換えられます。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">たとえば、実際に使用されるまで、正規表現のコンパイルを防ぐことができます。</font></font></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DOT</span> <span class="o">=</span> <span class="n">LazyObject</span><span class="p">((</span><span class="k">lambda</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">'.'</span><span class="p">)),</span> <span class="nb">globals</span><span class="p">(),</span> <span class="s1">'DOT'</span><span class="p">)</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name" />
+<col class="field-body" />
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメーター：</font></font></th><td class="field-body"><dl class="first last docutils">
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">load </font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">引数のない関数</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">実際のオブジェクト構築を行うローダ関数です。</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ctx </font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">マッピング</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">load（）によって返されたオブジェクトでLazyObjectインスタンスを置き換えるためのコンテキスト。</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">名前</font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">str</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ロードされたオブジェクトを提供するコンテキスト内の名前。</font><font style="vertical-align: inherit;">これ</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">は</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 
+、割り当てのLHS上の名前で</font><em><font style="vertical-align: inherit;">なければ</font></em><font style="vertical-align: inherit;">なり</font><em><font style="vertical-align: inherit;">ませ</font></em><font style="vertical-align: inherit;">ん。</font></font></p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.lazyasd.lazybool">
+<code class="descclassname">xonsh.lazyasd.</code><code class="descname">lazybool</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">f </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/lazyasd.html#lazybool"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.lazyasd.lazybool" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">関数から遅延ブール値を構築するためのデコレータ。</font></font></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.lazyasd.lazydict">
+<code class="descclassname">xonsh.lazyasd.</code><code class="descname">lazydict</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">f </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/lazyasd.html#lazydict"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.lazyasd.lazydict" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">関数から怠惰なdictsを構築するためのデコレータ。</font></font></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.lazyasd.lazyobject">
+<code class="descclassname">xonsh.lazyasd.</code><code class="descname">lazyobject</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">f </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/lazyasd.html#lazyobject"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.lazyasd.lazyobject" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">関数から遅延オブジェクトを構築するためのデコレータ。</font></font></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.lazyasd.load_module_in_background">
+<code class="descclassname">xonsh.lazyasd.</code><code class="descname">load_module_in_background</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">名前</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パッケージ=なし</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">デバッグ= 'DEBUG'</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">env =なし</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">置き換え=なし</font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/lazyasd.html#load_module_in_background"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.lazyasd.load_module_in_background" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">バックグラウンドスレッドでモジュールをロードするためのエントリポイント。</font></font></p>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name" />
+<col class="field-body" />
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメーター：</font></font></th><td class="field-body"><dl class="first docutils">
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">名前</font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">str</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">バックグラウンドスレッドでロードするモジュール名。</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パッケージ</font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">strまたはNone、オプション</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パッケージ名は、importlib.import_module（）と同じ意味です。</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">デバッグ</font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">str、オプション</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">環境内で参照するシンボル名をデバッグする。</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">env </font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">マッピングまたはなし、オプション</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Environmentこれはデフォルトで__xonsh __。env（使用可能な場合）とos.environ（そうでない場合）です。</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">置き換え</font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">マッピングまたはなし、オプション</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lazyロードされたモジュールをインポートする完全修飾モジュール名（foo.bar.bazなど）を辞書にマッピングします。そのモジュールには変数名が含まれています。</font><font style="vertical-align: inherit;">たとえば、foo.barがモジュールaをbとしてインポートすると、このdictは{'foo.bar'： 'b'}になります。</font></font></p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">戻り値：</font></font></th><td class="field-body"><dl class="first last docutils">
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">module </font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ModuleType</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">これは、sys.modulesにある元のモジュールか、モジュールが完全にロードされるまで遅延属性アクセスまでブロックするプロキシモジュールです。</font></font></p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../sidebar.html" title="サイドバー">
+          <img class="logo" src="../_static/ascii_conch_part_transparent_tight.png" alt="ロゴ" />
+        </a></p>
+  <div class="sphinxprev">
+    <h4><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前のページ</font></font></h4>
+    <p class="topless"><a href="lazyjson.html" title="前のページ"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">←レイジーJSONファイル（</font></font><code class="docutils literal notranslate"><span class="pre">xonsh.lazyjson</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次のページ</font></font></h4>
+    <p class="topless"><a href="openpy.html" title="次のページ"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">→Pythonファイルを開く（</font></font><code class="docutils literal notranslate"><span class="pre">xonsh.openpy</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">このページ</font></font></h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/lazyasd.rst.txt" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ソースを表示</font></font></a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="" role="search">
+  <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">クイック検索</font></font></h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><input type="submit" value="行こう" /></font></font>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="サイドバーメニューを非表示にする" style="display: none;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                 «
+                 </font></font><span class="show-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">メニューを隠す</font></font></span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="サイドバーメニューを表示する">
+                
+                <span class="show-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">メニュー</font></font></span>
+                <span class="hide-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">サイドバー</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 
+                 »
+            </font></font></button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ナビゲーション</font></font></h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="一般索引"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">索引</font></font></a></li>
+        <li class="right">
+          <a href="../py-modindex.html" title="Pythonモジュールのインデックス"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">モジュール</font></font></a>    </li>
+        <li class="right">
+          <a href="openpy.html" title="Pythonファイルを開く（xonsh.openpy）"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次</font></font></a>    </li>
+        <li class="right">
+          <a href="lazyjson.html" title="レイジーJSONファイル（xonsh.lazyjson）"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前</font></font></a>    </li>
+    <li><a href="../sidebar.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonsh 0.8.5 documentation</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshシェル</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+          <li class="nav-item nav-item-2"><a href="index.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xonsh API</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+        ©Copyright 2015、Anthony Scopatz。</font></font><a href="http://sphinx-doc.org/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sphinx</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 1.8.2 </font><font style="vertical-align: inherit;">を使用して作成されました</font><font style="vertical-align: inherit;">。
+    </font></font></div>
+    <!-- cloud_sptheme 1.4 -->
+  
+<div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="https://www.gstatic.com/images/branding/product/1x/translate_24dp.png" width="20" height="20" alt="Google 翻訳" /></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">原文</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">翻訳を改善する</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;" /><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div><div class="hide-for-small"></div><div class="goog-te-spinner-pos"><div class="goog-te-spinner-animation"><svg xmlns="http://www.w3.org/2000/svg" class="goog-te-spinner" width="96px" height="96px" viewBox="0 0 66 66"><circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"/></svg></div></div></body></html>

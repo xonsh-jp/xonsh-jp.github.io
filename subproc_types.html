@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" class="medium-up-screen translated-ltr"><head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>サブプロセスタイプテーブル -  xonsh 0.8.5 documentation</title>
+    <link rel="stylesheet" href="_static/numpy_friendly.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="_static/cloud.base.js"></script>
+    <script type="text/javascript" src="_static/cloud.js"></script>
+    <link rel="shortcut icon" href="_static/magic_conch.ico" />
+    <link rel="index" title="インデックス" href="genindex.html" />
+    <link rel="search" title="サーチ" href="search.html" />
+    <link rel="next" title="Python仮想環境" href="python_virtual_environments.html" />
+    <link rel="prev" title="Bash to Xonsh翻訳ガイド" href="bash_to_xsh.html" />
+     
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="canonical" href="http://xon.sh/subproc_types.html" />
+
+  <link type="text/css" rel="stylesheet" charset="UTF-8" href="https://translate.googleapis.com/translate_static/css/translateelement.css" /></head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ナビゲーション</font></font></h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="一般索引" accesskey="I"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">索引</font></font></a></li>
+        <li class="right">
+          <a href="py-modindex.html" title="Pythonモジュールのインデックス"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">モジュール</font></font></a>    </li>
+        <li class="right">
+          <a href="python_virtual_environments.html" title="Python仮想環境" accesskey="N"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次</font></font></a>    </li>
+        <li class="right">
+          <a href="bash_to_xsh.html" title="Bash to Xonsh翻訳ガイド" accesskey="P"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前</font></font></a>    </li>
+    <li><a href="sidebar.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonsh 0.8.5 documentation</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshシェル</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="subprocess-types-table">
+<span id="subproc-types"></span><h1><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">サブプロセスタイプテーブル</font></font><a class="headerlink" href="#subprocess-types-table" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h1>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xonshには、サブプロセスを起動する方法がいくつかあり、必要に応じて独自のインターフェイスが用意されています。</font><font style="vertical-align: inherit;">次の表は、異なるsuprocessのクイックリファレンスです。</font><font style="vertical-align: inherit;">列の意味は次のとおりです。</font></font></p>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name" />
+<col class="field-body" />
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">タイプ：</font></font></th><td class="field-body"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">サブプロセスの例の構文</font></font><code class="docutils literal notranslate"><span class="pre">cmd</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></td>
+</tr>
+<tr class="field-even field"><th class="field-name"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">出力：</font></font></th><td class="field-body"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">出力がstdout / stderrにストリームされるかどうか。</font><font style="vertical-align: inherit;">「捕捉された」場合、出力は</font></font><code class="docutils literal notranslate"><span class="pre">cmd</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">実行</font><font style="vertical-align: inherit;">としてストリーミングされません</font><font style="vertical-align: inherit;">。</font><font style="vertical-align: inherit;">"uncaptured"の場合、出力はストリーミングされます。</font></font></td>
+</tr>
+<tr class="field-odd field"><th class="field-name"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">戻り値：</font></font></th><td class="field-body"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">サブプロセスの実行によって返されるオブジェクトのタイプ。</font><font style="vertical-align: inherit;">たとえば、実行する</font><font style="vertical-align: inherit;">場合は、戻り列には型が与えられ</font><font style="vertical-align: inherit;">ます。</font></font><code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">=</span> <span class="pre">$(cmd)</span></code><font style="vertical-align: inherit;"></font><code class="docutils literal notranslate"><span class="pre">p</span></code><font style="vertical-align: inherit;"></font></td>
+</tr>
+<tr class="field-even field"><th class="field-name"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ノート：</font></font></th><td class="field-body"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">サブプロセスに関するコメント。</font></font></td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils align-center">
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">タイプ</font></font></th>
+<th class="head"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">出力</font></font></th>
+<th class="head"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">返品</font></font></th>
+<th class="head"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ノート</font></font></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">cmd</span></code></td>
+<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">捕らえられていない</font></font></td>
+<td><code class="docutils literal notranslate"><span class="pre">HiddenCommandPipeline</span></code></td>
+<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">と同じ </font></font><code class="docutils literal notranslate"><span class="pre">![cmd]</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">![cmd]</span></code></td>
+<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">捕らえられていない</font></font></td>
+<td><code class="docutils literal notranslate"><span class="pre">HiddenCommandPipeline</span></code></td>
+<td> </td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">$[cmd]</span></code></td>
+<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">捕らえられていない</font></font></td>
+<td><code class="docutils literal notranslate"><span class="pre">None</span></code></td>
+<td> </td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">!(cmd)</span></code></td>
+<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">捕獲された</font></font></td>
+<td><code class="docutils literal notranslate"><span class="pre">CommandPipeline</span></code></td>
+<td> </td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">$(cmd)</span></code></td>
+<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">捕獲された</font></font></td>
+<td><code class="docutils literal notranslate"><span class="pre">str</span></code></td>
+<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">stdoutが返される</font></font></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="sidebar.html" title="サイドバー">
+          <img class="logo" src="_static/ascii_conch_part_transparent_tight.png" alt="ロゴ" />
+        </a></p>
+  <div class="sphinxprev">
+    <h4><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前のページ</font></font></h4>
+    <p class="topless"><a href="bash_to_xsh.html" title="前のページ"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">←BashとXonshの翻訳ガイド</font></font></a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次のページ</font></font></h4>
+    <p class="topless"><a href="python_virtual_environments.html" title="次のページ"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">→Python仮想環境</font></font></a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">このページ</font></font></h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/subproc_types.rst.txt" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ソースを表示</font></font></a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="" role="search">
+  <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">クイック検索</font></font></h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><input type="submit" value="行こう" /></font></font>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="サイドバーメニューを非表示にする"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                 «
+                </font></font><span class="show-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">メニューを隠す</font></font></span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="サイドバーメニューを表示する" style="display: none;">
+                
+                <span class="show-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">メニューの</font></font></span>
+                <span class="hide-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">サイドバー</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 
+                 »
+            </font></font></button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ナビゲーション</font></font></h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="一般索引"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">索引</font></font></a></li>
+        <li class="right">
+          <a href="py-modindex.html" title="Pythonモジュールのインデックス"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">モジュール</font></font></a>    </li>
+        <li class="right">
+          <a href="python_virtual_environments.html" title="Python仮想環境"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次</font></font></a>    </li>
+        <li class="right">
+          <a href="bash_to_xsh.html" title="Bash to Xonsh翻訳ガイド"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前</font></font></a>    </li>
+    <li><a href="sidebar.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonsh 0.8.5 documentation</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+
+          <li class="nav-item nav-item-1"><a href="index.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshシェル</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+        ©Copyright 2015、Anthony Scopatz。</font></font><a href="http://sphinx-doc.org/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sphinx</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 1.8.2 </font><font style="vertical-align: inherit;">を使用して作成されました</font><font style="vertical-align: inherit;">。
+    </font></font></div>
+    <!-- cloud_sptheme 1.4 -->
+  
+<div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="https://www.gstatic.com/images/branding/product/1x/translate_24dp.png" width="20" height="20" alt="Google 翻訳" /></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">原文</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">翻訳を改善する</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;" /><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div><div class="hide-for-small"></div><div class="goog-te-spinner-pos"><div class="goog-te-spinner-animation"><svg xmlns="http://www.w3.org/2000/svg" class="goog-te-spinner" width="96px" height="96px" viewBox="0 0 66 66"><circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"/></svg></div></div></body></html>

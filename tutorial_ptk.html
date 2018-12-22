@@ -1,0 +1,271 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" class="medium-up-screen translated-ltr"><head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>チュートリアル：prompt_toolkitカスタムキーバインディング -  xonsh 0.8.5 documentation</title>
+    <link rel="stylesheet" href="_static/numpy_friendly.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="_static/cloud.base.js"></script>
+    <script type="text/javascript" src="_static/cloud.js"></script>
+    <link rel="shortcut icon" href="_static/magic_conch.ico" />
+    <link rel="index" title="インデックス" href="genindex.html" />
+    <link rel="search" title="サーチ" href="search.html" />
+    <link rel="next" title="Bash to Xonsh翻訳ガイド" href="bash_to_xsh.html" />
+    <link rel="prev" title="チュートリアル：サブプロセス文字列" href="tutorial_subproc_strings.html" />
+     
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="canonical" href="http://xon.sh/tutorial_ptk.html" />
+
+  <link type="text/css" rel="stylesheet" charset="UTF-8" href="https://translate.googleapis.com/translate_static/css/translateelement.css" /></head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ナビゲーション</font></font></h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="一般索引" accesskey="I"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">索引</font></font></a></li>
+        <li class="right">
+          <a href="py-modindex.html" title="Pythonモジュールのインデックス"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">モジュール</font></font></a>    </li>
+        <li class="right">
+          <a href="bash_to_xsh.html" title="Bash to Xonsh翻訳ガイド" accesskey="N"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次</font></font></a>    </li>
+        <li class="right">
+          <a href="tutorial_subproc_strings.html" title="チュートリアル：サブプロセス文字列" accesskey="P"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前</font></font></a>    </li>
+    <li><a href="sidebar.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonsh 0.8.5 documentation</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshシェル</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="tutorial-prompt-toolkit-custom-keybindings">
+<span id="tutorial-ptk"></span><h1><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">チュートリアル：</font></font><code class="docutils literal notranslate"><span class="pre">prompt_toolkit</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">カスタムキーバインド</font></font><a class="headerlink" href="#tutorial-prompt-toolkit-custom-keybindings" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h1>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">あなたは本当にいくつかの特殊なキーバインドのためにジーンズしていますか？</font><font style="vertical-align: inherit;">私たちはあなたを助けることができます。</font><font style="vertical-align: inherit;">最初の時間は無料であり、これは毎回です！</font></font></p>
+<div class="admonition warning inline-title">
+<p class="first admonition-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">警告</font></font></p>
+<p class="last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">このチュートリアルでは、</font></font><code class="docutils literal notranslate"><span class="pre">prompt_toolkit</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">キーバインドマネージャーに</font><font style="vertical-align: inherit;">直接フックさせることができます
+ </font><font style="vertical-align: inherit;">。</font><font style="vertical-align: inherit;">プロンプトを完全に使用できないようにすることを止めるものではないので、軽く踏み込んでください。</font></font></p>
+</div>
+<div class="section" id="overview">
+<h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">概要</font></font><a class="headerlink" href="#overview" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h2>
+<p><font style="vertical-align: inherit;"></font><code class="docutils literal notranslate"><span class="pre">prompt_toolkit</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">シェルは、カスタムキーバインドを処理するためのレジストリを持っています。</font><font style="vertical-align: inherit;">xonshのデフォルトのキーバインディングが気に入らないか、新しいキーバインディングを追加することができます。</font></font></p>
+<p><font style="vertical-align: inherit;"></font><code class="docutils literal notranslate"><span class="pre">prompt_toolkit</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">キーバインディングを定義し、潜在的な落とし穴について警告するツールを</font><font style="vertical-align: inherit;">使用してこれを行う方法を説明します</font><font style="vertical-align: inherit;">。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">以下のすべてのコードを</font><a class="reference external" href="xonshrc.html"><font style="vertical-align: inherit;">xonshrcに</font></a><font style="vertical-align: inherit;">入力することができます</font></font><a class="reference external" href="xonshrc.html"><font style="vertical-align: inherit;"></font></a></p>
+</div>
+<div class="section" id="control-characters">
+<h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">制御文字</font></font><a class="headerlink" href="#control-characters" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h2>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">私たちはあなたが望むことをすることはできませんし、止めることもできませんが、機能するシェルのために、おそらく以下のキーストロークを混乱させるべきではありません。</font><font style="vertical-align: inherit;">それらのうちのいくつかは</font></font><a class="reference external" href="https://en.wikipedia.org/wiki/Control_character#In_ASCII"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ASCII制御文字で</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">あり、_really_は使用すべきではありません。</font><font style="vertical-align: inherit;">他のものはxonshによって使用され、機能の一部が失われます（他の場所で再バインドする時間が少なくて済みます）。</font></font></p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">キーストローク</font></font></th>
+<th class="head"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ASCIIコントロール表現</font></font></th>
+<th class="head"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">デフォルトコマンド</font></font></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">Control</span> <span class="pre">J</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">&lt;Enter&gt;</span></code></td>
+<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">コマンドを実行する</font></font></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">Control</span> <span class="pre">I</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">&lt;Tab&gt;</span></code></td>
+<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">インデント、オートコンプリート</font></font></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">Control</span> <span class="pre">R</span></code></td>
+<td> </td>
+<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">後方履歴検索</font></font></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">Control</span> <span class="pre">Z</span></code></td>
+<td> </td>
+<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">現在のジョブのSIGSTOP</font></font></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">Control</span> <span class="pre">C</span></code></td>
+<td> </td>
+<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">現在のジョブのSIGINT</font></font></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="useful-imports">
+<h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">便利なインポート</font></font><a class="headerlink" href="#useful-imports" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h2>
+<p><font style="vertical-align: inherit;"></font><code class="docutils literal notranslate"><span class="pre">prompt_toolkit</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">より良いバインディングを作成するのに</font><font style="vertical-align: inherit;">役立つ</font><font style="vertical-align: inherit;">ツールが</font><font style="vertical-align: inherit;">いくつかあり</font><font style="vertical-align: inherit;">ます：</font></font></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">prompt_toolkit.keys</span> <span class="k">import</span> <span class="n">Keys</span>
+<span class="kn">from</span> <span class="nn">prompt_toolkit.filters</span> <span class="k">import</span> <span class="n">Condition</span><span class="p">,</span> <span class="n">EmacsInsertMode</span><span class="p">,</span> <span class="n">ViInsertMode</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="custom-keyload-function">
+<h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">カスタムキーロード機能</font></font><a class="headerlink" href="#custom-keyload-function" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h2>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">シェルを初期化した後にロードするために追加のキーバインドが必要なので、すべてのカスタムキーバインディングを含む関数を定義し、適切なイベントでこの場合は装飾し</font></font><code class="docutils literal notranslate"><span class="pre">on_ptk_create</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ます。</font></font><code class="docutils literal notranslate"><span class="pre">handler</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">バージョンの違いによって</font><font style="vertical-align: inherit;">方法が</font><font style="vertical-align: inherit;">異なります</font><font style="vertical-align: inherit;">のでご注意ください</font></font><code class="docutils literal notranslate"><span class="pre">prompt_toolkit</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">まず、プロンプトの現在の行に "hi"という文字列を挿入するというおもちゃの例から始めます。</font></font></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@events</span><span class="o">.</span><span class="n">on_ptk_create</span>
+<span class="k">def</span> <span class="nf">custom_keybindings</span><span class="p">(</span><span class="n">bindings</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+    <span class="c1"># prompt_toolkit 1.x</span>
+    <span class="c1"># handler = bindings.registry.add_binding</span>
+    <span class="c1"># prompt_toolkit 2.x</span>
+    <span class="n">handler</span> <span class="o">=</span> <span class="n">bindings</span><span class="o">.</span><span class="n">add</span>
+
+    <span class="nd">@handler</span><span class="p">(</span><span class="n">Keys</span><span class="o">.</span><span class="n">ControlW</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">say_hi</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
+        <span class="n">event</span><span class="o">.</span><span class="n">current_buffer</span><span class="o">.</span><span class="n">insert_text</span><span class="p">(</span><span class="s1">'hi'</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">あなたの</font></font><a class="reference external" href="xonshrc.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshrcに</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">入れて、</font><a class="reference external" href="xonshrc.html"><font style="vertical-align: inherit;">xonsh</font></a><font style="vertical-align: inherit;">を再起動</font><font style="vertical-align: inherit;">して</font><a class="reference external" href="xonshrc.html"><font style="vertical-align: inherit;">から</font></a><font style="vertical-align: inherit;">、</font></font><code class="docutils literal notranslate"><span class="pre">Ctrl-w</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">何かが</font><font style="vertical-align: inherit;">押されたかどうか確認してください</font><font style="vertical-align: inherit;">（それはすべきです！）</font></font></p>
+<div class="admonition note inline-title">
+<p class="first admonition-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">注意</font></font></p>
+<p class="last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">prompt_toolkit 2.xから書くことも可能である</font></font><code class="docutils literal notranslate"><span class="pre">Keys.ControlW</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ように</font></font><code class="docutils literal notranslate"><span class="pre">c-w</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+</div>
+</div>
+<div class="section" id="what-commands-can-keybindings-run">
+<h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">キーバインドはどのようなコマンドで実行できますか？</font></font><a class="headerlink" href="#what-commands-can-keybindings-run" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h2>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">かなり何でも！</font><font style="vertical-align: inherit;">xonshの起動後にこれらのコマンドを定義するので、ほとんど何の努力もせずにサブプロセスコマンドを実行するキーバインドイベントを作成することができます。</font><font style="vertical-align: inherit;">たとえば</font><font style="vertical-align: inherit;">、カレントディレクトリ</font><font style="vertical-align: inherit;">で実行</font><font style="vertical-align: inherit;">さ</font><font style="vertical-align: inherit;">れるコマンドがあるとします</font><font style="vertical-align: inherit;">。</font></font><code class="docutils literal notranslate"><span class="pre">ls</span>
+<span class="pre">-l</span></code><font style="vertical-align: inherit;"></font></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@handler</span><span class="p">(</span><span class="n">Keys</span><span class="o">.</span><span class="n">ControlP</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">run_ls</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
+    <span class="n">ls</span> <span class="o">-</span><span class="n">l</span>
+    <span class="n">event</span><span class="o">.</span><span class="n">cli</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">erase</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition note inline-title">
+<p class="first admonition-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">注意</font></font></p>
+<p class="last"><font style="vertical-align: inherit;"></font><code class="docutils literal notranslate"><span class="pre">event.cli.renderer.erase()</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">に情報を送信するために、別のコマンドを求めた後、プロンプトを再描画するために必要とされます</font></font><code class="docutils literal notranslate"><span class="pre">STDOUT</span></code></p>
+</div>
+</div>
+<div class="section" id="restrict-actions-with-filters">
+<h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">フィルターでアクションを制限する</font></font><a class="headerlink" href="#restrict-actions-with-filters" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h2>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">特定の条件が満たされている場合にのみ、重要なコマンドを実行することがしばしば必要です。</font><font style="vertical-align: inherit;">たとえば</font></font><code class="docutils literal notranslate"><span class="pre">&lt;TAB&gt;</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、xonsh </font><font style="vertical-align: inherit;">の</font><font style="vertical-align: inherit;">キーは補完メニューを表示しますが、利用可能な補完も循環します。</font><font style="vertical-align: inherit;">フィルタを使用してこの動作を作成します。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">それぞれの挿入モードがアクティブなとき</font><font style="vertical-align: inherit;">に戻ってくる</font></font><code class="docutils literal notranslate"><span class="pre">prompt_toolkit</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ような</font></font><code class="docutils literal notranslate"><span class="pre">ViInsertMode</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、およびの</font><font style="vertical-align: inherit;">ような
+ </font><font style="vertical-align: inherit;">いくつかの有益なフィルタが含まれています</font><font style="vertical-align: inherit;">。</font></font><code class="docutils literal notranslate"><span class="pre">EmacsInsertMode</span></code><font style="vertical-align: inherit;"></font><code class="docutils literal notranslate"><span class="pre">True</span></code><font style="vertical-align: inherit;"></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">しかし、xonshの美しい奇妙さを利用する独自のフィルタを作成することも簡単です。</font><font style="vertical-align: inherit;">特定のディレクトリに10個未満のファイルがある場合にのみ、指定されたコマンドを実行するようにフィルタを制限するとします。</font><font style="vertical-align: inherit;">その要件に合致するBoolを返す関数が必要なだけで、それを飾っています！</font><font style="vertical-align: inherit;">これらの関数は純粋なPythonだけではなく、xonsh言語でも使えることを覚えておいてください。</font></font></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>@Condition
+def lt_ten_files(cli):
+    return len(g`*`) &lt; 10
+</pre></div>
+</div>
+<div class="admonition note inline-title">
+<p class="first admonition-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">注意</font></font></p>
+<p class="last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">より多くのグロブオプション</font><font style="vertical-align: inherit;">について</font></font><a class="reference external" href="tutorial.html#normal-globbing"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">は、グローブ</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">に関する</font><a class="reference external" href="tutorial.html#normal-globbing"><font style="vertical-align: inherit;">チュートリアルのセクションを</font></a><font style="vertical-align: inherit;">参照し</font><a class="reference external" href="tutorial.html#normal-globbing"><font style="vertical-align: inherit;">てください</font></a><font style="vertical-align: inherit;">。</font></font></p>
+</div>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">条件が定義されたので、これを</font></font><code class="docutils literal notranslate"><span class="pre">filter</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">キーワード</font><font style="vertical-align: inherit;">として</font><font style="vertical-align: inherit;">キーバインディング定義に</font><font style="vertical-align: inherit;">渡すことができ</font><font style="vertical-align: inherit;">ます。</font></font></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@handler</span><span class="p">(</span><span class="n">Keys</span><span class="o">.</span><span class="n">ControlL</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="n">lt_ten_files</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">ls_if_lt_ten</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
+    <span class="n">ls</span> <span class="o">-</span><span class="n">l</span>
+    <span class="n">event</span><span class="o">.</span><span class="n">cli</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">erase</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">あなたのそれらの両方で</font></font><code class="docutils literal notranslate"><span class="pre">.xonshrc</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、押すと、</font><font style="vertical-align: inherit;">その中に10未満の項目がある場合は、あなたの現在のディレクトリの内容を一覧表示します。</font><font style="vertical-align: inherit;">有用？</font><font style="vertical-align: inherit;">議論の余地がある。</font><font style="vertical-align: inherit;">強力ですか？</font><font style="vertical-align: inherit;">はい。</font></font><code class="docutils literal notranslate"><span class="pre">Control</span> <span class="pre">L</span></code><font style="vertical-align: inherit;"></font></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="sidebar.html" title="サイドバー">
+          <img class="logo" src="_static/ascii_conch_part_transparent_tight.png" alt="ロゴ" />
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="sidebar.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ページの内容</font></font></a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">チュートリアル：</font></font><code class="docutils literal notranslate"><span class="pre">prompt_toolkit</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">カスタムキーバインド</font></font></a><ul>
+<li><a class="reference internal" href="#overview"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">概要</font></font></a></li>
+<li><a class="reference internal" href="#control-characters"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">制御文字</font></font></a></li>
+<li><a class="reference internal" href="#useful-imports"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">有用な輸入品</font></font></a></li>
+<li><a class="reference internal" href="#custom-keyload-function"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">カスタムキーロード機能</font></font></a></li>
+<li><a class="reference internal" href="#what-commands-can-keybindings-run"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">キーバインドはどのようなコマンドで実行できますか？</font></font></a></li>
+<li><a class="reference internal" href="#restrict-actions-with-filters"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">フィルタでアクションを制限する</font></font></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前のページ</font></font></h4>
+    <p class="topless"><a href="tutorial_subproc_strings.html" title="前のページ"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">←チュートリアル：サブプロセス文字列</font></font></a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次のページ</font></font></h4>
+    <p class="topless"><a href="bash_to_xsh.html" title="次のページ"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">→Bash to Xonsh翻訳ガイド</font></font></a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">このページ</font></font></h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/tutorial_ptk.rst.txt" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ソースを表示</font></font></a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="" role="search">
+  <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">クイック検索</font></font></h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><input type="submit" value="行こう" /></font></font>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="サイドバーメニューを非表示にする"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                 «
+                </font></font><span class="show-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">メニューを隠す</font></font></span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="サイドバーメニューを表示する" style="display: none;">
+                
+                <span class="show-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">メニューの</font></font></span>
+                <span class="hide-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">サイドバー</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 
+                 »
+            </font></font></button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ナビゲーション</font></font></h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="一般索引"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">索引</font></font></a></li>
+        <li class="right">
+          <a href="py-modindex.html" title="Pythonモジュールのインデックス"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">モジュール</font></font></a>    </li>
+        <li class="right">
+          <a href="bash_to_xsh.html" title="Bash to Xonsh翻訳ガイド"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次</font></font></a>    </li>
+        <li class="right">
+          <a href="tutorial_subproc_strings.html" title="チュートリアル：サブプロセス文字列"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前</font></font></a>    </li>
+    <li><a href="sidebar.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonsh 0.8.5 documentation</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+
+          <li class="nav-item nav-item-1"><a href="index.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshシェル</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+        ©Copyright 2015、Anthony Scopatz。</font></font><a href="http://sphinx-doc.org/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sphinx</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 1.8.2 </font><font style="vertical-align: inherit;">を使用して作成されました</font><font style="vertical-align: inherit;">。
+    </font></font></div>
+    <!-- cloud_sptheme 1.4 -->
+  
+<div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="https://www.gstatic.com/images/branding/product/1x/translate_24dp.png" width="20" height="20" alt="Google 翻訳" /></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">原文</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">翻訳を改善する</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;" /><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div><div class="hide-for-small"></div><div class="goog-te-spinner-pos"><div class="goog-te-spinner-animation"><svg xmlns="http://www.w3.org/2000/svg" class="goog-te-spinner" width="96px" height="96px" viewBox="0 0 66 66"><circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"/></svg></div></div></body></html>

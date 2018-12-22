@@ -1,0 +1,236 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" class="medium-up-screen translated-ltr"><head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>よくある質問 -  xonsh 0.8.5 documentation</title>
+    <link rel="stylesheet" href="_static/numpy_friendly.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="_static/cloud.base.js"></script>
+    <script type="text/javascript" src="_static/cloud.js"></script>
+    <link rel="shortcut icon" href="_static/magic_conch.ico" />
+    <link rel="index" title="インデックス" href="genindex.html" />
+    <link rel="search" title="サーチ" href="search.html" />
+    <link rel="next" title="ウィッシュリスト＆To-Dos" href="todo.html" />
+    <link rel="prev" title="Xonsh変更ログ" href="changelog.html" />
+     
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="canonical" href="http://xon.sh/faq.html" />
+
+  <link type="text/css" rel="stylesheet" charset="UTF-8" href="https://translate.googleapis.com/translate_static/css/translateelement.css" /></head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ナビゲーション</font></font></h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="一般索引" accesskey="I"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">索引</font></font></a></li>
+        <li class="right">
+          <a href="py-modindex.html" title="Pythonモジュールのインデックス"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">モジュール</font></font></a>    </li>
+        <li class="right">
+          <a href="todo.html" title="ウィッシュリスト＆To-Dos" accesskey="N"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次</font></font></a>    </li>
+        <li class="right">
+          <a href="changelog.html" title="Xonsh変更ログ" accesskey="P"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前</font></font></a>    </li>
+    <li><a href="sidebar.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonsh 0.8.5 documentation</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshシェル</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="frequently-asked-questions">
+<h1><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">よくある質問</font></font><a class="headerlink" href="#frequently-asked-questions" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h1>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">さて、だれも実際に誰にも尋ねなかったかもしれません。</font></font></p>
+<div class="section" id="why-xonsh">
+<h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1.なぜxonsh？</font></font><a class="headerlink" href="#why-xonsh" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h2>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshのアイデアは</font><a class="reference external" href="http://physics.codes/"><font style="vertical-align: inherit;">、物理学</font></a><font style="vertical-align: inherit;">の</font><a class="reference external" href="http://physics.codes/"><font style="vertical-align: inherit;">Effective Computation</font></a><font style="vertical-align: inherit;">のBashの章（私の共著者</font></font><a class="reference external" href="http://katyhuff.github.io/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Katy Huff</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">によって書かれた）を見直しながら、まず打ち</font></font><a class="reference external" href="http://physics.codes/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ました</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font><font style="vertical-align: inherit;">この本では、パイピングなどの重要で複雑なアイデアを説明する時間を費やしています。</font><font style="vertical-align: inherit;">しかし、if文やループなど、Bash言語のより基本的な側面には触れません。</font><font style="vertical-align: inherit;">たとえ10年以上にわたってBashをよく使用してきたとしても、</font><font style="vertical-align: inherit;">
+2つの数値を一緒に追加する</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">や配列を一貫して作成する</font><em><font style="vertical-align: inherit;">方法</font></em><font style="vertical-align: inherit;">は</font><em><font style="vertical-align: inherit;">わかり</font></em><font style="vertical-align: inherit;">ません</font><font style="vertical-align: inherit;">。</font><font style="vertical-align: inherit;">これは正常です。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ツールがとても悪い場合は、新しいツールが必要になるかもしれません。</font><font style="vertical-align: inherit;">だから、xonshは他のシェルが "あなたの脳に合っていない"という問題を解決することを本当に意味します。プログラミングの状況によっては、コンパイラの最適化、型の安全性、証明可能な正当性、レジスタアクセスなどの理由でOKです。</font><font style="vertical-align: inherit;">しかし、あなたの脳に合わないシェルは、単なる責任です。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">偶然、週内に</font></font><a class="reference external" href="http://stephen-brennan.com/2015/01/16/write-a-shell-in-c/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">記事がHacker Newsのトップに浮かん</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 
+で、Cでシェルを書く方法を教えてくれたので、「それは難しいことではない」と思った。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">そして</font></font><a class="reference external" href="http://exofrills.org"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">再び</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、私は危険ゾーンに入った。</font></font></p>
+</div>
+<div class="section" id="why-not-another-exotic-shell-such-as-fish">
+<h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">なぜ、別のエキゾチックな殻がないの</font></font><code class="docutils literal notranslate"><span class="pre">fish</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ですか？</font></font><a class="headerlink" href="#why-not-another-exotic-shell-such-as-fish" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h2>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">他の多くの代替シェルには、従来のオプションのシンタックスが大幅に改善されているだけでなく、機能も豊富ですが、Pythonほど美しくないものはありません。</font><font style="vertical-align: inherit;">xonshでは、あなたはすべての可能な世界の中で最高のものを手に入れます。</font><font style="vertical-align: inherit;">あなたの脳とあなたが望む任意の機能に既に適合する構文。</font></font></p>
+</div>
+<div class="section" id="why-not-just-use-the-ipython-command-line-interface">
+<h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">3.なぜIPythonコマンドラインインターフェイスを使用しないのですか？</font></font><a class="headerlink" href="#why-not-just-use-the-ipython-command-line-interface" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h2>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">このアプローチには2つの重大な欠点がありますが、私はそれを試しました。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">最初</font></font><code class="docutils literal notranslate"><span class="pre">!</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">に、すべてのサブプロセスコマンドの前に</font><font style="vertical-align: inherit;">タイプ</font><font style="vertical-align: inherit;">するのは非常に面倒です。</font><font style="vertical-align: inherit;">私はこれがプレフィックス演算子であり、それであなたがそれをやろうとするときに、あなたがしようとしていることを妨害しているからです。</font></font><code class="docutils literal notranslate"><span class="pre">!</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">後置演算子を</font><font style="vertical-align: inherit;">作る</font><font style="vertical-align: inherit;">ことでこれのいくつかに対処することができますが、おそらく厄介なことにはなりません。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2番目の理由は、a </font></font><code class="docutils literal notranslate"><span class="pre">!</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+が機能しなかった</font><font style="vertical-align: inherit;">後のサブプロセスコマンドのタブ補完である</font><font style="vertical-align: inherit;">。</font><font style="vertical-align: inherit;">これは日常的な使用のためのディール・ブレーカーです。</font></font></p>
+</div>
+<div class="section" id="so-how-does-this-all-work">
+<h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">4.それでは、これはどのように機能しますか？</font></font><a class="headerlink" href="#so-how-does-this-all-work" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h2>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshコードをトークン化して解析</font><font style="vertical-align: inherit;">するには、</font></font><a class="reference external" href="http://www.dabeaz.com/ply/ply.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">PLY</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">を使用し</font><font style="vertical-align: inherit;">ます。</font><font style="vertical-align: inherit;">これは</font></font><a class="reference external" href="https://github.com/eliben/pycparser"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">pycparser</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 
+がこのPLYを</font><font style="vertical-align: inherit;">どのように</font><font style="vertical-align: inherit;">使用</font><font style="vertical-align: inherit;">したかに大きく影響されます</font><font style="vertical-align: inherit;">。</font><font style="vertical-align: inherit;">私たちのパーサから、Python </font></font><code class="docutils literal notranslate"><span class="pre">ast</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">標準ライブラリモジュール</font><font style="vertical-align: inherit;">にあるノードだけを使って、抽象構文木（AST）を構築し</font><font style="vertical-align: inherit;">ます。</font><font style="vertical-align: inherit;">これにより、通常のPythonツールを使用してASTをコンパイルして実行することができます。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">もちろん、xonshには特別な組み込み関数があるため、実際にコードを実行する前に適切なコンテキスト（組み込み関数、グローバル、ローカル）を設定する必要があります。</font><font style="vertical-align: inherit;">しかし、ASTはどんな文脈からも完全に独立して構築することができます...ほとんど。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonsh言語の文法は文脈自由ですが、実行者を文脈に敏感なやり方で書くのが便利でした。</font><font style="vertical-align: inherit;">これは、特定の式がPythonモードまたはサブプロセスモードに属しているかどうか不明確であるためです。</font><font style="vertical-align: inherit;">たとえば、ほとんどの人は</font><font style="vertical-align: inherit;">リストコマンド</font><font style="vertical-align: inherit;">を見て、
+ </font><font style="vertical-align: inherit;">それを見ます。</font><font style="vertical-align: inherit;">ただし、</font><font style="vertical-align: inherit;">および</font><font style="vertical-align: inherit;">Pythonの変数はあったが、これは同等（パイソン）の表現に変換することができ</font><font style="vertical-align: inherit;">たり</font><font style="vertical-align: inherit;">。</font><font style="vertical-align: inherit;">どちらも有効なリストコマンドではありません。</font></font><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span></code><font style="vertical-align: inherit;"></font><code class="docutils literal notranslate"><span class="pre">ls</span></code><font style="vertical-align: inherit;"></font><code class="docutils literal notranslate"><span class="pre">l</span></code><font style="vertical-align: inherit;"></font><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-</span> <span class="pre">l</span></code><font style="vertical-align: inherit;"></font><code class="docutils literal notranslate"><span class="pre">ls-l</span></code><font style="vertical-align: inherit;"></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">このようなあいまいさを解消するためにxonshが行うことは、式（</font></font><code class="docutils literal notranslate"><span class="pre">ls</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">および</font></font><code class="docutils literal notranslate"><span class="pre">l</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">上記）の</font><font style="vertical-align: inherit;">中の名前が</font><font style="vertical-align: inherit;">現在のPythonコンテキストに含まれている</font><font style="vertical-align: inherit;">かどうかを確認すること</font><font style="vertical-align: inherit;">です。</font><font style="vertical-align: inherit;">そうであれば、書かれているように有効なxonshになります。</font><font style="vertical-align: inherit;">いずれかの名前が見つからない場合、xonshは一番左の名前が外部コマンドであるとみなします。</font><font style="vertical-align: inherit;">したがって、未取得のサブプロセス呼び出しでその行をラップした後、その行を解析しようとします</font></font><code class="docutils literal notranslate"><span class="pre">![]</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font><font style="vertical-align: inherit;">ラップされたバージョンが正常に解析された場合、その</font></font><code class="docutils literal notranslate"><span class="pre">![]</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">バージョンは</font><font style="vertical-align: inherit;">そのまま</font><font style="vertical-align: inherit;">です。</font><font style="vertical-align: inherit;">それ以外の場合は、元の行が保持されます。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">状況依存解析はすべて、コードが実行される前にAST変換として行われます。</font><font style="vertical-align: inherit;">これにより、コードが失敗する前に部分的に実行されることはありません。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">文脈依存解析は人間にとって便利なものであることに注意することが重要です。</font><font style="vertical-align: inherit;">あいまいさが残っているか正確が必要な場合は、単に手動で使用し</font></font><code class="docutils literal notranslate"><span class="pre">![]</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><code class="docutils literal notranslate"><span class="pre">!()</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><code class="docutils literal notranslate"><span class="pre">$[]</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">または</font></font><code class="docutils literal notranslate"><span class="pre">$()</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">あなたのコードの演算子を。</font></font></p>
+</div>
+<div class="section" id="context-sensitive-parsing-is-gross">
+<h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">5.文脈依存の解析は総体的です</font></font><a class="headerlink" href="#context-sensitive-parsing-is-gross" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h2>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">はい、状況に応じた解析は大雑把です。</font><font style="vertical-align: inherit;">しかし、xonshのポイントは、xontext-sensitive構文解析を使用し、最終的にBashのような他のシェル言語よりもはるかに少ないことです。</font><font style="vertical-align: inherit;">さらに、その使用はここで大きく制限されています。</font></font></p>
+</div>
+<div class="section" id="my-branches-are-timing-out">
+<h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">6.私の枝はタイムアウトしていますか？</font></font><a class="headerlink" href="#my-branches-are-timing-out" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h2>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">システム、セットアップ、およびリポジトリのサイズに応じて、ブランチの名前と色を計算する（ブランチが汚れているかどうかなど）、かなり遅い操作になります。</font><font style="vertical-align: inherit;">これは悪いニュースです。なぜなら、xonshはフォーマットするたびにこれらを計算することができるから</font></font><code class="docutils literal notranslate"><span class="pre">$PROMPT</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">です。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshをきれいにするために、分岐計算のタイムアウトを実装しました。</font><font style="vertical-align: inherit;">これは、</font></font><code class="docutils literal notranslate"><span class="pre">$VC_BRANCH_TIMEOUT</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+環境変数を</font><font style="vertical-align: inherit;">介して公称値（通常は0.1秒）に設定され</font><font style="vertical-align: inherit;">ます。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">これを自由に設定してください。</font><font style="vertical-align: inherit;">したがって、潜在的に遅いプロンプトを気にしない場合は、1,5、20、100秒に設定してください！</font><font style="vertical-align: inherit;">ただし、遅いプロンプトに対処したり、タイムアウトメッセージが表示</font><font style="vertical-align: inherit;">されないように</font><font style="vertical-align: inherit;">するには</font></font><code class="docutils literal notranslate"><span class="pre">{curr_branch}</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><code class="docutils literal notranslate"><span class="pre">{branch_color}</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">との</font></font><code class="docutils literal notranslate"><span class="pre">{branch_bg_color}</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+部分を</font><font style="vertical-align: inherit;">削除することができ</font><font style="vertical-align: inherit;">ます</font></font><code class="docutils literal notranslate"><span class="pre">$PROMPT</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。これらの値は決して計算されません。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">それは</font></font><code class="docutils literal notranslate"><span class="pre">{branch_color}</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、通常はゆっくりとしたポークで</font><font style="vertical-align: inherit;">あることにも注目する価値があり</font><font style="vertical-align: inherit;">ます。</font><font style="vertical-align: inherit;">ただ色のルックアップを削除するだけで</font></font><code class="docutils literal notranslate"><span class="pre">$PROMPT</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、ブランチ名は十分に速くなります。</font></font></p>
+</div>
+<div class="section" id="exec">
+<h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">7. </font></font><a class="headerlink" href="#exec" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">exec¶</font></font></a></h2>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">の概念</font></font><code class="docutils literal notranslate"><span class="pre">exec</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">は、xonshのトリッキーな獣のビットです。</font><font style="vertical-align: inherit;">Pythonと基本的に他のすべてのシェル言語には、根本的に異なる操作を実行するexecがあります。</font></font></p>
+<ul class="simple">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Pythonでは</font></font><code class="docutils literal notranslate"><span class="pre">exec</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、提供された名前空間内の文字列、AST、またはコードオブジェクトを実行する組み込み関数です。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">sh-langs（と他の場所）では</font></font><code class="docutils literal notranslate"><span class="pre">exec</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、現在のプロセスで別のコマンドを直接実行するコマンドです。</font></font></li>
+</ul>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">これらの2つのアイデアは両方の言語にとって中心的なものであり、それがなければほとんどのプログラムを実行できません。</font><font style="vertical-align: inherit;">幸いにも、名前を共有していても、構文が異なり、名前空間を共有しません。</font><font style="vertical-align: inherit;">したがって、xonshでは、</font></font></p>
+<div class="highlight-xonshcon notranslate"><div class="highlight"><pre><span></span><span class="c1"># exec() as a function is run as Python's exec</span><span class="gp"></span>
+<span class="gp">&gt;&gt;&gt;</span> <span class="k">exec</span><span class="p">(</span><span class="s1">'x = 41; x += 1'</span><span class="p">,</span> <span class="nb">globals</span><span class="p">(),</span> <span class="nb">locals</span><span class="p">())</span><span class="go"></span>
+
+<span class="go"># while exec as a statement is like bash's exec</span><span class="gp"></span>
+<span class="gp">&gt;&gt;&gt;</span> <span class="k">exec</span> <span class="n">gdb</span><span class="go"></span>
+<span class="go">(gdb)</span>
+</pre></div>
+</div>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">はい、これは潜在的に混乱します。</font><font style="vertical-align: inherit;">以前のバージョンのPythonに</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">は</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、構文がsh-langコマンド形式で衝突したexec文が</font><em><font style="vertical-align: inherit;">あっ</font></em><font style="vertical-align: inherit;">た</font><font style="vertical-align: inherit;">ので、これは特に当てはまり</font><font style="vertical-align: inherit;">ます。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">はい、申し訳ありません。</font><font style="vertical-align: inherit;">しかし、代わりに、SSHやgdbのように、execの中でexecを使う重要なプログラムは、xonshがデフォルトのシェルとして設定されているときは使用できません。</font><font style="vertical-align: inherit;">シェルの最も重要な側面は使いやすさであり、xonshは大きなクラスの重要なコマンドに対して潜在的な混乱を起こします。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">execの二重性が問題を引き起こしている場合、混乱を緩和するために実装できる操作はいくつかあります。</font><font style="vertical-align: inherit;">1つは、</font></font><code class="docutils literal notranslate"><span class="pre">exec</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">エイリアスを</font><font style="vertical-align: inherit;">削除して</font></font><code class="docutils literal notranslate"><span class="pre">xexec</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">代わりに</font><font style="vertical-align: inherit;">エイリアスを使用</font><font style="vertical-align: inherit;">できることです</font><font style="vertical-align: inherit;">。</font></font></p>
+<div class="highlight-xonshcon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">del</span> <span class="n">aliases</span><span class="p">[</span><span class="s1">'exec'</span><span class="p">]</span><span class="gp"></span>
+<span class="gp">&gt;&gt;&gt;</span> <span class="n">xexec</span> <span class="n">ssh</span><span class="go"></span>
+</pre></div>
+</div>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">あるいは、常に</font></font><code class="docutils literal notranslate"><span class="pre">![]</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">または</font><font style="vertical-align: inherit;">サブプロセスモードで明示的にexecコマンドを実行することもできます</font></font><code class="docutils literal notranslate"><span class="pre">!()</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+<div class="highlight-xonshcon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">!</span><span class="p">[</span><span class="err">exec</span> bash<span class="p">]</span><span class="go"></span>
+</pre></div>
+</div>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">最後に、exec（）関数の結果をthrow変数に代入することができます（戻り値は常にNoneです）。</font></font></p>
+<div class="highlight-xonshcon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">_</span> <span class="o">=</span> <span class="k">exec</span><span class="p">(</span><span class="s1">'x = 42'</span><span class="p">)</span><span class="go"></span>
+</pre></div>
+</div>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">うまくいけば、このトレードオフは理にかなっていて、キメラ殺しがあなたのバッグでない限り、それについて心配する必要はありません。</font></font></p>
+</div>
+<div class="section" id="gotchas">
+<h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">8.ゴッチャ</font></font><a class="headerlink" href="#gotchas" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h2>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">複数のバージョンのPythonでxonshを使用する場合、基本的なPythonの動作が異なる可能性があるため、いくつかの動作が異なる場合があります。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">例えば、double star globbing </font></font><cite><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">**</font></font></cite><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">は</font><a class="reference external" href="https://docs.python.org/3/library/glob.html#glob.glob"><font style="vertical-align: inherit;">、Python 3.5以降で</font></a><font style="vertical-align: inherit;">は再帰的なglobbingが</font><a class="reference external" href="https://docs.python.org/3/library/glob.html#glob.glob"><font style="vertical-align: inherit;">新しいため、Python 3.5</font></a><font style="vertical-align: inherit;">以降でのみ動作します（3.4ではなく）。</font></font><a class="reference external" href="https://docs.python.org/3/library/glob.html#glob.glob"><font style="vertical-align: inherit;"></font></a></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="sidebar.html" title="サイドバー">
+          <img class="logo" src="_static/ascii_conch_part_transparent_tight.png" alt="ロゴ" />
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="sidebar.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ページの内容</font></font></a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">よくある質問</font></font></a><ul>
+<li><a class="reference internal" href="#why-xonsh"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1.なぜxonsh？</font></font></a></li>
+<li><a class="reference internal" href="#why-not-another-exotic-shell-such-as-fish"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">なぜ、別のエキゾチックな殻がないの</font></font><code class="docutils literal notranslate"><span class="pre">fish</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ですか？</font></font></a></li>
+<li><a class="reference internal" href="#why-not-just-use-the-ipython-command-line-interface"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">3.なぜIPythonコマンドラインインターフェイスを使用しないのですか？</font></font></a></li>
+<li><a class="reference internal" href="#so-how-does-this-all-work"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">4.それでは、これはどのように機能しますか？</font></font></a></li>
+<li><a class="reference internal" href="#context-sensitive-parsing-is-gross"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">5.文脈依存解析は総体的です</font></font></a></li>
+<li><a class="reference internal" href="#my-branches-are-timing-out"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">6.私の枝はタイムアウトしていますか？</font></font></a></li>
+<li><a class="reference internal" href="#exec"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">7. exec</font></font></a></li>
+<li><a class="reference internal" href="#gotchas"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">8.ゴッチャ</font></font></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前のページ</font></font></h4>
+    <p class="topless"><a href="changelog.html" title="前のページ"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">←Xonshの変更ログ</font></font></a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次のページ</font></font></h4>
+    <p class="topless"><a href="todo.html" title="次のページ"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">→ウィッシュリスト＆To-Dos</font></font></a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">このページ</font></font></h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/faq.rst.txt" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ソースを表示</font></font></a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="" role="search">
+  <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">クイック検索</font></font></h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><input type="submit" value="行こう" /></font></font>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="サイドバーメニューを非表示にする"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                 «
+                </font></font><span class="show-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">メニューを隠す</font></font></span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="サイドバーメニューを表示する" style="display: none;">
+                
+                <span class="show-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">メニューの</font></font></span>
+                <span class="hide-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">サイドバー</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 
+                 »
+            </font></font></button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ナビゲーション</font></font></h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="一般索引"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">索引</font></font></a></li>
+        <li class="right">
+          <a href="py-modindex.html" title="Pythonモジュールのインデックス"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">モジュール</font></font></a>    </li>
+        <li class="right">
+          <a href="todo.html" title="ウィッシュリスト＆To-Dos"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次</font></font></a>    </li>
+        <li class="right">
+          <a href="changelog.html" title="Xonsh変更ログ"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前</font></font></a>    </li>
+    <li><a href="sidebar.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonsh 0.8.5 documentation</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+
+          <li class="nav-item nav-item-1"><a href="index.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshシェル</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+        ©Copyright 2015、Anthony Scopatz。</font></font><a href="http://sphinx-doc.org/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sphinx</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 1.8.2 </font><font style="vertical-align: inherit;">を使用して作成されました</font><font style="vertical-align: inherit;">。
+    </font></font></div>
+    <!-- cloud_sptheme 1.4 -->
+  
+<div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="https://www.gstatic.com/images/branding/product/1x/translate_24dp.png" width="20" height="20" alt="Google 翻訳" /></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">原文</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">翻訳を改善する</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;" /><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div><div class="hide-for-small"></div><div class="goog-te-spinner-pos"><div class="goog-te-spinner-animation"><svg xmlns="http://www.w3.org/2000/svg" class="goog-te-spinner" width="96px" height="96px" viewBox="0 0 66 66"><circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"/></svg></div></div></body></html>

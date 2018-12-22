@@ -1,0 +1,527 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" class="medium-up-screen translated-ltr"><head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>チュートリアル：マクロ -  xonsh 0.8.5 documentation</title>
+    <link rel="stylesheet" href="_static/numpy_friendly.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="_static/cloud.base.js"></script>
+    <script type="text/javascript" src="_static/cloud.js"></script>
+    <link rel="shortcut icon" href="_static/magic_conch.ico" />
+    <link rel="index" title="インデックス" href="genindex.html" />
+    <link rel="search" title="サーチ" href="search.html" />
+    <link rel="next" title="チュートリアル：拡張（Xontribs）" href="tutorial_xontrib.html" />
+    <link rel="prev" title="チュートリアル：履歴" href="tutorial_hist.html" />
+     
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="canonical" href="http://xon.sh/tutorial_macros.html" />
+
+  <link type="text/css" rel="stylesheet" charset="UTF-8" href="https://translate.googleapis.com/translate_static/css/translateelement.css" /></head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ナビゲーション</font></font></h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="一般索引" accesskey="I"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">索引</font></font></a></li>
+        <li class="right">
+          <a href="py-modindex.html" title="Pythonモジュールのインデックス"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">モジュール</font></font></a>    </li>
+        <li class="right">
+          <a href="tutorial_xontrib.html" title="チュートリアル：拡張（Xontribs）" accesskey="N"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次</font></font></a>    </li>
+        <li class="right">
+          <a href="tutorial_hist.html" title="チュートリアル：履歴" accesskey="P"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前</font></font></a>    </li>
+    <li><a href="sidebar.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonsh 0.8.5 documentation</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshシェル</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="tutorial-macros">
+<span id="id1"></span><h1><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">チュートリアル：マクロ</font></font><a class="headerlink" href="#tutorial-macros" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h1>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">あなたのDSLR、人々をバストしてください。</font><font style="vertical-align: inherit;">マクロを詳しくチェックする時です！</font></font></p>
+<div class="section" id="what-are-macro-instructions">
+<h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">マクロ命令とは何ですか？</font></font><a class="headerlink" href="#what-are-macro-instructions" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h2>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">一般に、プログラミングマクロは、マクロが評価された後に、少量のコードをより大きな式、構文木、コードオブジェクトなどに置き換える特別な種類の構文です。</font><font style="vertical-align: inherit;">実際には、マクロは、それらに含まれるコードの通常の解析と評価を一時停止します。</font><font style="vertical-align: inherit;">これは、完全な入力で拡張を実行できるようにするためです。</font><font style="vertical-align: inherit;">おおまかに言えば、マクロを実行するアルゴリズムは次のとおりです。</font></font></p>
+<ol class="arabic simple">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">マクロの開始、一時停止、または通常の解析のスキップ</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">マクロ入力を文字列として収集する</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">入力によるマクロの評価</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">通常の解析と実行を再開します。</font></font></li>
+</ol>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">このメタプログラミングですか？</font><font style="vertical-align: inherit;">もちろんです！</font></font></p>
+</div>
+<div class="section" id="when-and-where-are-macros-used">
+<h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">マクロはいつどこで使用されますか？</font></font><a class="headerlink" href="#when-and-where-are-macros-used" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h2>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">マクロは、多くのプログラミング言語の実用的なビート純度の特徴です。</font><font style="vertical-align: inherit;">言語に応じて、通常の構文解析サイクルから抜け出すことができるため、それらを使って本当に野生的なことを行うことができます。</font><font style="vertical-align: inherit;">しかし、マクロは実際にユーザーと開発者が書かなければならないボイラープレートコードの量を減らすために存在します。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">CおよびC ++（およびFortran）では、Cプリプロセッサ</font></font><code class="docutils literal notranslate"><span class="pre">cpp</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">はマクロ評価エンジンです。</font><font style="vertical-align: inherit;">たとえば、</font></font><code class="docutils literal notranslate"><span class="pre">#include</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">or </font><font style="vertical-align: inherit;">が表示されるたびに</font></font><code class="docutils literal notranslate"><span class="pre">#ifdef</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、これは</font></font><code class="docutils literal notranslate"><span class="pre">cpp</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">動作して</font><font style="vertical-align: inherit;">いる</font><font style="vertical-align: inherit;">マクロシステムです。</font><font style="vertical-align: inherit;">これらの言語では、マクロは技術的には現在の言語の定義の外にあります。</font><font style="vertical-align: inherit;">さらに、</font></font><code class="docutils literal notranslate"><span class="pre">cpp</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">コードを1回だけ通過させる必要がある</font><font style="vertical-align: inherit;">ため</font><font style="vertical-align: inherit;">、書き込むことのできるマクロの種類
+ </font></font><code class="docutils literal notranslate"><span class="pre">cpp</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">は比較的簡単です。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">一方、Rustは、通常の機能によく似た、見た目と感触が高いファーストクラスのマクロを持っています。</font><font style="vertical-align: inherit;">Rustのマクロは、引数から型情報を引き出し、戻り値が消費されないようにすることができます。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Lisp、Forth、Juliaのような他の言語もマクロシステムを提供しています。</font><font style="vertical-align: inherit;">再構成されたテキスト（rST）指令でさえ、マクロと見なすことができます。</font><font style="vertical-align: inherit;">Haskellやその他のより純粋に機能的な言語はマクロを必要としません（評価は怠けているので）。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">これらはPythonの世界に慣れていないように見える場合は、そのJupyterとIPython魔法を注意</font></font><code class="docutils literal notranslate"><span class="pre">%</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">して</font></font><code class="docutils literal notranslate"><span class="pre">%%</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">マクロです！</font></font></p>
+</div>
+<div class="section" id="function-macros">
+<h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">関数マクロ</font></font><a class="headerlink" href="#function-macros" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h2>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xonshは通常のPython呼び出し可能コードに基づいたRustのようなマクロをサポートしています。</font><font style="vertical-align: inherit;">マクロはxonshに特別な定義を必要としません。</font><font style="vertical-align: inherit;">ただし、Rustの場合と同様に</font></font><code class="docutils literal notranslate"><span class="pre">!</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、呼び出し可能なカッコと開始カッコの間に</font><font style="vertical-align: inherit;">感嘆符</font><font style="vertical-align: inherit;">を付けてコール</font><font style="vertical-align: inherit;">する必要があります</font></font><code class="docutils literal notranslate"><span class="pre">(</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font><font style="vertical-align: inherit;">マクロ引数は</font></font><code class="docutils literal notranslate"><span class="pre">,</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、通常のPython関数のように</font><font style="vertical-align: inherit;">最上位コンマ</font><font style="vertical-align: inherit;">で</font><font style="vertical-align: inherit;">分割されます</font><font style="vertical-align: inherit;">。</font><font style="vertical-align: inherit;">たとえば、関数</font></font><code class="docutils literal notranslate"><span class="pre">f</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">とがあるとし</font></font><code class="docutils literal notranslate"><span class="pre">g</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ます。</font><font style="vertical-align: inherit;">これらの関数のマクロ呼び出しは、次のように実行できます。</font></font></p>
+<div class="highlight-xonsh notranslate"><div class="highlight"><pre><span></span><span class="c1"># No macro args</span>
+<span class="n">f</span><span class="k">!</span><span class="p">()</span>
+
+<span class="c1"># Single arg</span>
+<span class="n">f</span><span class="k">!</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">g</span><span class="k">!</span><span class="p">([</span><span class="n">y</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">44</span><span class="p">])</span>
+
+<span class="c1"># Two args</span>
+<span class="n">f</span><span class="k">!</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">42</span><span class="p">)</span>
+<span class="n">g</span><span class="k">!</span><span class="p">([</span><span class="n">y</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">44</span><span class="p">],</span> <span class="n">f</span><span class="k">!</span><span class="p">(</span><span class="n">z</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">それほど悪くないよね？</font><font style="vertical-align: inherit;">では、マクロ呼び出しで使用されたときに実際に引数に何が起こりますか？</font><font style="vertical-align: inherit;">まあ、それは関数の定義に依存します。</font><font style="vertical-align: inherit;">特に、マクロ呼び出しの各引数は、呼び出し可能なシグネチャ内の対応するパラメータ注釈と照合されます。</font><font style="vertical-align: inherit;">たとえば</font></font><code class="docutils literal notranslate"><span class="pre">identity()</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、唯一の引数に文字列として注釈を付ける関数があるとします。</font></font></p>
+<div class="highlight-xonsh notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">identity</span><span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span>
+</pre></div>
+</div>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">これを普通に呼び出すと、たとえそのオブジェクトが文字列でなくても、戻ってくるオブジェクトを取得するだけです：</font></font></p>
+<div class="highlight-xonshcon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">identity</span><span class="p">(</span><span class="s1">'me'</span><span class="p">)</span><span class="go"></span>
+<span class="go">'me'</span>
+
+<span class="gp">&gt;&gt;&gt;</span> <span class="n">identity</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span><span class="go"></span>
+<span class="go">42</span>
+
+<span class="gp">&gt;&gt;&gt;</span> <span class="n">identity</span><span class="p">(</span><span class="n">identity</span><span class="p">)</span><span class="go"></span>
+<span class="go">&lt;function __main__.identity&gt;</span>
+</pre></div>
+</div>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ただし、マクロ呼び出しを実行する場合は、マクロ呼び出しのソースコードの文字列を取得することが保証されています。</font></font></p>
+<div class="highlight-xonshcon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">identity</span><span class="k">!</span><span class="p">(</span><span class="s1">'me'</span><span class="p">)</span><span class="go"></span>
+<span class="go">"'me'"</span>
+
+<span class="gp">&gt;&gt;&gt;</span> <span class="n">identity</span><span class="k">!</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span><span class="go"></span>
+<span class="go">'42'</span>
+
+<span class="gp">&gt;&gt;&gt;</span> <span class="n">identity</span><span class="k">!</span><span class="p">(</span><span class="n">identity</span><span class="p">)</span><span class="go"></span>
+<span class="go">'identity'</span>
+</pre></div>
+</div>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">また、各マクロ引数はマクロ自体に渡す前に削除されます。</font><font style="vertical-align: inherit;">これは一貫性のために行われます。</font></font></p>
+<div class="highlight-xonshcon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">identity</span><span class="k">!</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span><span class="go"></span>
+<span class="go">'42'</span>
+
+<span class="gp">&gt;&gt;&gt;</span> <span class="n">identity</span><span class="k">!</span><span class="p">(</span>  <span class="mi">42</span> <span class="p">)</span><span class="go"></span>
+<span class="go">'42'</span>
+</pre></div>
+</div>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">重要なのは、ソースコードをキャプチャして評価していないため、マクロ呼び出しには通常の構文を超えた入力が含まれる可能性があります。</font><font style="vertical-align: inherit;">実際には、それは全体のポイントのようなものです。</font><font style="vertical-align: inherit;">ギアの回転を開始するいくつかのケースがあります：</font></font></p>
+<div class="highlight-xonshcon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">identity</span><span class="k">!</span><span class="p">(</span><span class="kn">import</span> <span class="nn">os</span><span class="p">)</span><span class="go"></span>
+<span class="go">'import os'</span>
+
+<span class="gp">&gt;&gt;&gt;</span> <span class="n">identity</span><span class="k">!</span><span class="p">(</span><span class="k">if</span> <span class="bp">True</span><span class="p">:</span><span class="gp"></span>
+<span class="gp">&gt;&gt;&gt;</span>     <span class="k">pass</span><span class="p">)</span><span class="go"></span>
+<span class="go">'if True:\n    pass'</span>
+
+<span class="gp">&gt;&gt;&gt;</span> <span class="n">identity</span><span class="k">!</span><span class="p">(</span><span class="n">std</span><span class="p">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="p">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"yoo"</span><span class="p">,</span> <span class="s2">"hoo"</span><span class="p">})</span><span class="go"></span>
+<span class="go">'std::vector&lt;std::string&gt; x = {"yoo", "hoo"}'</span>
+</pre></div>
+</div>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">あなたはあなたです</font></font><code class="docutils literal notranslate"><span class="pre">identity()</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+</div>
+<div class="section" id="calling-function-macros">
+<h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">関数マクロの呼び出し</font></font><a class="headerlink" href="#calling-function-macros" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h2>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">マクロを呼び出す際には、いくつかの点を考慮する必要があります。</font><font style="vertical-align: inherit;">1つは、名前で引数を渡すと、期待どおりに動作しないということです。</font><font style="vertical-align: inherit;">これは</font></font><code class="docutils literal notranslate"><span class="pre">&lt;name&gt;=</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、マクロ自体によってキャプチャされるためです。</font></font><code class="docutils literal notranslate"><span class="pre">identity()</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+上</font><font style="vertical-align: inherit;">の</font><font style="vertical-align: inherit;">関数</font><font style="vertical-align: inherit;">を使う</font><font style="vertical-align: inherit;">：</font></font></p>
+<div class="highlight-xonshcon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">identity</span><span class="k">!</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span><span class="go"></span>
+<span class="go">'x=42'</span>
+</pre></div>
+</div>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">マクロ呼び出しを実行すると、引数の順序だけが値を渡します。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">さらに、マクロ呼び出しは、最上位のカンマでのみ引数を分割します。</font><font style="vertical-align: inherit;">最上位のコンマは引数には含まれません。</font><font style="vertical-align: inherit;">これは、通常のPython関数呼び出しと同様に動作します。</font><font style="vertical-align: inherit;">たとえば、次の</font></font><code class="docutils literal notranslate"><span class="pre">g()</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2つの引数を受け入れる関数があるとします。</font></font></p>
+<div class="highlight-xonsh notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">g</span><span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">y</span> <span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">'x = '</span> <span class="o">+</span> <span class="nb">repr</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">'y = '</span> <span class="o">+</span> <span class="nb">repr</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次に、各マクロ引数での分割とストリッピングの動作を確認できます。</font></font></p>
+<div class="highlight-xonshcon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="k">!</span><span class="p">(</span><span class="mi">42</span><span class="p">,</span> <span class="mi">65</span><span class="p">)</span><span class="go"></span>
+<span class="go">x = '42'</span>
+<span class="go">y = '65'</span>
+
+<span class="gp">&gt;&gt;&gt;</span> <span class="n">g</span><span class="k">!</span><span class="p">(</span><span class="mi">42</span><span class="p">,</span> <span class="mi">65</span><span class="p">,)</span><span class="go"></span>
+<span class="go">x = '42'</span>
+<span class="go">y = '65'</span>
+
+<span class="gp">&gt;&gt;&gt;</span> <span class="n">g</span><span class="k">!</span><span class="p">(</span> <span class="mi">42</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="p">)</span><span class="go"></span>
+<span class="go">x = '42'</span>
+<span class="go">y = '65'</span>
+
+<span class="gp">&gt;&gt;&gt;</span> <span class="n">g</span><span class="k">!</span><span class="p">([</span><span class="s1">'x'</span><span class="p">,</span> <span class="s1">'y'</span><span class="p">],</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mi">3</span><span class="p">})</span><span class="go"></span>
+<span class="go">x = "['x', 'y']"</span>
+<span class="go">y = '{1: 1, 2: 3}'</span>
+</pre></div>
+</div>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">時には最初のいくつかの引数をマクロ引数として渡し、残りを通常のPython引数として扱いたい場合もあります。</font><font style="vertical-align: inherit;">通常、xonshのマクロ呼び出し側は</font></font><code class="docutils literal notranslate"><span class="pre">*</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、マクロ引数と正規の引数を分割するために</font><font style="vertical-align: inherit;">孤立した</font><font style="vertical-align: inherit;">引数</font><font style="vertical-align: inherit;">を探し</font><font style="vertical-align: inherit;">ます。</font><font style="vertical-align: inherit;">したがって、たとえば：</font></font></p>
+<div class="highlight-xonshcon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="k">!</span><span class="p">(</span><span class="mi">42</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="mi">65</span><span class="p">)</span><span class="go"></span>
+<span class="go">x = '42'</span>
+<span class="go">y = 65</span>
+
+<span class="gp">&gt;&gt;&gt;</span> <span class="n">g</span><span class="k">!</span><span class="p">(</span><span class="mi">42</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">65</span><span class="p">)</span><span class="go"></span>
+<span class="go">x = '42'</span>
+<span class="go">y = 65</span>
+</pre></div>
+</div>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">上記で</font></font><code class="docutils literal notranslate"><span class="pre">x</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">は、まだマクロ引数として取得されている</font><font style="vertical-align: inherit;">ことに注意して</font><font style="vertical-align: inherit;">ください。</font><font style="vertical-align: inherit;">しかし、すべての後に</font></font><code class="docutils literal notranslate"><span class="pre">*</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、すなわち</font></font><code class="docutils literal notranslate"><span class="pre">y</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、それは通常の関数呼び出しに渡された場合で評価されます。</font><font style="vertical-align: inherit;">これはマクロ引数としてほんの一握りのargsしか必要としない大規模なインタフェースに有効です。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">うまくいけば、今大きな絵が見えます。</font></font></p>
+</div>
+<div class="section" id="writing-function-macros">
+<h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">関数マクロの</font></font><a class="headerlink" href="#writing-function-macros" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">記述¶</font></font></a></h2>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">任意の関数（または呼び出し可能）をマクロとして使用することはできますが、この関数はおそらく関数が</font><font style="vertical-align: inherit;">マクロとして</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">設計さ</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">れている</font><font style="vertical-align: inherit;">場合に最も便利です</font><font style="vertical-align: inherit;">。</font><font style="vertical-align: inherit;">考慮すべきマクロ設計には、引数注釈と呼び出しサイト実行コンテキストの2つの主な側面があります。</font></font></p>
+<div class="section" id="macro-annotations">
+<h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">マクロ注釈</font></font><a class="headerlink" href="#macro-annotations" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h3>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">マクロには6種類の注釈が​​あります。</font></font></p>
+<table border="1" class="docutils" id="id2">
+<caption><span class="caption-text"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">注釈の種類</font></font></span><a class="headerlink" href="#id2" title="このテーブルへの固定リンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></caption>
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">カテゴリー</font></font></th>
+<th class="head"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">オブジェクト</font></font></th>
+<th class="head"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">フラグ</font></font></th>
+<th class="head"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">モード</font></font></th>
+<th class="head"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">返品</font></font></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">文字列</font></font></td>
+<td><code class="docutils literal notranslate"><span class="pre">str</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">'s'</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><code class="docutils literal notranslate"><span class="pre">'str'</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">または</font></font><code class="docutils literal notranslate"><span class="pre">'string'</span></code></td>
+<td> </td>
+<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">引数のソースコードは文字列（</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">デフォルト）です</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></td>
+</tr>
+<tr class="row-odd"><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">AST</font></font></td>
+<td><code class="docutils literal notranslate"><span class="pre">ast.AST</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">'a'</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> または </font></font><code class="docutils literal notranslate"><span class="pre">'ast'</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">'eval'</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（デフォルト）、</font></font><code class="docutils literal notranslate"><span class="pre">'exec'</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">または</font></font><code class="docutils literal notranslate"><span class="pre">'single'</span></code></td>
+<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">引数の抽象構文木。</font></font></td>
+</tr>
+<tr class="row-even"><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">コード</font></font></td>
+<td><code class="docutils literal notranslate"><span class="pre">types.CodeType</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> または </font></font><code class="docutils literal notranslate"><span class="pre">compile</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">'c'</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><code class="docutils literal notranslate"><span class="pre">'code'</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">または</font></font><code class="docutils literal notranslate"><span class="pre">'compile'</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">'eval'</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（デフォルト）、</font></font><code class="docutils literal notranslate"><span class="pre">'exec'</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">または</font></font><code class="docutils literal notranslate"><span class="pre">'single'</span></code></td>
+<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">引数のコンパイルされたコードオブジェクト。</font></font></td>
+</tr>
+<tr class="row-odd"><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">評価</font></font></td>
+<td><code class="docutils literal notranslate"><span class="pre">eval</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> または </font></font><code class="docutils literal notranslate"><span class="pre">None</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">'v'</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> または </font></font><code class="docutils literal notranslate"><span class="pre">'eval'</span></code></td>
+<td> </td>
+<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">議論の評価。</font></font></td>
+</tr>
+<tr class="row-even"><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">幹部</font></font></td>
+<td><code class="docutils literal notranslate"><span class="pre">exec</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">'x'</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> または </font></font><code class="docutils literal notranslate"><span class="pre">'exec'</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">'exec'</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> （デフォルト）または </font></font><code class="docutils literal notranslate"><span class="pre">'single'</span></code></td>
+<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">引数を実行し、Noneを返します。</font></font></td>
+</tr>
+<tr class="row-odd"><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">タイプ</font></font></td>
+<td><code class="docutils literal notranslate"><span class="pre">type</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">'t'</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> または </font></font><code class="docutils literal notranslate"><span class="pre">'type'</span></code></td>
+<td> </td>
+<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">引数が評価された後の引数の型。</font></font></td>
+</tr>
+</tbody>
+</table>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">これらのアノテーションを使用すると、コンパイルの任意の段階に自由にアクセスできます。</font><font style="vertical-align: inherit;">注釈タイプへの変換の前に、引数の文字列形式を分割して（前述のように）削除することに注意することが重要です。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">各引数には、それぞれ独自のタイプの注釈を付けることができます。</font><font style="vertical-align: inherit;">アノテーションは、オブジェクトとして、または上記の表に見られる文字列フラグとして提供されることがあります。</font><font style="vertical-align: inherit;">文字列フラグは大文字と小文字を区別しません。</font><font style="vertical-align: inherit;">引数に注釈がない場合</font></font><code class="docutils literal notranslate"><span class="pre">str</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">は、選択されます。</font><font style="vertical-align: inherit;">これにより、マクロ関数呼び出しは、以下のサブプロセスマクロおよびコンテキストマネージャマクロのように動作します。</font><font style="vertical-align: inherit;">例えば、</font></font></p>
+<div class="highlight-xonsh notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="p">:</span> <span class="s1">'AST'</span><span class="p">,</span> <span class="n">c</span> <span class="p">:</span> <span class="nb">compile</span><span class="p">):</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">のマクロ呼び出しでは</font></font><code class="docutils literal notranslate"><span class="pre">func!()</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font></p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">a</span></code><font style="vertical-align: inherit;"></font><code class="docutils literal notranslate"><span class="pre">str</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">注釈が提供</font><font style="vertical-align: inherit;">されて</font><font style="vertical-align: inherit;">いない</font><font style="vertical-align: inherit;">ために評価</font><font style="vertical-align: inherit;">され、</font></font></li>
+<li><code class="docutils literal notranslate"><span class="pre">b</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 構文木ノードに解析され、</font></font></li>
+<li><code class="docutils literal notranslate"><span class="pre">c</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">組み込み</font></font><code class="docutils literal notranslate"><span class="pre">compile()</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+関数が注釈として使用された</font><font style="vertical-align: inherit;">ため、コードオブジェクトにコンパイルされます</font><font style="vertical-align: inherit;">。</font></font></li>
+</ul>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">さらに、特定の種類の注釈には、引数の解析、コンパイル、および実行に影響を与える異なるモードがあります。</font><font style="vertical-align: inherit;">賢明なデフォルトが提供されていますが、独自のものを提供することもできます。</font><font style="vertical-align: inherit;">これは、（kind、mode）タプルで注釈を付けることによって行われます。</font><font style="vertical-align: inherit;">最初の要素は、任意の有効なオブジェクトまたはフラグです。</font><font style="vertical-align: inherit;">2番目の要素は文字列として対応するモードでなければなりません。</font><font style="vertical-align: inherit;">例えば、</font></font></p>
+<div class="highlight-xonsh notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gunc</span><span class="p">(</span><span class="n">d</span> <span class="p">:</span> <span class="p">(</span><span class="k">exec</span><span class="p">,</span> <span class="s1">'single'</span><span class="p">),</span> <span class="n">e</span> <span class="p">:</span> <span class="p">(</span><span class="s1">'c'</span><span class="p">,</span> <span class="s1">'exec'</span><span class="p">)):</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">したがって、のマクロ呼び出しでは</font></font><code class="docutils literal notranslate"><span class="pre">gunc!()</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font></p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">d</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> （exec-modeではなく）シングルモードでexec'dされます。</font></font></li>
+<li><code class="docutils literal notranslate"><span class="pre">e</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> exec-mode（eval-modeではなく）でコンパイルされます。</font></font></li>
+</ul>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">exec、eval、およびsingleモードの違いについては、Pythonのドキュメントを参照してください。</font></font></p>
+</div>
+<div class="section" id="macro-function-execution-context">
+<h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">マクロ関数の実行コンテキスト</font></font><a class="headerlink" href="#macro-function-execution-context" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h3>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">マクロ引数を持つことと同様に重要なのは、マクロ呼び出し自体の実行コンテキストを知ることです。</font><font style="vertical-align: inherit;">マクロをフレームで囲む​​のではなく、コールサイトのグローバルとローカルの両方を提供します。</font><font style="vertical-align: inherit;">これらは、アクセス可能</font></font><code class="docutils literal notranslate"><span class="pre">macro_globals</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">と</font></font><code class="docutils literal notranslate"><span class="pre">macro_locals</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">マクロが実行されている間マクロ関数自体の属性。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">たとえば、すべてのリテラル</font></font><code class="docutils literal notranslate"><span class="pre">1</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">桁を</font><font style="vertical-align: inherit;">リテラルで置き換え</font></font><code class="docutils literal notranslate"><span class="pre">2</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、変更を評価し、結果を返す</font><font style="vertical-align: inherit;">マクロを考えてみましょう</font><font style="vertical-align: inherit;">。</font><font style="vertical-align: inherit;">評価するために、マクロはグローバルとローカルを引き離す必要があります：</font></font></p>
+<div class="highlight-xonsh notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">one_to_two</span><span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'1'</span><span class="p">,</span> <span class="s1">'2'</span><span class="p">)</span>
+    <span class="n">glbs</span> <span class="o">=</span> <span class="n">one_to_two</span><span class="o">.</span><span class="n">macro_globals</span>
+    <span class="n">locs</span> <span class="o">=</span> <span class="n">one_to_two</span><span class="o">.</span><span class="n">macro_locals</span>
+    <span class="k">return</span> <span class="nb">eval</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">glbs</span><span class="p">,</span> <span class="n">locs</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">これをいくつかの異なる入力で実行すると、次のようになります。</font></font></p>
+<div class="highlight-xonshcon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">one_to_two</span><span class="k">!</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="go"></span>
+<span class="go">4</span>
+
+<span class="gp">&gt;&gt;&gt;</span> <span class="n">one_to_two</span><span class="k">!</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span><span class="go"></span>
+<span class="go">22</span>
+
+<span class="gp">&gt;&gt;&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="gp"></span>
+<span class="gp">&gt;&gt;&gt;</span> <span class="n">one_to_two</span><span class="k">!</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="go"></span>
+<span class="go">3</span>
+</pre></div>
+</div>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">もちろん、ユースケースに応じて他の多くの洗練されたオプションが利用できます。</font></font></p>
+</div>
+</div>
+<div class="section" id="subprocess-macros">
+<h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">サブプロセスマクロ</font></font><a class="headerlink" href="#subprocess-macros" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h2>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">上記の関数マクロと同様に、サブプロセスマクロを使用すると、サブプロセスモードを終了する準備ができるまでパーサーを一時停止することができます。</font><font style="vertical-align: inherit;">関数マクロとは異なり、マクロ引数は1つしかなく、そのマクロ型は常に文字列です。</font><font style="vertical-align: inherit;">これは、通常、文字列以外の引数をコマンドに渡すのは意味がないためです。</font><font style="vertical-align: inherit;">そして、そうなったら、</font></font><code class="docutils literal notranslate"><span class="pre">@()</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">構文</font><font style="vertical-align: inherit;">があり</font><font style="vertical-align: inherit;">ます！</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">最も単純なケースでは、サブプロセスマクロは、それらの関数マクロの同等物と同じように見えます。</font></font></p>
+<div class="highlight-xonshcon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">echo</span><span class="k">!</span> <span class="n">I</span><span class="s1">'m Mr. Meeseeks.</span>
+<span class="n">I</span><span class="s1">'m Mr. Meeseeks.</span>
+</pre></div>
+</div>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ここでも、右側のすべて</font><font style="vertical-align: inherit;">が最後の1つの引数としてコマンドに</font></font><code class="docutils literal notranslate"><span class="pre">!</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">渡され
+ </font></font><code class="docutils literal notranslate"><span class="pre">echo</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ます。</font><font style="vertical-align: inherit;">引用符で囲むような、スペースを節約します。</font></font></p>
+<div class="highlight-xonshcon notranslate"><div class="highlight"><pre><span></span><span class="c1"># normally, xonsh will split on whitespace,</span><span class="go"></span>
+<span class="go"># so each argument is passed in separately</span><span class="gp"></span>
+<span class="gp">&gt;&gt;&gt;</span> <span class="n">echo</span> <span class="n">x</span>  <span class="n">y</span>       <span class="n">z</span><span class="go"></span>
+<span class="go">x y z</span>
+
+<span class="go"># usually space can be preserved with quotes</span><span class="gp"></span>
+<span class="gp">&gt;&gt;&gt;</span> <span class="n">echo</span> <span class="s2">"x  y       z"</span><span class="go"></span>
+<span class="go">x  y       z</span>
+
+<span class="go"># however, subprocess macros will pause and then strip</span>
+<span class="go"># all input after the exclamation point</span><span class="gp"></span>
+<span class="gp">&gt;&gt;&gt;</span> <span class="n">echo</span><span class="k">!</span> <span class="n">x</span>  <span class="n">y</span>       <span class="n">z</span><span class="go"></span>
+<span class="go">x  y       z</span>
+</pre></div>
+</div>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">しかし、マクロは、パスや環境変数の拡張を含め、引用符でさえ存在する可能性のあるすべてを一時停止します。</font><font style="vertical-align: inherit;">例えば：</font></font></p>
+<div class="highlight-xonshcon notranslate"><div class="highlight"><pre><span></span><span class="c1"># without macros, environment variable are expanded</span><span class="gp"></span>
+<span class="gp">&gt;&gt;&gt;</span> <span class="n">echo</span> <span class="nv">$USER</span><span class="go"></span>
+<span class="go">lou</span>
+
+<span class="go"># inside of a macro, all additional munging is turned off.</span><span class="gp"></span>
+<span class="gp">&gt;&gt;&gt;</span> <span class="n">echo</span><span class="k">!</span> <span class="nv">$USER</span><span class="go"></span>
+<span class="go">$USER</span>
+</pre></div>
+</div>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">先頭と末尾の空白を除く、感嘆符の右側のすべてが、書かれたとおりに直接コマンドに渡されます。</font><font style="vertical-align: inherit;">これにより、クォートやパイピングがより重荷になる場合に、特定のコマンドを機能させることができます。</font><font style="vertical-align: inherit;">この</font></font><code class="docutils literal notranslate"><span class="pre">timeit</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">コマンドは、単純な構文が失敗することが多いが、マクロとして簡単に実行できる素晴らしい例です。</font></font></p>
+<div class="highlight-xonshcon notranslate"><div class="highlight"><pre><span></span><span class="c1"># fails normally</span><span class="gp"></span>
+<span class="gp">&gt;&gt;&gt;</span> <span class="n">timeit</span> <span class="s2">"hello mom "</span> <span class="o">+</span> <span class="s2">"and dad"</span><span class="go"></span>
+<span class="go">xonsh: subprocess mode: command not found: hello</span>
+
+<span class="go"># macro success!</span><span class="gp"></span>
+<span class="gp">&gt;&gt;&gt;</span> <span class="n">timeit</span><span class="k">!</span> <span class="s2">"hello mom "</span> <span class="o">+</span> <span class="s2">"and dad"</span><span class="go"></span>
+<span class="go">100000000 loops, best of 3: 8.24 ns per loop</span>
+</pre></div>
+</div>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">感嘆符の左にあるすべての式は通常通り渡され、特殊なマクロ引数として扱われません。</font><font style="vertical-align: inherit;">これにより、単純なコマンドライン引数と複雑なコマンドライン引数を混在させることができます。</font><font style="vertical-align: inherit;">たとえば、実際に別の言語でコードを記述したい場合があります。</font></font></p>
+<div class="highlight-xonshcon notranslate"><div class="highlight"><pre><span></span><span class="c1"># don't worry, it is temporary!</span><span class="gp"></span>
+<span class="gp">&gt;&gt;&gt;</span> <span class="n">bash</span> <span class="o">-</span><span class="n">c</span> <span class="err">!</span> <span class="n">export</span> <span class="n">var</span><span class="o">=</span><span class="mi">42</span><span class="p">;</span> <span class="n">echo</span> <span class="nv">$var</span><span class="go"></span>
+<span class="go">42</span>
+
+<span class="go"># that's better!</span><span class="gp"></span>
+<span class="gp">&gt;&gt;&gt;</span> <span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="err">!</span> <span class="kn">import</span> <span class="nn">os</span><span class="p">;</span> <span class="k">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">"/"</span><span class="p">))</span><span class="go"></span>
+<span class="go">/</span>
+</pre></div>
+</div>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">関数マクロと比較すると、サブプロセスマクロは比較的簡単です。</font><font style="vertical-align: inherit;">しかし、彼らはまだ非常に表現力豊かなことがあります！</font></font></p>
+</div>
+<div class="section" id="context-manager-macros">
+<h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">コンテキストマネージャのマクロ</font></font><a class="headerlink" href="#context-manager-macros" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h2>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">今、私たちはマクロ表現のような人生を見ることができたので、マクロステートメントを紹介しましょう</font></font><code class="docutils literal notranslate"><span class="pre">with!</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font><font style="vertical-align: inherit;">With-Bangは、既存のPythonコンテキストマネージャの上にマクロを提供します。</font><font style="vertical-align: inherit;">これは、xonshに匿名ブロックと匿名ブロックの両方を提供します。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">コンテキストマネージャマクロの構文は、Pythonの通常のwith-statementと同じですが、</font></font><code class="docutils literal notranslate"><span class="pre">with</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">単語と最初のコンテキストマネージャ式の</font><font style="vertical-align: inherit;">間に感嘆符が追加されてい</font><font style="vertical-align: inherit;">ます。</font><font style="vertical-align: inherit;">簡単な例として、</font></font></p>
+<div class="highlight-xonsh notranslate"><div class="highlight"><pre><span></span><span class="k">with!</span> <span class="n">x</span><span class="p">:</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">上の例では、コロン（</font></font><code class="docutils literal notranslate"><span class="pre">x</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）の</font><font style="vertical-align: inherit;">左側のすべてが</font><font style="vertical-align: inherit;">正常に評価されます。</font><font style="vertical-align: inherit;">しかし、ボディは実行され</font></font><code class="docutils literal notranslate"><span class="pre">y</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ず、定義もプリントもされません。</font><font style="vertical-align: inherit;">この場合、本文は入力される前に、グローバルとローカルと一緒にxに文字列としてアタッチされます。</font><font style="vertical-align: inherit;">その後、本文は</font></font><code class="docutils literal notranslate"><span class="pre">pass</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ステートメントに</font><font style="vertical-align: inherit;">置き換えられ</font><font style="vertical-align: inherit;">ます。</font><font style="vertical-align: inherit;">上記は次のように変形されていると考えることができます：</font></font></p>
+<div class="highlight-xonsh notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="n">macro_block</span> <span class="o">=</span> <span class="s1">'y = 10</span><span class="se">\n</span><span class="s1">print(y)</span><span class="se">\n</span><span class="s1">'</span>
+<span class="n">x</span><span class="o">.</span><span class="n">macro_globals</span> <span class="o">=</span> <span class="nb">globals</span><span class="p">()</span>
+<span class="n">x</span><span class="o">.</span><span class="n">macro_locals</span> <span class="o">=</span> <span class="nb">locals</span><span class="p">()</span>
+<span class="k">with!</span> <span class="n">x</span><span class="p">:</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">これについて通知する重要な点がいくつかあります。</font></font></p>
+<ol class="arabic simple">
+<li><font style="vertical-align: inherit;"></font><code class="docutils literal notranslate"><span class="pre">macro_block</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">文字列がdedentedされ、</font></font></li>
+<li><font style="vertical-align: inherit;"></font><code class="docutils literal notranslate"><span class="pre">macro_*</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">属性が設定されている</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前の</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ように、コンテキストマネージャが入力されている</font></font><code class="docutils literal notranslate"><span class="pre">__enter__()</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法は、それらを使用することができ、</font></font></li>
+<li><font style="vertical-align: inherit;"></font><code class="docutils literal notranslate"><span class="pre">macro_*</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">コンテキストマネージャは、オブジェクトが終了した後も、それらを使用できるように属性が自動的にクリーンアップされていません。
+</font></font><code class="docutils literal notranslate"><span class="pre">__exit__()</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">必要に応じて、この方法は、これらの属性をクリーンアップすることがあります。</font></font></li>
+</ol>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">デフォルトでは、マクロブロックは文字列として返されます。</font><font style="vertical-align: inherit;">しかし、関数のマクロ引数のように、種類は</font></font><code class="docutils literal notranslate"><span class="pre">macro_block</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">特殊な注釈によって決まります。</font><font style="vertical-align: inherit;">この注釈は</font></font><code class="docutils literal notranslate"><span class="pre">__xonsh_block__</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、コンテキストマネージャ自体の属性を</font><font style="vertical-align: inherit;">介して与えられ</font><font style="vertical-align: inherit;">ます。</font><font style="vertical-align: inherit;">これにより、ブロックはAST、バイトコンパイルされたものなどと解釈されます。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">この構文についての便利な部分は、マクロブロックがレベルの後ろに割り当てられていることがわかると、マクロブロックだけが終了するということです</font></font><code class="docutils literal notranslate"><span class="pre">with!</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font><font style="vertical-align: inherit;">その他のコードはすべて無差別にスキップされます！</font><font style="vertical-align: inherit;">これにより、一時停止することなくxonsh以外の言語でコードブロックを書くことができます。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">たとえば、単純なXMLマクロ・コンテキスト・マネージャを考えてみましょう。</font><font style="vertical-align: inherit;">これは、解析されたXMLツリーをマクロブロックから返します。</font><font style="vertical-align: inherit;">コンテキストマネージャ自体は次のように記述することができます。</font></font></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xml.etree.ElementTree</span> <span class="kn">as</span> <span class="nn">ET</span>
+
+<span class="k">class</span> <span class="nc">XmlBlock</span><span class="p">:</span>
+
+    <span class="c1"># make sure the macro_block comes back as a string</span>
+    <span class="n">__xonsh_block__</span> <span class="o">=</span> <span class="nb">str</span>
+
+    <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># parse and return the block on entry</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="n">ET</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">macro_block</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">root</span>
+
+    <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">exc</span><span class="p">):</span>
+        <span class="c1"># no reason to keep these attributes around.</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro_block</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro_globals</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro_locals</span>
+</pre></div>
+</div>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">上記のクラスは、つぎのようにwith-bangで使用できます。</font></font></p>
+<div class="highlight-xonsh notranslate"><div class="highlight"><pre><span></span><span class="k">with!</span> <span class="n">XmlBlock</span><span class="p">()</span> <span class="k">as</span> <span class="n">tree</span><span class="p">:</span>
+    <span class="o">&lt;</span><span class="n">note</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">to</span><span class="o">&gt;</span><span class="n">You</span><span class="o">&lt;/</span><span class="n">to</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">from</span><span class="o">&gt;</span><span class="n">Xonsh</span><span class="o">&lt;/</span><span class="n">from</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">heading</span><span class="o">&gt;</span><span class="n">Don</span><span class="s1">'t You Want Me, Baby&lt;/heading&gt;</span>
+      <span class="o">&lt;</span><span class="n">body</span><span class="o">&gt;</span>
+        <span class="n">You</span> <span class="n">know</span> <span class="n">I</span> <span class="n">don</span><span class="s1">'t believe you when you say that you don'</span><span class="n">t</span> <span class="n">need</span> <span class="n">me</span><span class="o">.</span>
+      <span class="o">&lt;/</span><span class="n">body</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">note</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">これを実行すると、</font></font><code class="docutils literal notranslate"><span class="pre">tree</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">オブジェクトが実際に解析されたXMLオブジェクト</font><font style="vertical-align: inherit;">であることがわかり</font><font style="vertical-align: inherit;">ます。</font></font></p>
+<div class="highlight-xonshcon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">tree</span><span class="o">.</span><span class="n">tag</span><span class="p">)</span><span class="go"></span>
+<span class="go">note</span>
+</pre></div>
+</div>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">だから、およそ8行のxonshコードで、別の、まったく異なる言語とシームレスにインターフェースすることができます。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">この可能性は、単なるマークアップ言語やその他の当事者の手口に限定されません。</font><font style="vertical-align: inherit;">あなたは、SSH、RPC、dask / distributedなどを介してリモート実行インターフェイスになることができます。コンテキストマネージャマクロの本当の利点は、xonsh言語自体の一部としていつ、どこで、どのコードが実行されるかを選択できることです。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">権力はそこにある。</font><font style="vertical-align: inherit;">予約なしでそれを使用してください！</font></font></p>
+</div>
+<div class="section" id="take-away">
+<h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">逃げる</font></font><a class="headerlink" href="#take-away" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h2>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">うまくいけば、この時点で、いくつかの適切に配置されたマクロは、どのプロジェクトにとっても非常に便利で貴重なものになることがわかります。</font></font></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="sidebar.html" title="サイドバー">
+          <img class="logo" src="_static/ascii_conch_part_transparent_tight.png" alt="ロゴ" />
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="sidebar.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ページの内容</font></font></a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">チュートリアル：マクロ</font></font></a><ul>
+<li><a class="reference internal" href="#what-are-macro-instructions"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">マクロ命令とは何ですか？</font></font></a></li>
+<li><a class="reference internal" href="#when-and-where-are-macros-used"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">マクロはいつどこで使用されますか？</font></font></a></li>
+<li><a class="reference internal" href="#function-macros"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ファンクションマクロ</font></font></a></li>
+<li><a class="reference internal" href="#calling-function-macros"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">関数マクロの呼び出し</font></font></a></li>
+<li><a class="reference internal" href="#writing-function-macros"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">関数マクロの記述</font></font></a><ul>
+<li><a class="reference internal" href="#macro-annotations"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">マクロ注釈</font></font></a></li>
+<li><a class="reference internal" href="#macro-function-execution-context"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">マクロ関数実行コンテキスト</font></font></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#subprocess-macros"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">サブプロセスマクロ</font></font></a></li>
+<li><a class="reference internal" href="#context-manager-macros"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">コンテキストマネージャのマクロ</font></font></a></li>
+<li><a class="reference internal" href="#take-away"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取り除く</font></font></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前のページ</font></font></h4>
+    <p class="topless"><a href="tutorial_hist.html" title="前のページ"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">←チュートリアル：履歴</font></font></a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次のページ</font></font></h4>
+    <p class="topless"><a href="tutorial_xontrib.html" title="次のページ"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">→チュートリアル：拡張（Xontribs）</font></font></a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">このページ</font></font></h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/tutorial_macros.rst.txt" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ソースを表示</font></font></a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="" role="search">
+  <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">クイック検索</font></font></h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><input type="submit" value="行こう" /></font></font>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="サイドバーメニューを非表示にする"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                 «
+                </font></font><span class="show-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">メニューを隠す</font></font></span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="サイドバーメニューを表示する" style="display: none;">
+                
+                <span class="show-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">メニューの</font></font></span>
+                <span class="hide-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">サイドバー</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 
+                 »
+            </font></font></button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ナビゲーション</font></font></h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="一般索引"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">索引</font></font></a></li>
+        <li class="right">
+          <a href="py-modindex.html" title="Pythonモジュールのインデックス"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">モジュール</font></font></a>    </li>
+        <li class="right">
+          <a href="tutorial_xontrib.html" title="チュートリアル：拡張（Xontribs）"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次</font></font></a>    </li>
+        <li class="right">
+          <a href="tutorial_hist.html" title="チュートリアル：履歴"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前</font></font></a>    </li>
+    <li><a href="sidebar.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonsh 0.8.5 documentation</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+
+          <li class="nav-item nav-item-1"><a href="index.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshシェル</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+        ©Copyright 2015、Anthony Scopatz。</font></font><a href="http://sphinx-doc.org/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sphinx</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 1.8.2 </font><font style="vertical-align: inherit;">を使用して作成されました</font><font style="vertical-align: inherit;">。
+    </font></font></div>
+    <!-- cloud_sptheme 1.4 -->
+  
+<div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="https://www.gstatic.com/images/branding/product/1x/translate_24dp.png" width="20" height="20" alt="Google 翻訳" /></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">原文</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">翻訳を改善する</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;" /><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div><div class="hide-for-small"></div><div class="goog-te-spinner-pos"><div class="goog-te-spinner-animation"><svg xmlns="http://www.w3.org/2000/svg" class="goog-te-spinner" width="96px" height="96px" viewBox="0 0 66 66"><circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"/></svg></div></div></body></html>

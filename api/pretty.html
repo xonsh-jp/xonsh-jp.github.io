@@ -1,0 +1,299 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" class="medium-up-screen translated-ltr"><head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>かなりの印刷（xonsh.pretty） -  xonsh 0.8.5のドキュメント</title>
+    <link rel="stylesheet" href="../_static/numpy_friendly.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/magic_conch.ico" />
+    <link rel="index" title="インデックス" href="../genindex.html" />
+    <link rel="search" title="サーチ" href="../search.html" />
+    <link rel="next" title="リプレイの履歴（xonsh.replay）" href="replay.html" />
+    <link rel="prev" title="プロンプトツールキット2のキーバインディング（xonsh.ptk2.key_bindings）" href="ptk2/key_bindings.html" />
+     
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="canonical" href="http://xon.sh/api/pretty.html" />
+
+  <link type="text/css" rel="stylesheet" charset="UTF-8" href="https://translate.googleapis.com/translate_static/css/translateelement.css" /></head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ナビゲーション</font></font></h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="一般索引" accesskey="I"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">索引</font></font></a></li>
+        <li class="right">
+          <a href="../py-modindex.html" title="Pythonモジュールのインデックス"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">モジュール</font></font></a>    </li>
+        <li class="right">
+          <a href="replay.html" title="リプレイの履歴（xonsh.replay）" accesskey="N"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次</font></font></a>    </li>
+        <li class="right">
+          <a href="ptk2/key_bindings.html" title="プロンプトツールキット2のキーバインディング（xonsh.ptk2.key_bindings）" accesskey="P"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前</font></font></a>    </li>
+    <li><a href="../sidebar.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonsh 0.8.5 documentation</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshシェル</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xonsh API</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document sidebar-hidden">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-xonsh.pretty">
+<span id="pretty-printing-xonsh-pretty"></span><span id="xonsh-pretty"></span><h1><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">素敵な印刷（</font></font><code class="docutils literal notranslate"><span class="pre">xonsh.pretty</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font><a class="headerlink" href="#module-xonsh.pretty" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h1>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Pythonはきれいな先進的なプリンタです。</font><font style="vertical-align: inherit;">このかなりのプリンタは、古い</font></font><cite><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">pprint</font></font></cite><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> pythonモジュール</font><font style="vertical-align: inherit;">を置き換えることを意図し</font><font style="vertical-align: inherit;">ています。これは、開発者がかなりのプリントコールバックを提供することを許可していません。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">このモジュールは</font><font style="vertical-align: inherit;">、</font><cite><font style="vertical-align: inherit;">Tanaka Akiraの</font></cite><font style="vertical-align: inherit;"> rubyの</font></font><cite><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">prettyprint.rb</font></font></cite><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ライブラリに</font><font style="vertical-align: inherit;">基づいています</font><font style="vertical-align: inherit;">。</font></font><cite><font style="vertical-align: inherit;"></font></cite><font style="vertical-align: inherit;"></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">以下の実装はIPythonプロジェクトからフォークされた：*著作権（C）2008から2014、IPython開発チーム*著作権（C）2001年から2007年のフェルナンド・ペレス&lt; </font></font><a class="reference external" href="mailto:fperez%40colorado.edu"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">fperez </font></font><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">@</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">コロラド州</font></font><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">edu</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> &gt; * Copyright（c）2001、Janko Hauser &lt; </font></font><a class="reference external" href="mailto:jhauser%40zscout.de"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">jhauser </font></font><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">@</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> zscout </font></font><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">de</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> &gt; * Copyright（c）2001、Nathaniel Gray &lt; </font></font><a class="reference external" href="mailto:n8gray%40caltech.edu"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">n8gray </font></font><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">@</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> caltech </font></font><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">エデュース</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> &gt;</font></font></p>
+<div class="section" id="example-usage">
+<h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">使用例</font></font><a class="headerlink" href="#example-usage" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h2>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">オブジェクトの表現を直接印刷するには、</font></font><cite><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">pprintを</font></font></cite><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">使用し</font><cite><font style="vertical-align: inherit;">ます</font></cite><font style="vertical-align: inherit;">。</font></font></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pretty</span> <span class="k">import</span> <span class="n">pretty_print</span>
+<span class="n">pretty_pprint</span><span class="p">(</span><span class="n">complex_object</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">出力の文字列を得るには</font></font><cite><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">かなり</font></font></cite><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">使います</font><font style="vertical-align: inherit;">：</font></font></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pretty</span> <span class="k">import</span> <span class="n">pretty</span>
+<span class="n">string</span> <span class="o">=</span> <span class="n">pretty</span><span class="p">(</span><span class="n">complex_object</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="extending">
+<h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">拡張</font></font><a class="headerlink" href="#extending" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h2>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">かなりのライブラリは、開発者が自分のオブジェクトにかなりの印刷ルールを追加できるようにします。</font><font style="vertical-align: inherit;">このプロセスは簡単です。</font></font><cite><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">_repr_pretty_</font></font></cite><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">メソッドをオブジェクト</font><font style="vertical-align: inherit;">に追加し、</font><cite><font style="vertical-align: inherit;">渡さ</font></cite><font style="vertical-align: inherit;">れたかわいいプリンタのメソッドを呼び出すだけです。</font></font></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyObject</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">_repr_pretty_</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">cycle</span><span class="p">):</span>
+        <span class="o">...</span>
+</pre></div>
+</div>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">リストサブクラスの</font></font><cite><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">_repr_pretty_</font></font></cite><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">メソッドの</font><font style="vertical-align: inherit;">実装例を次に示します</font><font style="vertical-align: inherit;">。</font></font></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyList</span><span class="p">(</span><span class="nb">list</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">_repr_pretty_</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">cycle</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">cycle</span><span class="p">:</span>
+            <span class="n">p</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="s1">'MyList(...)'</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">with</span> <span class="n">p</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="s1">'MyList(['</span><span class="p">,</span> <span class="s1">'])'</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">idx</span><span class="p">:</span>
+                        <span class="n">p</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="s1">','</span><span class="p">)</span>
+                        <span class="n">p</span><span class="o">.</span><span class="n">breakable</span><span class="p">()</span>
+                    <span class="n">p</span><span class="o">.</span><span class="n">pretty</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><font style="vertical-align: inherit;"></font><cite><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">サイクル</font></font></cite><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータがある</font></font><cite><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">真の</font></font></cite><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">かなりのサイクルを検出した場合。</font><font style="vertical-align: inherit;">あなた</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">はそれ</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">に反応し</font><em><font style="vertical-align: inherit;">なけれ</font></em><font style="vertical-align: inherit;">ば</font><font style="vertical-align: inherit;">なら</font><em><font style="vertical-align: inherit;">ない</font></em><font style="vertical-align: inherit;">、または結果が無限ループになります。  </font></font><cite><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">p.text（）</font></font></cite><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">は出力に</font></font><cite><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">改行なしの</font></font></cite><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">テキストを追加するだけで、</font><cite><font style="vertical-align: inherit;">p.breakable（）</font></cite><font style="vertical-align: inherit;">は空白を追加するか、ここで改行します。</font><font style="vertical-align: inherit;">引数を渡すと、デフォルトのスペースの代わりに使用されます。  </font></font><cite><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">p.pretty</font></font></cite><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> pretty printメソッドを使って別のオブジェクトをprettyprintします。</font></font></p>
+<p><font style="vertical-align: inherit;"></font><cite><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">グループ</font></font></cite><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">関数</font><font style="vertical-align: inherit;">の最初のパラメータ</font><font style="vertical-align: inherit;">は、次の行の余分な字下げを指定します。</font><font style="vertical-align: inherit;">この例では、次の項目は同じ行にあり（アイテムが十分に短い場合）、または</font></font><cite><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">MyListの</font></font></cite><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">開始括弧の</font><cite><font style="vertical-align: inherit;">右端に揃えられ</font></cite><font style="vertical-align: inherit;">ます。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">あなたが何かをインデントしたいだけなら、open / closeパラメータなしでgroup関数を使うことができます。</font><font style="vertical-align: inherit;">このコードを使用することもできます：</font></font></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">p</span><span class="o">.</span><span class="n">indent</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name" />
+<col class="field-body" />
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">著作権：</font></font></th><td class="field-body"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2007年Armin Ronacherによる。</font><font style="vertical-align: inherit;">ロバート・カーン（Robert Kern）による部分（c）2009。</font></font></td>
+</tr>
+<tr class="field-even field"><th class="field-name"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ライセンス：</font></font></th><td class="field-body"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">BSDライセンス。</font></font></td>
+</tr>
+</tbody>
+</table>
+<dl class="class">
+<dt id="xonsh.pretty.PrettyPrinter">
+<em class="property"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">class </font></font></em><code class="descclassname">xonsh.pretty.</code><code class="descname">PrettyPrinter</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">出力</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">max_width = 79</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">改行= 'n'</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">max_seq_length = 1000 </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/pretty.html#PrettyPrinter"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.pretty.PrettyPrinter" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">以下のための基底クラス</font></font><cite><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">RepresentationPrinterの</font></font></cite><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">オブジェクトのかわいいreprsを生成するために使用されるもしPrettyPrinter。</font></font><cite><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">RepresentationPrinter</font></font></cite><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">とは異なり、</font><font style="vertical-align: inherit;">
+このプリンタはデフォルトのpprintersや</font></font><cite><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">_repr_pretty_</font></font></cite><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 
+コールバックメソッド</font><font style="vertical-align: inherit;">については何も知らない</font><font style="vertical-align: inherit;">。</font></font></p>
+<dl class="method">
+<dt id="xonsh.pretty.PrettyPrinter.begin_group">
+<code class="descname">begin_group</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">インデント= 0</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">オープン= '' </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/pretty.html#PrettyPrinter.begin_group"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.pretty.PrettyPrinter.begin_group" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">グループを開始します。</font><font style="vertical-align: inherit;">with文を持たないpython &lt;2.5をサポートしたい場合は、これが好ましい方法です：</font></font></p>
+<blockquote>
+<div><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">p.begin_group（1、 '{'）... p.end_group（1、 '}'）</font></font></div></blockquote>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Python 2.5の式は次のようになります。</font></font></p>
+<blockquote>
+<div><dl class="docutils">
+<dt><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">p.group（1、 '{'、 '}'）：</font></font></dt>
+<dd><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">...</font></font></dd>
+</dl>
+</div></blockquote>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">最初のパラメータは、次の行のインデント（通常は開始テキストの幅）を指定し、2番目のパラメータは開始テキストを指定します。</font><font style="vertical-align: inherit;">すべてのパラメータはオプションです。</font></font></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.pretty.PrettyPrinter.break_">
+<code class="descname">break_</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/pretty.html#PrettyPrinter.break_"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.pretty.PrettyPrinter.break_" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">正しいインデントを維持して、出力に改行を明示的に挿入します。</font></font></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.pretty.PrettyPrinter.breakable">
+<code class="descname">breakable</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">sep = '' </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/pretty.html#PrettyPrinter.breakable"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.pretty.PrettyPrinter.breakable" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">分割可能な区切り文字を出力に追加します。</font><font style="vertical-align: inherit;">これは自動的にここで壊れることを意味しません。</font><font style="vertical-align: inherit;">このポジションが壊れていなければ、</font><font style="vertical-align: inherit;">デフォルトでは1つのスペースに</font></font><cite><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">sep</font></font></cite><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">が挿入されます。</font></font></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.pretty.PrettyPrinter.end_group">
+<code class="descname">end_group</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">dedent = 0</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">close = '' </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/pretty.html#PrettyPrinter.end_group"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.pretty.PrettyPrinter.end_group" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">グループを終了します。</font><font style="vertical-align: inherit;">詳細は</font></font><cite><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">begin_group</font></font></cite><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">を</font><font style="vertical-align: inherit;">参照</font><font style="vertical-align: inherit;">してください。</font></font></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.pretty.PrettyPrinter.flush">
+<code class="descname">flush</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/pretty.html#PrettyPrinter.flush"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.pretty.PrettyPrinter.flush" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">バッファーに残っているデータをフラッシュします。</font></font></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.pretty.PrettyPrinter.text">
+<code class="descname">text</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">obj </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/pretty.html#PrettyPrinter.text"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.pretty.PrettyPrinter.text" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">リテラルテキストを出力に追加します。</font></font></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="xonsh.pretty.RepresentationPrinter">
+<em class="property"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">クラス</font></font></em><code class="descclassname">xonsh.pretty.</code><code class="descname">RepresentationPrinter</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">出力</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">冗長=偽</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">MAX_WIDTH = 79</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">改行= 'N' </font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">singleton_pprinters =なし</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">type_pprinters =なし</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">deferred_pprinters =なし</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">max_seq_length = 1000 </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/pretty.html#RepresentationPrinter"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.pretty.RepresentationPrinter" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Pythonオブジェクトのためにかなりのプリンタを呼び出す</font></font><cite><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">かなりの</font></font></cite><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font><font style="vertical-align: inherit;">を持っている特別なかわいいプリンタ</font><font style="vertical-align: inherit;">。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">このクラスは処理データを</font></font><cite><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">自己に</font></font></cite><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">格納</font><cite><font style="vertical-align: inherit;">する</font></cite><font style="vertical-align: inherit;">ので</font><font style="vertical-align: inherit;">、スレッド環境ではこのクラスを使用し</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ないで</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ください</font><font style="vertical-align: inherit;">。</font><font style="vertical-align: inherit;">常にロックまたは再インスタンス化してください。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">インスタンスには冗長なフラグがあり、コールバックがその出力を制御するためにアクセスすることもできます。</font><font style="vertical-align: inherit;">たとえば、デフォルトインスタンスreprは、プリンタが冗長モードの場合は、アンダースコアの前に付かないすべての属性とメソッドを出力します。</font></font></p>
+<dl class="method">
+<dt id="xonsh.pretty.RepresentationPrinter.pretty">
+<code class="descname">pretty</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">obj </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/pretty.html#RepresentationPrinter.pretty"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.pretty.RepresentationPrinter.pretty" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">指定されたオブジェクトをかなり印刷します。</font></font></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.pretty.pretty">
+<code class="descclassname">xonsh.pretty.</code><code class="descname">pretty</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">obj</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">verbose = False</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">max_width = 79</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">改行= '\ n'</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">max_seq_length = 1000 </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/pretty.html#pretty"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.pretty.pretty" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">オブジェクトの表現をきれいに印刷します。</font></font></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.pretty.pretty_print">
+<code class="descclassname">xonsh.pretty.</code><code class="descname">pretty_print</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">obj</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">verbose = False</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">max_width = 79</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">改行= '\ n'</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">max_seq_length = 1000 </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/pretty.html#pretty_print"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.pretty.pretty_print" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">pretty（）と同じですが、stdoutに出力します。</font></font></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.pretty.for_type">
+<code class="descclassname">xonsh.pretty.</code><code class="descname">for_type</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">typ</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">func </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/pretty.html#for_type"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.pretty.for_type" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">指定されたタイプのきれいなプリンタを追加します。</font></font></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.pretty.for_type_by_name">
+<code class="descclassname">xonsh.pretty.</code><code class="descname">for_type_by_name</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">type_module</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">type_name</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">func</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">dtp = None </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/pretty.html#for_type_by_name"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.pretty.for_type_by_name" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">型オブジェクト自体ではなく、モジュールと型の名前で指定された型のかなりのプリンタを追加します。</font></font></p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../sidebar.html" title="サイドバー">
+          <img class="logo" src="../_static/ascii_conch_part_transparent_tight.png" alt="ロゴ" />
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../sidebar.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ページの内容</font></font></a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">素敵な印刷（</font></font><code class="docutils literal notranslate"><span class="pre">xonsh.pretty</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></a><ul>
+<li><a class="reference internal" href="#example-usage"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">使用例</font></font></a></li>
+<li><a class="reference internal" href="#extending"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">拡張</font></font></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前のページ</font></font></h4>
+    <p class="topless"><a href="ptk2/key_bindings.html" title="前のページ"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">←プロンプトツールキット2のキーバインディング（</font></font><code class="docutils literal notranslate"><span class="pre">xonsh.ptk2.key_bindings</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次のページ</font></font></h4>
+    <p class="topless"><a href="replay.html" title="次のページ"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">→リプレイ履歴（</font></font><code class="docutils literal notranslate"><span class="pre">xonsh.replay</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">このページ</font></font></h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/pretty.rst.txt" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ソースを表示</font></font></a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="" role="search">
+  <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">クイック検索</font></font></h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><input type="submit" value="行こう" /></font></font>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="サイドバーメニューを非表示にする" style="display: none;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                 «
+                 </font></font><span class="show-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">メニューを隠す</font></font></span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="サイドバーメニューを表示する">
+                
+                <span class="show-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">メニュー</font></font></span>
+                <span class="hide-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">サイドバー</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 
+                 »
+            </font></font></button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ナビゲーション</font></font></h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="一般索引"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">索引</font></font></a></li>
+        <li class="right">
+          <a href="../py-modindex.html" title="Pythonモジュールのインデックス"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">モジュール</font></font></a>    </li>
+        <li class="right">
+          <a href="replay.html" title="リプレイの履歴（xonsh.replay）"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次</font></font></a>    </li>
+        <li class="right">
+          <a href="ptk2/key_bindings.html" title="プロンプトツールキット2のキーバインディング（xonsh.ptk2.key_bindings）"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前</font></font></a>    </li>
+    <li><a href="../sidebar.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonsh 0.8.5 documentation</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshシェル</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+          <li class="nav-item nav-item-2"><a href="index.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xonsh API</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+        ©Copyright 2015、Anthony Scopatz。</font></font><a href="http://sphinx-doc.org/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sphinx</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 1.8.2 </font><font style="vertical-align: inherit;">を使用して作成されました</font><font style="vertical-align: inherit;">。
+    </font></font></div>
+    <!-- cloud_sptheme 1.4 -->
+  
+<div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="https://www.gstatic.com/images/branding/product/1x/translate_24dp.png" width="20" height="20" alt="Google 翻訳" /></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">原文</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">翻訳を改善する</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;" /><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div><div class="hide-for-small"></div><div class="goog-te-spinner-pos"><div class="goog-te-spinner-animation"><svg xmlns="http://www.w3.org/2000/svg" class="goog-te-spinner" width="96px" height="96px" viewBox="0 0 66 66"><circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"/></svg></div></div></body></html>

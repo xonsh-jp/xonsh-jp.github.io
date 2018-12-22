@@ -1,0 +1,450 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" class="medium-up-screen translated-ltr"><head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>環境（xonsh.environ） -  xonsh 0.8.5ドキュメント</title>
+    <link rel="stylesheet" href="../_static/numpy_friendly.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/magic_conch.ico" />
+    <link rel="index" title="インデックス" href="../genindex.html" />
+    <link rel="search" title="サーチ" href="../search.html" />
+    <link rel="next" title="エイリアス（xonsh.aliases）" href="aliases.html" />
+    <link rel="prev" title="組み込み関数（xonsh.built_ins）" href="built_ins.html" />
+     
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="canonical" href="http://xon.sh/api/environ.html" />
+
+  <link type="text/css" rel="stylesheet" charset="UTF-8" href="https://translate.googleapis.com/translate_static/css/translateelement.css" /></head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ナビゲーション</font></font></h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="一般索引" accesskey="I"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">索引</font></font></a></li>
+        <li class="right">
+          <a href="../py-modindex.html" title="Pythonモジュールのインデックス"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">モジュール</font></font></a>    </li>
+        <li class="right">
+          <a href="aliases.html" title="エイリアス（xonsh.aliases）" accesskey="N"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次</font></font></a>    </li>
+        <li class="right">
+          <a href="built_ins.html" title="組み込み関数（xonsh.built_ins）" accesskey="P"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前</font></font></a>    </li>
+    <li><a href="../sidebar.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonsh 0.8.5 documentation</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshシェル</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xonsh API</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document sidebar-hidden">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-xonsh.environ">
+<span id="environment-xonsh-environ"></span><span id="xonsh-environ"></span><h1><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">環境（</font></font><code class="docutils literal notranslate"><span class="pre">xonsh.environ</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font><a class="headerlink" href="#module-xonsh.environ" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h1>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshシェルの環境。</font></font></p>
+<dl class="class">
+<dt id="xonsh.environ.Ensurer">
+<em class="property"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">クラス</font></font></em><code class="descclassname">xonsh.environ.</code><code class="descname">Ensurer</code><a class="headerlink" href="#xonsh.environ.Ensurer" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">環境変数の検証、変換、切り捨てを表す関数である名前付きタプル。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Ensurerの新しいインスタンスを作成する（検証、変換、デタイプ）</font></font></p>
+<dl class="method">
+<dt id="xonsh.environ.Ensurer.count">
+<code class="descname">count</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">値</font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> →整数 - 値の出現回数を返す</font></font><a class="headerlink" href="#xonsh.environ.Ensurer.count" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="xonsh.environ.Ensurer.index">
+<code class="descname">index</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">value </font></font></em><span class="optional"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">start </font></font></em><span class="optional"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">stop </font></font></em><span class="optional"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">] </font></font></span><span class="optional"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">] </font></font></span><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> →整数 - 最初の値のインデックスを返します。</font></font><a class="headerlink" href="#xonsh.environ.Ensurer.index" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">値が存在しない場合、ValueErrorを発生させます。</font></font></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.environ.Ensurer.convert">
+<code class="descname">convert</code><a class="headerlink" href="#xonsh.environ.Ensurer.convert" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">フィールド番号1の別名</font></font></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.environ.Ensurer.detype">
+<code class="descname">detype</code><a class="headerlink" href="#xonsh.environ.Ensurer.detype" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">フィールド番号2の別名</font></font></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.environ.Ensurer.validate">
+<code class="descname">validate</code><a class="headerlink" href="#xonsh.environ.Ensurer.validate" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">フィールド番号0の別名</font></font></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="xonsh.environ.Env">
+<em class="property"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">クラス</font></font></em><code class="descclassname">xonsh.environ.</code><code class="descname">Env</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">* args</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">** kwargs </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/environ.html#Env"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.environ.Env" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">変数の型が制限されているxonsh環境（BASHとは異なります）。</font><font style="vertical-align: inherit;">ほとんどの変数は、デフォルトでは文字列（BASHなど）です。</font><font style="vertical-align: inherit;">ただし、variable-nameに基づいて以下の規則が適用されます。</font></font></p>
+<ul class="simple">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">PATH：名前がPATHで終わる変数はすべて文字列のリストです。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">XONSH_HISTORY_SIZE：この変数は（int | float、str）タプルです。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LC_ *（ロケールカテゴリ）：ロケールカテゴリ名は、locale.getlocale（）およびlocale.setlocale（）関数を介してPythonロケールを取得/設定します。</font></font></li>
+</ul>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Envインスタンスは、サブプロセスでの使用に適したタイプのないバージョンに変換できます。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">初期環境が与えられていない場合は、os_environが使用されます。</font></font></p>
+<dl class="method">
+<dt id="xonsh.environ.Env.clear">
+<code class="descname">clear</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> →なし </font><font style="vertical-align: inherit;">Dからすべてのアイテムを削除する</font></font><a class="headerlink" href="#xonsh.environ.Env.clear" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="xonsh.environ.Env.detype">
+<code class="descname">detype</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/environ.html#Env.detype"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.environ.Env.detype" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="xonsh.environ.Env.detypeable">
+<em class="property"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">静的</font></font></em><code class="descname">detypeable</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">val </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/environ.html#Env.detypeable"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.environ.Env.detypeable" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="xonsh.environ.Env.get">
+<code class="descname">get</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">key</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">default = None </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/environ.html#Env.get"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.environ.Env.get" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ここでデフォルト値が指定されていない場合、環境はデフォルト値をデフォルト値から検索します。</font></font></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.environ.Env.get_docs">
+<code class="descname">get_docs</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">キー</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">デフォルト= VarDocs（docstr = '&lt;ドキュメントなし&gt;</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">設定可能= True</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">デフォルト= &lt;xonsh.tools.DefaultNotGivenTypeオブジェクト&gt;</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">store_as_str = False）</font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/environ.html#Env.get_docs"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.environ.Env.get_docs" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">環境変数のドキュメントを取得します。</font></font></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.environ.Env.get_ensurer">
+<code class="descname">get_ensurer</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">key</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">デフォルト=保証人（validate = &lt;function always_true&gt;</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">変換=なし</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">detype = &lt;function ensure_string&gt;）</font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/environ.html#Env.get_ensurer"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.environ.Env.get_ensurer" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">指定されたキーの保証者を取得します。</font></font></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.environ.Env.help">
+<code class="descname">help</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">キー</font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/environ.html#Env.help"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.environ.Env.help" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">特定の環境変数に関する情報を取得します。</font></font></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.environ.Env.is_manually_set">
+<code class="descname">is_manually_set</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">varname </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/environ.html#Env.is_manually_set"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.environ.Env.is_manually_set" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">環境変数が手動で設定されているかどうかをチェックします。</font></font></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.environ.Env.items">
+<code class="descname">items</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> →Dのアイテムのビューを提供する集合的なオブジェクト</font></font><a class="headerlink" href="#xonsh.environ.Env.items" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="xonsh.environ.Env.keys">
+<code class="descname">keys</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> →Dのキーのビューを提供する集合的なオブジェクト</font></font><a class="headerlink" href="#xonsh.environ.Env.keys" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="xonsh.environ.Env.pop">
+<code class="descname">pop</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">k </font></font></em><span class="optional"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">d </font></font></em><span class="optional"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">] </font></font></span><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> →v、指定されたキーを削除し、対応する値を返します。</font></font><a class="headerlink" href="#xonsh.environ.Env.pop" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">keyが見つからなければ、与えられればdが返され、そうでなければKeyErrorが発生します。</font></font></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.environ.Env.popitem">
+<code class="descname">popitem</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> →（k、v）、いくつかの（キー、値）ペアを取り除いて返す</font></font><a class="headerlink" href="#xonsh.environ.Env.popitem" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2タプルとして; </font><font style="vertical-align: inherit;">Dが空の場合はKeyErrorを上げます。</font></font></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.environ.Env.replace_env">
+<code class="descname">replace_env</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/environ.html#Env.replace_env"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.environ.Env.replace_env" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">os_environの内容を、xonsh環境の自動化されたバージョンに置き換えます。</font></font></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.environ.Env.setdefault">
+<code class="descname">setdefault</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">k </font></font></em><span class="optional"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">d </font></font></em><span class="optional"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">] </font></font></span><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> →D.get（k、d）また、D [k] = dならkをDに入れない</font></font><a class="headerlink" href="#xonsh.environ.Env.setdefault" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="xonsh.environ.Env.swap">
+<code class="descname">swap</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">other = None</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">** kwargs </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/environ.html#Env.swap"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[source]</font></font></span></a><a class="headerlink" href="#xonsh.environ.Env.swap" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">特定の環境変数を他の値と一時的に交換するためのコンテキストマネージャを提供します。</font><font style="vertical-align: inherit;">コンテキストマネージャを終了すると、元の値が復元されます。</font></font></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.environ.Env.undo_replace_env">
+<code class="descname">undo_replace_env</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/environ.html#Env.undo_replace_env"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.environ.Env.undo_replace_env" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">os_environの内容を、xonsh環境の自動化されたバージョンに置き換えます。</font></font></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.environ.Env.update">
+<code class="descname">update</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><span class="optional"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ </font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">E</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><span class="optional"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">] </font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">** F </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> →なし。</font><font style="vertical-align: inherit;">マッピング/イテラブルEとFからDを更新する</font></font><a class="headerlink" href="#xonsh.environ.Env.update" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">もしEが存在し、.keys（）メソッドを持っていれば、Eの中のk：D [k] = E [k]どちらの場合も、次のようになります。F.items（）のkに対してv：D [k] = v</font></font></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.environ.Env.values">
+<code class="descname">values</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> →Dの値のビューを提供するオブジェクト</font></font><a class="headerlink" href="#xonsh.environ.Env.values" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="xonsh.environ.VarDocs">
+<em class="property"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">クラス</font></font></em><code class="descclassname">xonsh.environ.</code><code class="descname">VarDocs</code><a class="headerlink" href="#xonsh.environ.VarDocs" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">環境変数のドキュメント化のための名前付きタプル</font></font></p>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name" />
+<col class="field-body" />
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメーター：</font></font></th><td class="field-body"><dl class="first last docutils">
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">docstr </font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">str</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">環境変数docstring。</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">設定可能</font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">bool、オプション</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">環境変数が設定可能かどうかのフラグ。</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">デフォルト</font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">str、オプション</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">複雑なデフォルトのデフォルト値のカスタム文書化。</font><font style="vertical-align: inherit;">これはDefaultNotGivenですか？デフォルトはDEFAULT_VALUESから検索され、strに変換されます。</font></font></p>
+</dd>
+<dt><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">store_as_str </font></font></strong> <span class="classifier-delimiter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></span> <span class="classifier"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">bool、オプション</font></font></span></dt>
+<dd><p class="first last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">環境変数を文字列として格納するかどうかを示すフラグ。</font><font style="vertical-align: inherit;">これは、JSONをシリアル化できない変数を設定ファイルに永続化するときに使用されます。</font><font style="vertical-align: inherit;">たとえば、セット、frozensets、および潜在的に他の重要なデータ型。</font><font style="vertical-align: inherit;">デフォルトはFalseです。</font></font></p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">VarDocsの新しいインスタンスを作成する（docstr、configurable、default、store_as_str）</font></font></p>
+<dl class="method">
+<dt id="xonsh.environ.VarDocs.count">
+<code class="descname">count</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">値</font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> →整数 - 値の出現回数を返す</font></font><a class="headerlink" href="#xonsh.environ.VarDocs.count" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="xonsh.environ.VarDocs.index">
+<code class="descname">index</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">value </font></font></em><span class="optional"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">start </font></font></em><span class="optional"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">stop </font></font></em><span class="optional"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">] </font></font></span><span class="optional"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">] </font></font></span><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> →整数 - 最初の値のインデックスを返します。</font></font><a class="headerlink" href="#xonsh.environ.VarDocs.index" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">値が存在しない場合、ValueErrorを発生させます。</font></font></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.environ.VarDocs.configurable">
+<code class="descname">configurable</code><a class="headerlink" href="#xonsh.environ.VarDocs.configurable" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">フィールド番号1の別名</font></font></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.environ.VarDocs.default">
+<code class="descname">default</code><a class="headerlink" href="#xonsh.environ.VarDocs.default" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">フィールド番号2の別名</font></font></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.environ.VarDocs.docstr">
+<code class="descname">docstr</code><a class="headerlink" href="#xonsh.environ.VarDocs.docstr" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">フィールド番号0の別名</font></font></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.environ.VarDocs.store_as_str">
+<code class="descname">store_as_str</code><a class="headerlink" href="#xonsh.environ.VarDocs.store_as_str" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">フィールド番号3の別名</font></font></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.environ.default_env">
+<code class="descclassname">xonsh.environ.</code><code class="descname">default_env</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">env = None </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/environ.html#default_env"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.environ.default_env" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">デフォルトのxonsh環境を構築します。</font></font></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.environ.default_value">
+<code class="descclassname">xonsh.environ.</code><code class="descname">default_value</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">f </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/environ.html#default_value"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.environ.default_value" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">呼び出し可能なデフォルト値を作成するためのデコレータ。</font></font></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.environ.default_xonshrc">
+<code class="descclassname">xonsh.environ.</code><code class="descname">default_xonshrc</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">env </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/environ.html#default_xonshrc"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[source]</font></font></span></a><a class="headerlink" href="#xonsh.environ.default_xonshrc" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">デフォルトのxonshrcタプルの新しいインスタンスを作成します。</font></font></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.environ.foreign_env_fixes">
+<code class="descclassname">xonsh.environ.</code><code class="descname">foreign_env_fixes</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ctx </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/environ.html#foreign_env_fixes"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.environ.foreign_env_fixes" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">すべてのオペレーティングシステムの環境修正</font></font></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.environ.is_callable_default">
+<code class="descclassname">xonsh.environ.</code><code class="descname">is_callable_default</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">x </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/environ.html#is_callable_default"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.environ.is_callable_default" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">値が呼び出し可能なデフォルトであるかどうかをチェックします。</font></font></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.environ.locale_convert">
+<code class="descclassname">xonsh.environ.</code><code class="descname">locale_convert</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">キー</font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/environ.html#locale_convert"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.environ.locale_convert" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ロケールキー用のコンバータを作成します。</font></font></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.environ.locate_binary">
+<code class="descclassname">xonsh.environ.</code><code class="descname">locate_binary</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">名前</font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/environ.html#locate_binary"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.environ.locate_binary" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ファイルシステム上で実行可能ファイルを探します。</font></font></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.environ.make_args_env">
+<code class="descclassname">xonsh.environ.</code><code class="descname">make_args_env</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">args = None </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/environ.html#make_args_env"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.environ.make_args_env" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ ARGSおよび$ ARG &lt;N&gt;環境変数を含む辞書を作成します。</font><font style="vertical-align: inherit;">指定されたARGSがNoneの場合、sys.argvが使用されます。</font></font></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.environ.to_debug">
+<code class="descclassname">xonsh.environ.</code><code class="descname">to_debug</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">x </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/environ.html#to_debug"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.environ.to_debug" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">to_bool_or_int（）を使用して値を変換し、この値を実行者のデバッグレベルとして設定します。</font></font></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.environ.windows_foreign_env_fixes">
+<code class="descclassname">xonsh.environ.</code><code class="descname">windows_foreign_env_fixes</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ctx </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/environ.html#windows_foreign_env_fixes"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.environ.windows_foreign_env_fixes" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Windows用の環境修正。</font><font style="vertical-align: inherit;">インプレースで動作します。</font></font></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.environ.xonsh_append_newline">
+<code class="descclassname">xonsh.environ.</code><code class="descname">xonsh_append_newline</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">env </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/environ.html#xonsh_append_newline"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[source]</font></font></span></a><a class="headerlink" href="#xonsh.environ.xonsh_append_newline" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">対話モードの場合に改行を追加する</font></font></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.environ.xonsh_config_dir">
+<code class="descclassname">xonsh.environ.</code><code class="descname">xonsh_config_dir</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">env </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/environ.html#xonsh_config_dir"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[source]</font></font></span></a><a class="headerlink" href="#xonsh.environ.xonsh_config_dir" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_CONFIG_DIRを保証して返します</font></font></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.environ.xonsh_data_dir">
+<code class="descclassname">xonsh.environ.</code><code class="descname">xonsh_data_dir</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">env </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/environ.html#xonsh_data_dir"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[source]</font></font></span></a><a class="headerlink" href="#xonsh.environ.xonsh_data_dir" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSH_DATA_DIRを保証して返します</font></font></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.environ.xonsh_script_run_control">
+<code class="descclassname">xonsh.environ.</code><code class="descname">xonsh_script_run_control</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">filename</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ctx</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">env</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">execer = None</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">login = True </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/environ.html#xonsh_script_run_control"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.environ.xonsh_script_run_control" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshファイルをロードし、実行制御として適用します。</font></font></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.environ.xonshconfig">
+<code class="descclassname">xonsh.environ.</code><code class="descname">xonshconfig</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">env </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/environ.html#xonshconfig"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[source]</font></font></span></a><a class="headerlink" href="#xonsh.environ.xonshconfig" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ XONSHCONFIGを保証して返します</font></font></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.environ.xonshrc_context">
+<code class="descclassname">xonsh.environ.</code><code class="descname">xonshrc_context</code><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（</font></font></span><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">rcfiles = None</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">execer = None</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ctx = None</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">env = None</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">login = True </font></font></em><span class="sig-paren"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></span><a class="reference internal" href="../_modules/xonsh/environ.html#xonshrc_context"><span class="viewcode-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">[ソース]</font></font></span></a><a class="headerlink" href="#xonsh.environ.xonshrc_context" title="この定義へのパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ¶</font></font></a></dt>
+<dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">すべてのxonshrcファイルを読み込み、コンテキストを返そうとします。</font></font></p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../sidebar.html" title="サイドバー">
+          <img class="logo" src="../_static/ascii_conch_part_transparent_tight.png" alt="ロゴ" />
+        </a></p>
+  <div class="sphinxprev">
+    <h4><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前のページ</font></font></h4>
+    <p class="topless"><a href="built_ins.html" title="前のページ"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">←ビルトイン（</font></font><code class="docutils literal notranslate"><span class="pre">xonsh.built_ins</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次のページ</font></font></h4>
+    <p class="topless"><a href="aliases.html" title="次のページ"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">→エイリアス（</font></font><code class="docutils literal notranslate"><span class="pre">xonsh.aliases</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">このページ</font></font></h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/environ.rst.txt" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ソースを表示</font></font></a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="" role="search">
+  <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">クイック検索</font></font></h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><input type="submit" value="行こう" /></font></font>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="サイドバーメニューを非表示にする" style="display: none;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                 «
+                 </font></font><span class="show-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">メニューを隠す</font></font></span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="サイドバーメニューを表示する">
+                
+                <span class="show-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">メニュー</font></font></span>
+                <span class="hide-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">サイドバー</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 
+                 »
+            </font></font></button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ナビゲーション</font></font></h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="一般索引"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">索引</font></font></a></li>
+        <li class="right">
+          <a href="../py-modindex.html" title="Pythonモジュールのインデックス"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">モジュール</font></font></a>    </li>
+        <li class="right">
+          <a href="aliases.html" title="エイリアス（xonsh.aliases）"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次</font></font></a>    </li>
+        <li class="right">
+          <a href="built_ins.html" title="組み込み関数（xonsh.built_ins）"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前</font></font></a>    </li>
+    <li><a href="../sidebar.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonsh 0.8.5 documentation</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshシェル</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+          <li class="nav-item nav-item-2"><a href="index.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xonsh API</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+        ©Copyright 2015、Anthony Scopatz。</font></font><a href="http://sphinx-doc.org/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sphinx</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 1.8.2 </font><font style="vertical-align: inherit;">を使用して作成されました</font><font style="vertical-align: inherit;">。
+    </font></font></div>
+    <!-- cloud_sptheme 1.4 -->
+  
+<div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="https://www.gstatic.com/images/branding/product/1x/translate_24dp.png" width="20" height="20" alt="Google 翻訳" /></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">原文</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">翻訳を改善する</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;" /><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div><div class="hide-for-small"></div><div class="goog-te-spinner-pos"><div class="goog-te-spinner-animation"><svg xmlns="http://www.w3.org/2000/svg" class="goog-te-spinner" width="96px" height="96px" viewBox="0 0 66 66"><circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"/></svg></div></div></body></html>

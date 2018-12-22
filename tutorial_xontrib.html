@@ -1,0 +1,292 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" class="medium-up-screen translated-ltr"><head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>チュートリアル：拡張（Xontribs） -  xonsh 0.8.5 documentation</title>
+    <link rel="stylesheet" href="_static/numpy_friendly.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="_static/cloud.base.js"></script>
+    <script type="text/javascript" src="_static/cloud.js"></script>
+    <link rel="shortcut icon" href="_static/magic_conch.ico" />
+    <link rel="index" title="インデックス" href="genindex.html" />
+    <link rel="search" title="サーチ" href="search.html" />
+    <link rel="next" title="チュートリアル：イベント" href="tutorial_events.html" />
+    <link rel="prev" title="チュートリアル：マクロ" href="tutorial_macros.html" />
+     
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="canonical" href="http://xon.sh/tutorial_xontrib.html" />
+
+  <link type="text/css" rel="stylesheet" charset="UTF-8" href="https://translate.googleapis.com/translate_static/css/translateelement.css" /></head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ナビゲーション</font></font></h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="一般索引" accesskey="I"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">索引</font></font></a></li>
+        <li class="right">
+          <a href="py-modindex.html" title="Pythonモジュールのインデックス"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">モジュール</font></font></a>    </li>
+        <li class="right">
+          <a href="tutorial_events.html" title="チュートリアル：イベント" accesskey="N"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次</font></font></a>    </li>
+        <li class="right">
+          <a href="tutorial_macros.html" title="チュートリアル：マクロ" accesskey="P"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前</font></font></a>    </li>
+    <li><a href="sidebar.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonsh 0.8.5 documentation</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshシェル</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="tutorial-extensions-xontribs">
+<span id="tutorial-xontrib"></span><h1><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">チュートリアル：拡張（Xontribs）</font></font><a class="headerlink" href="#tutorial-extensions-xontribs" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h1>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">深呼吸をして、深刻なショー＆テルを準備しましょう。</font><font style="vertical-align: inherit;">それはxonshの拡張について学ぶ時間です！</font></font></p>
+<div class="section" id="overview">
+<h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">概要</font></font><a class="headerlink" href="#overview" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h2>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xontributionsは、xonsh </font></font><code class="docutils literal notranslate"><span class="pre">xontribs</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">の機能をデフォルトで提供されるものよりも拡張するための一連のツールと慣習です。</font><font style="vertical-align: inherit;">これにより、サードパーティの開発者とユーザーは、xonshの開発とリリースのサイクルを経ることなく、xonshの経験を向上させることができます。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">多くのツールとライブラリには拡張機能があります。</font><font style="vertical-align: inherit;">xonshからインスピレーションを得たものがいくつかあります：</font></font></p>
+<ul class="simple">
+<li><a class="reference external" href="http://sphinx-doc.org/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sphinx</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：ExtensionsはPythonモジュールであり、メインパッケージといくつかの拡張をバンドルしています.interfaceは文字列名のリストです。</font></font></li>
+<li><a class="reference external" href="http://ohmyz.sh/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Oh My Zsh</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：集中型レジストリ、オートローディング、シェル用。</font></font></li>
+<li><a class="reference external" href="http://eslint.org/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ESLint</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：言語パッケージマネージャを使用して拡張機能をインストール/削除する機能。</font></font></li>
+</ul>
+</div>
+<div class="section" id="structure">
+<h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">構造</font></font><a class="headerlink" href="#structure" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h2>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xontribは、xonsh（</font></font><code class="docutils literal notranslate"><span class="pre">*.xsh</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）またはPython（</font></font><code class="docutils literal notranslate"><span class="pre">*.py</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）で</font><font style="vertical-align: inherit;">書かれたモジュールです</font><font style="vertical-align: inherit;">。</font><font style="vertical-align: inherit;">通常、これらは</font></font><a class="reference external" href="https://www.python.org/dev/peps/pep-0420/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">暗黙の名前空間パッケージに</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">格納さ
+ </font><font style="vertical-align: inherit;">
+れてい</font></font><code class="docutils literal notranslate"><span class="pre">xontrib</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ます。</font><font style="vertical-align: inherit;">しかし、xontribは、パッケージまたはディレクトリにある任意のパッケージまたはディレクトリに置くことができます</font></font><code class="docutils literal notranslate"><span class="pre">$PYTHONPATH</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">モジュールが</font></font><code class="docutils literal notranslate"><span class="pre">xontrib</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">名前空間パッケージに含ま</font><font style="vertical-align: inherit;">れている場合、</font><font style="vertical-align: inherit;">そのモジュール名だけで参照することができます。</font><font style="vertical-align: inherit;">あるモジュールが他のパッケージに含まれている場合は、そのモジュールを完全なパッケージパスで参照する必要があります</font></font><code class="docutils literal notranslate"><span class="pre">.</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font><font style="vertical-align: inherit;">もちろん、モジュール</font></font><code class="docutils literal notranslate"><span class="pre">xontrib</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">はフルで参照されるかもしれません</font></font><code class="docutils literal notranslate"><span class="pre">xontrib.myext</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font><font style="vertical-align: inherit;">しかし、それを呼び出すだけ</font></font><code class="docutils literal notranslate"><span class="pre">myext</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">で、</font></font><code class="docutils literal notranslate"><span class="pre">xontrib</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+名前空間パッケージに</font><font style="vertical-align: inherit;">拡張を置くことの主な利点のほうがずっと短くなり</font><font style="vertical-align: inherit;">ます。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">サンプルファイルシステムのレイアウトとxontrib名は次のようになります。</font></font></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">|-</span> <span class="n">xontrib</span><span class="o">/</span>
+   <span class="o">|-</span> <span class="n">javert</span><span class="o">.</span><span class="n">xsh</span>     <span class="c1"># "javert", because in xontrib</span>
+   <span class="o">|-</span> <span class="n">your</span><span class="o">.</span><span class="n">py</span>        <span class="c1"># "your",</span>
+   <span class="o">|-</span> <span class="n">eyes</span><span class="o">/</span>
+      <span class="o">|-</span> <span class="fm">__init__</span><span class="o">.</span><span class="n">py</span>
+      <span class="o">|-</span> <span class="n">scream</span><span class="o">.</span><span class="n">xsh</span>  <span class="c1"># "eyes.scream", because eyes is in xontrib</span>
+<span class="o">|-</span> <span class="n">mypkg</span><span class="o">/</span>
+   <span class="o">|-</span> <span class="fm">__init__</span><span class="o">.</span><span class="n">py</span>    <span class="c1"># a regular package with an init file</span>
+   <span class="o">|-</span> <span class="n">other</span><span class="o">.</span><span class="n">py</span>       <span class="c1"># not a xontrib</span>
+   <span class="o">|-</span> <span class="n">show</span><span class="o">.</span><span class="n">py</span>        <span class="c1"># "mypkg.show", full module name</span>
+   <span class="o">|-</span> <span class="n">tell</span><span class="o">.</span><span class="n">xsh</span>       <span class="c1"># "mypkg.tell", full module name</span>
+   <span class="o">|-</span> <span class="n">subpkg</span><span class="o">/</span>
+      <span class="o">|-</span> <span class="fm">__init__</span><span class="o">.</span><span class="n">py</span>
+      <span class="o">|-</span> <span class="n">done</span><span class="o">.</span><span class="n">py</span>     <span class="c1"># "mypkg.subpkg.done", full module name</span>
+</pre></div>
+</div>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">また</font><font style="vertical-align: inherit;">、</font><a class="reference external" href="https://github.com/laerus/cookiecutter-xontrib"><font style="vertical-align: inherit;">xontribテンプレート</font></a><font style="vertical-align: inherit;">に</font></font><a class="reference external" href="https://github.com/audreyr/cookiecutter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">cookiecutter</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">を</font><font style="vertical-align: inherit;">使用</font><font style="vertical-align: inherit;">して、xontribパッケージのレイアウトを簡単に作成</font><font style="vertical-align: inherit;">することもでき</font><font style="vertical-align: inherit;">ます。</font></font><a class="reference external" href="https://github.com/laerus/cookiecutter-xontrib"><font style="vertical-align: inherit;"></font></a><font style="vertical-align: inherit;"></font></p>
+</div>
+<div class="section" id="loading-xontribs">
+<h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xontribのロード</font></font><a class="headerlink" href="#loading-xontribs" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h2>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xontribは、いくつかの異なる方法でロードすることができます：設定ファイルから、実行時に</font></font><code class="docutils literal notranslate"><span class="pre">xontrib</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">コマンドで</font><font style="vertical-align: inherit;">動的に</font><font style="vertical-align: inherit;">、またはモジュールを普通にインポートすることによって。</font><font style="vertical-align: inherit;">これらの拡張モジュールはPythonモジュールなので、デフォルトではアンロードできません（簡単に）。</font></font></p>
+<div class="admonition note inline-title">
+<p class="first admonition-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">注意</font></font></p>
+<p class="last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xontribがロードされると、パブリック変数は</font></font><code class="docutils literal notranslate"><span class="pre">__all__</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、通常のPythonモジュールと同様に、定義されてい</font><font style="vertical-align: inherit;">ない限り、現在の実行コンテキストに配置され</font><font style="vertical-align: inherit;">ます。</font></font></p>
+</div>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">拡張機能は</font></font><code class="docutils literal notranslate"><span class="pre">xontrib</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshのデフォルトエイリアスであるコマンド</font><font style="vertical-align: inherit;">によってロードされ</font><font style="vertical-align: inherit;">ます。</font><font style="vertical-align: inherit;">このコマンドは、xonshrcファイル内のどこからでも、またはxonshが起動した後でも実行できます。</font><font style="vertical-align: inherit;">読み込みは、</font></font><code class="docutils literal notranslate"><span class="pre">xontrib</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+コマンドの</font><font style="vertical-align: inherit;">デフォルト動作です</font><font style="vertical-align: inherit;">。</font><font style="vertical-align: inherit;">したがって、このコマンドでロードする次のメソッドは同等です。</font></font></p>
+<div class="highlight-xonsh notranslate"><div class="highlight"><pre><span></span><span class="n">xontrib</span> <span class="n">myext</span> <span class="n">mpl</span> <span class="n">mypkg</span><span class="o">.</span><span class="n">show</span>
+<span class="n">xontrib</span> <span class="n">load</span> <span class="n">myext</span> <span class="n">mpl</span> <span class="n">mypkg</span><span class="o">.</span><span class="n">show</span>
+</pre></div>
+</div>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">同じxontribを複数回読み込むことは、最初のxontribの後に何の効果もありません。</font><font style="vertical-align: inherit;">Xontribは単にPythonモジュールであるため、同じキャッシングルールに従います。</font><font style="vertical-align: inherit;">したがって、同じトークンによって、それらを正常にインポートすることもできます。</font><font style="vertical-align: inherit;">もちろん、完全なモジュール名を使ってxontribをインポートする必要があります：</font></font></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xontrib.mpl</span>
+<span class="kn">from</span> <span class="nn">xontrib</span> <span class="kn">import</span> <span class="n">myext</span>
+<span class="kn">from</span> <span class="nn">mypkg.show</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="listing-known-xontribs">
+<h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">既知のXontribのリスト</font></font><a class="headerlink" href="#listing-known-xontribs" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h2>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">拡張機能の読み込みに加えて</font></font><code class="docutils literal notranslate"><span class="pre">xontrib</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、既知のxontribをリストすることもできます。</font><font style="vertical-align: inherit;">このコマンドは、既知のxontribがインストールされているかどうか、およびそれらが現在のセッションにロードされているかどうかを報告します。</font><font style="vertical-align: inherit;">この情報を表示するには、</font></font><code class="docutils literal notranslate"><span class="pre">list</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">アクションを</font></font><code class="docutils literal notranslate"><span class="pre">xontrib</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">コマンドに</font><font style="vertical-align: inherit;">渡します</font><font style="vertical-align: inherit;">。</font></font></p>
+<div class="highlight-xonshcon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">xontrib</span> <span class="nb">list</span><span class="go"></span>
+<span class="go">mpl     installed      not-loaded</span>
+<span class="go">myext   not-installed  not-loaded</span>
+</pre></div>
+</div>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">デフォルトでは、これはすべての既知のxontribに関する情報を表示します。</font><font style="vertical-align: inherit;">ただし、これをコマンドラインで渡される一連の名前に制限することができます。</font></font></p>
+<div class="highlight-xonshcon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">xontrib</span> <span class="nb">list</span> <span class="n">mpl</span><span class="go"></span>
+<span class="go">mpl     installed      not-loaded</span>
+</pre></div>
+</div>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">プログラムによるアクセスの場合は、次のコマンドでJSON形式の文字列を出力することもできます。</font></font></p>
+<div class="highlight-xonshcon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">xontrib</span> <span class="nb">list</span> <span class="o">--</span><span class="n">json</span> <span class="n">mpl</span><span class="go"></span>
+<span class="go">{"mpl": {"loaded": false, "installed": true}}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="authoring-xontribs">
+<h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xontribの作成</font></font><a class="headerlink" href="#authoring-xontribs" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h2>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xontribを書くことは、xonshまたはPythonファイルを作成し、それをnamedというディレクトリに貼り付けるのと同じくらい簡単</font></font><code class="docutils literal notranslate"><span class="pre">xontrib/</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">です。</font><font style="vertical-align: inherit;">しかし、置かないでください
+ </font></font><code class="docutils literal notranslate"><span class="pre">__init__.py</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">に</font></font><code class="docutils literal notranslate"><span class="pre">xontrib/</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ディレクトリ。</font><font style="vertical-align: inherit;">これは</font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">暗黙の名前空間パッケージで</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">あり</font><font style="vertical-align: inherit;">、それを持つ
+ </font><font style="vertical-align: inherit;">べきではありません。</font><font style="vertical-align: inherit;">詳細は、
+ </font></font><a class="reference external" href="https://www.python.org/dev/peps/pep-0420/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">PEP 420</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">を参照してください。</font></font></p>
+<div class="admonition warning inline-title">
+<p class="first admonition-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">警告</font></font></p>
+<p class="last"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">置かないでください</font></font><code class="docutils literal notranslate"><span class="pre">__init__.py</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">に</font></font><code class="docutils literal notranslate"><span class="pre">xontrib/</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ディレクトリ！</font></font></p>
+</div>
+<p><font style="vertical-align: inherit;"></font><code class="docutils literal notranslate"><span class="pre">*.xsh</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xontribでファイル</font><font style="vertical-align: inherit;">を使用する予定の場合は</font><font style="vertical-align: inherit;">、これらのファイルをインストールするためにdistutils、setuptools、pipなどにいくつかのフックを追加する必要があります。</font><font style="vertical-align: inherit;">あなたの</font></font><code class="docutils literal notranslate"><span class="pre">setup()</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">電話に</font><font style="vertical-align: inherit;">以下のようなエントリを追加してみて</font><font style="vertical-align: inherit;">ください</font></font><code class="docutils literal notranslate"><span class="pre">setup.py</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">distutils.core</span> <span class="kn">import</span> <span class="n">setup</span>
+
+<span class="n">setup</span><span class="p">(</span><span class="o">...</span><span class="p">,</span>
+      <span class="n">packages</span><span class="o">=</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="s1">'xontrib'</span><span class="p">],</span>
+      <span class="n">package_dir</span><span class="o">=</span><span class="p">{</span><span class="o">...</span><span class="p">,</span> <span class="s1">'xontrib'</span><span class="p">:</span> <span class="s1">'xontrib'</span><span class="p">},</span>
+      <span class="n">package_data</span><span class="o">=</span><span class="p">{</span><span class="o">...</span><span class="p">,</span> <span class="s1">'xontrib'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'*.xsh'</span><span class="p">]},</span>
+      <span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><font style="vertical-align: inherit;"></font><code class="docutils literal notranslate"><span class="pre">*.xsh</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ファイル</font><font style="vertical-align: inherit;">を配布</font><font style="vertical-align: inherit;">する</font><font style="vertical-align: inherit;">必要のあるxontrib以外のパッケージやサブパッケージに対しても同様のことができ</font><font style="vertical-align: inherit;">ます。</font></font></p>
+</div>
+<div class="section" id="tell-us-about-your-xontrib">
+<h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">あなたのXontribについて教えてください！</font></font><a class="headerlink" href="#tell-us-about-your-xontrib" title="この見出しにパーマリンク"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¶</font></font></a></h2>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">私たちはxontribを私たちに登録することを要請します。</font><font style="vertical-align: inherit;">これは一般的には良いアイデアだと思う：</font></font></p>
+<ul class="simple">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">あなたのxontribは、xonshウェブサイトの拡張子として表示されます。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">これは</font><font style="vertical-align: inherit;">コマンドに</font><font style="vertical-align: inherit;">表示されます</font></font><code class="docutils literal notranslate"><span class="pre">xontrib</span> <span class="pre">list</span></code><font style="vertical-align: inherit;"></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">それはに表示され</font><font style="vertical-align: inherit;">ます。</font></font><code class="docutils literal notranslate"><span class="pre">xonfig</span> <span class="pre">wizard</span></code><font style="vertical-align: inherit;"></font></li>
+</ul>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">これらのすべては、あなたのxontribが利用可能であることをユーザーに知らせます。</font><font style="vertical-align: inherit;">もちろん、xontribを登録する義務はありません。</font><font style="vertical-align: inherit;">xontribがインストールされている限り、ユーザーはxontribを読み込むことができます。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xontribを登録するに</font><font style="vertical-align: inherit;">
+は、メインのxonshリポジトリの</font></font><a class="reference external" href="https://github.com/xonsh/xonsh/blob/master/xonsh/xontribs.json"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xontribs.jsonファイル</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">に</font><font style="vertical-align: inherit;">エントリを追加し
+ </font><font style="vertical-align: inherit;">ます。</font><font style="vertical-align: inherit;">プルリクエストがおそらく最善ですが、問題を解明できない場合は、xonsh開発者に関連情報を問い合わせてください。</font><font style="vertical-align: inherit;">これは2つの最上位のキーを持つJSONファイルです：</font></font><code class="docutils literal notranslate"><span class="pre">"xontribs"</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">と</font></font><code class="docutils literal notranslate"><span class="pre">"packages"</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+<p><font style="vertical-align: inherit;"></font><code class="docutils literal notranslate"><span class="pre">"xontribs"</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">キーはxontribモジュール自体を記述する辞書のリストです。</font><font style="vertical-align: inherit;">このようなエントリの構造は次のとおりです。</font></font></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">"xontribs"</span><span class="p">:</span> <span class="p">[</span>
+ <span class="p">{</span><span class="nt">"name"</span><span class="p">:</span> <span class="s2">"xontrib-name"</span><span class="p">,</span>
+  <span class="nt">"package"</span><span class="p">:</span> <span class="s2">"package-name"</span><span class="p">,</span>
+  <span class="nt">"url"</span><span class="p">:</span> <span class="s2">"http://example.com/api/xontrib"</span><span class="p">,</span>
+  <span class="nt">"description"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"Textual description as string or list or strings "</span><span class="p">,</span>
+                  <span class="s2">"enabling long content to be split over many lines."</span><span class="p">]</span>
+  <span class="p">}</span>
+ <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><font style="vertical-align: inherit;"></font><code class="docutils literal notranslate"><span class="pre">"packages"</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">キーは、他の一方で、（xontribエントリに関連付けられている）のdictマッピングパッケージ名は、パッケージに関するメタデータです。</font><font style="vertical-align: inherit;">パッケージエントリの構造は次のとおりです。</font></font></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">"packages"</span><span class="p">:</span> <span class="p">{</span>
+  <span class="nt">"package-name"</span><span class="p">:</span> <span class="p">{</span>
+   <span class="nt">"license"</span><span class="p">:</span> <span class="s2">"WTFPL v1.1"</span><span class="p">,</span>
+   <span class="nt">"url"</span><span class="p">:</span> <span class="s2">"http://example"</span><span class="p">,</span>
+   <span class="nt">"install"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">"conda"</span><span class="p">:</span> <span class="s2">"conda install package-name"</span><span class="p">,</span>
+    <span class="nt">"pip"</span><span class="p">:</span> <span class="s2">"xpip install package-name"</span><span class="p">}</span>
+   <span class="p">}</span>
+ <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><font style="vertical-align: inherit;"></font><code class="docutils literal notranslate"><span class="pre">"install"</span></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">dictには必要な</font><font style="vertical-align: inherit;">数のエントリを置くことができ</font><font style="vertical-align: inherit;">ます。</font><font style="vertical-align: inherit;">また、キーは任意のラベルなので、自由に自由に選んでください。</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">行く！</font></font></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="sidebar.html" title="サイドバー">
+          <img class="logo" src="_static/ascii_conch_part_transparent_tight.png" alt="ロゴ" />
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="sidebar.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ページの内容</font></font></a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">チュートリアル：拡張（Xontribs）</font></font></a><ul>
+<li><a class="reference internal" href="#overview"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">概要</font></font></a></li>
+<li><a class="reference internal" href="#structure"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">構造</font></font></a></li>
+<li><a class="reference internal" href="#loading-xontribs"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xontribのロード</font></font></a></li>
+<li><a class="reference internal" href="#listing-known-xontribs"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">既知のXontribのリスト</font></font></a></li>
+<li><a class="reference internal" href="#authoring-xontribs"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xontribの作成</font></font></a></li>
+<li><a class="reference internal" href="#tell-us-about-your-xontrib"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">あなたのXontribについて教えてください！</font></font></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前のページ</font></font></h4>
+    <p class="topless"><a href="tutorial_macros.html" title="前のページ"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">←チュートリアル：マクロ</font></font></a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次のページ</font></font></h4>
+    <p class="topless"><a href="tutorial_events.html" title="次のページ"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">→チュートリアル：イベント</font></font></a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">このページ</font></font></h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/tutorial_xontrib.rst.txt" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ソースを表示</font></font></a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="" role="search">
+  <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">クイック検索</font></font></h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><input type="submit" value="行こう" /></font></font>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="サイドバーメニューを非表示にする"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                 «
+                </font></font><span class="show-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">メニューを隠す</font></font></span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="サイドバーメニューを表示する" style="display: none;">
+                
+                <span class="show-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">メニューの</font></font></span>
+                <span class="hide-for-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">サイドバー</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 
+                 »
+            </font></font></button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ナビゲーション</font></font></h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="一般索引"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">索引</font></font></a></li>
+        <li class="right">
+          <a href="py-modindex.html" title="Pythonモジュールのインデックス"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">モジュール</font></font></a>    </li>
+        <li class="right">
+          <a href="tutorial_events.html" title="チュートリアル：イベント"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次</font></font></a>    </li>
+        <li class="right">
+          <a href="tutorial_macros.html" title="チュートリアル：マクロ"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">前</font></font></a>    </li>
+    <li><a href="sidebar.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonsh 0.8.5 documentation</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li>
+
+          <li class="nav-item nav-item-1"><a href="index.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xonshシェル</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> »</font></font></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+        ©Copyright 2015、Anthony Scopatz。</font></font><a href="http://sphinx-doc.org/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sphinx</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 1.8.2 </font><font style="vertical-align: inherit;">を使用して作成されました</font><font style="vertical-align: inherit;">。
+    </font></font></div>
+    <!-- cloud_sptheme 1.4 -->
+  
+<div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="https://www.gstatic.com/images/branding/product/1x/translate_24dp.png" width="20" height="20" alt="Google 翻訳" /></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">原文</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">翻訳を改善する</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;" /><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div><div class="hide-for-small"></div><div class="goog-te-spinner-pos"><div class="goog-te-spinner-animation"><svg xmlns="http://www.w3.org/2000/svg" class="goog-te-spinner" width="96px" height="96px" viewBox="0 0 66 66"><circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"/></svg></div></div></body></html>
